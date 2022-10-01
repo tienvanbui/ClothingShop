@@ -22,6 +22,12 @@ class CategoryController extends Controller
         $this->validateRule = [
             'name'=>'string|required|max:30|bail|unique:categories',
         ];
+        $this->middleware('auth');
+        $this->middleware(['permission:Category_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Category_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Category_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Category_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Category_delete'], ['only' => ['destroy']]);
     }
     public function update($id,Request $request){
         if($this->startValidationProcess($request)){

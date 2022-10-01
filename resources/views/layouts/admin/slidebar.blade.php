@@ -178,6 +178,30 @@
           </div>
         </li>
         <li class="sidebar-item accordion-item">
+          <h2 class="accordion-header" id="flush-head40">
+            <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-coll40" aria-expanded="false" aria-controls="flush-head40"><i
+                class="fas fa-gift"></i>Sự kiện giảm giá</span>
+          </h2>
+          <div id="flush-coll40" class="accordion-collapse collapse" aria-labelledby="flush-head40"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark item-link" href="{{ route('discount.index') }}">
+                    <span>Danh sách sự kiện giảm giá</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark item-link" href="{{ route('discount.create') }}">
+                    <span>Tạo sự kiện giảm giá mới</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="sidebar-item accordion-item">
           <h2 class="accordion-header" id="flush-headingTen">
             <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
               data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapseTen"><i

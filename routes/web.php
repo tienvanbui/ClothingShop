@@ -25,6 +25,7 @@ use App\Http\Controllers\User\UserCartController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\DashBoardController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Controller;
@@ -120,6 +121,8 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::get('/order/order-show-detail/{order}', [AdminOrderController::class, 'orderShow'])->name('admin.order-show');
     Route::post('/order/confirm-order/{order}', [AdminOrderController::class, 'orderConfirm'])->name('admin.order-confirm');
     Route::post('/order/delete-order/{order}', [AdminOrderController::class, 'orderDelete'])->name('admin.order-delete');
+    //Discount Router
+    Route::resource('/discount', DiscountController::class)->names('discount');
 });
 
 Auth::routes();

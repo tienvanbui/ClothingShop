@@ -25,6 +25,12 @@ class AboutController extends Controller
             'index' => 'admin.about.index',
             'create' => 'admin.about.create',
         ];
+        $this->middleware('auth:admin');
+        $this->middleware(['permission:About_list'], ['only' => ['index']]);
+        $this->middleware(['permission:About_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:About_show'], ['only' => ['show']]);
+        $this->middleware(['permission:About_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:About_delete'], ['only' => ['destroy']]);
     }
 
     /**

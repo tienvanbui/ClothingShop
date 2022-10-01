@@ -24,6 +24,12 @@ class BannerController extends Controller
             'content' =>'required|string|bail',
             'banner_image' =>'required|image|bail'
         ];
+        $this->middleware('auth:admin');
+        $this->middleware(['permission:Banner_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Banner_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Banner_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Banner_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Banner_delete'], ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
