@@ -105,7 +105,7 @@ class Controller extends BaseController
     /**
      * Show the form for creating .
      */
-    public function create()
+    public  function create()
     {
         return view($this->views['create']);
     }
