@@ -2,14 +2,14 @@
   <thead style="background-color:black;">
     <tr>
       <th scope="col" class="text-white">#</th>
-      <th scope="col" class="text-white">Name</th>
-      <th scope="col" class="text-white">UserName</th>
+      <th scope="col" class="text-white">Tên</th>
+      <th scope="col" class="text-white">Biệt danh</th>
       <th scope="col" class="text-white">Email</th>
-      <th scope="col" class="text-white">Phone</th>
-      <th scope="col" class="text-white">Address</th>
-      <th scope="col" class="text-white">Avatar</th>
-      <th scope="col" class="text-white">Status</th>
-      <th style="width: 10%" class="text-white">Action</th>
+      <th scope="col" class="text-white">SĐT</th>
+      <th scope="col" class="text-white">Địa chỉ</th>
+      <th scope="col" class="text-white">Ảnh</th>
+      <th scope="col" class="text-white">Trạng thái</th>
+      <th style="width: 10%" class="text-white">Hoạt động</th>
     </tr>
   </thead>
   <tbody>
@@ -24,9 +24,9 @@
         <td><img src="{{ asset($user->avatar) }}" style="width:3rem;height:3rem"></td>
         <td>
           @if ($user->status == 1)
-            <label class=" mt-1 btn btn-danger">Blocked</label>
+            <label class=" mt-1 btn btn-danger">Chặn</label>
           @elseif ($user->status == 0)
-            <label class="mt-1 btn btn-primary btn-sm">Block</label>
+            <label class="mt-1 btn btn-primary btn-sm">Hoạt động</label>
           @endif
         </td>
         <td>

@@ -41,6 +41,6 @@ class PermissionController extends Controller
                 'key_code'=>$request->permission_name.'_'.$value,
                ]);
             }
-            return redirect()->route('permission.create')->withToastSuccess('Permission Stored Successfully!');
+            return redirect()->route('permission.create')->withToastSuccess('Quyền lưu trữ thành công!');
     }
 }

@@ -14,11 +14,10 @@ class ContactController extends Controller
         $this->modelName='Contact';
         $this->views = [
             'index' => 'admin.contact.index',
-            'create' => 'admin.contact.create',
         ];
         $this->validateRule = [
             'address' => 'required|string|bail',
-            'talk'=>'required|string|bail',
+            'talk'=>'required|string|numeric|bail',
             'sale_email'=>'required|email|bail',
         ];
 
@@ -27,8 +26,19 @@ class ContactController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
-        $contact = Contact::latest()->first();
-       return view('admin.contact.index',['contact'=>$contact]);
+        $contact = Contact::firstOrFail();
+        return view('admin.contact.create',['contact'=>$contact]);
+    }
+        /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $contact = Contact::firstOrFail();
+        return view('admin.contact.create',['contact'=>$contact]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -57,7 +67,7 @@ class ContactController extends Controller
                 'talk'=>$request->talk,
                 'sale_email'=>$request->sale_email,
             ]);
-            return redirect()->route('contact.index')->withToastSuccess('Contact Updated Successfully!');
+            return redirect()->route('contact.index')->withToastSuccess('Thông tin liên hệ cập nhật thành công!');
         }
     }
 

@@ -2,12 +2,12 @@
   <thead style="width: 100%;background-color:black;">
     <tr>
       <th scope="col" class="text-white">#</th>
-      <th scope="col" class="text-white">Coupon Code</th>
-      <th scope="col" class="text-white">Discount Type</th>
-      <th scope="col" class="text-white">Discount Price</th>
-      <th scope="col" class="text-white">Number Of Coupons Available</th>
-      <th scope="col" class="text-white">Number Of Coupons Used</th>
-      <th style="width: 10%" class="text-white">Action</th>
+      <th scope="col" class="text-white">Mã giảm giá</th>
+      <th scope="col" class="text-white">Loại giảm giá</th>
+      <th scope="col" class="text-white">Giá giảm</th>
+      <th scope="col" class="text-white">Số lượng phiếu tồn</th>
+      <th scope="col" class="text-white">Số lượng phiếu đã dùng</th>
+      <th style="width: 10%" class="text-white">Hoạt động</th>
     </tr>
   </thead>
   <tbody>
@@ -17,9 +17,9 @@
         <td>{{ $coupon->coupon_code }}</td>
         <td>
           @if ($coupon->coupon_condition == 0)
-            discount as a money
+            Giảm giá theo tiền
           @else
-            discount as a percentage
+            Giảm giá theo phần trăm
           @endif
         </td>
         <td>

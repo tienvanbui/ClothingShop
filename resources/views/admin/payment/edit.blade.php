@@ -1,4 +1,4 @@
-@section('title', 'Create Payment Method')
+@section('title', 'Tạo phương thức thanh toán')
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
 @section('main-content')
@@ -7,16 +7,15 @@
       <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Payment Method</h4>
+            <h4 class="page-title">Phương thức thanh toán</h4>
           </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('payment.index') }}" class="fw-normal">Payment Method List</a></li>
+                <li><a href="{{ route('payment.index') }}" class="fw-normal">Danh sách phương thức thanh toán</a></li>
               </ol>
               <a href="{{ route('payment.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Create
-                Payment Method</a>
+                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo phương thức thanh toán</a>
             </div>
           </div>
         </div>
@@ -30,13 +29,13 @@
           @method('PUT')
           @csrf
           <div class="form-group">
-            <label for="payment_method">Payment Method</label>
+            <label for="payment_method">Phương thức thanh toán</label>
             <input type="text" class="form-control" id="payment_method" aria-describedby="payment_method"
-              placeholder="ENTER PAYMENT METHOD" name="payment_method" value="{{ $payment->payment_method }}">
+              placeholder="Nhập phương thức thanh toán" name="payment_method" value="{{ $payment->payment_method }}">
             @include('common.singleAlertError', ['field' => 'payment_method'])
           </div>
           <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary ">Update</button>
+            <button type="submit" class="btn btn-primary ">Cập nhật</button>
           </div>
         </form>
       </div>

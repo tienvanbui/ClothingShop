@@ -17,7 +17,7 @@
                 <li><a href="{{ route('banner.index') }}" class="fw-normal">Banner</a></li>
               </ol>
               <a href="{{ route('banner.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Create
+                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
                 Banner</a>
             </div>
           </div>

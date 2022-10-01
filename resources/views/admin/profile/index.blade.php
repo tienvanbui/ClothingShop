@@ -1,10 +1,10 @@
-@section('title', 'Profile')
+@section('title', 'Thông tin tài khoản')
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
 @section('main-content')
   <div class="container">
     <div class="row">
-      <h2 class="text-center text-dark mt-3">USER INFORMATION</h2>
+      <h2 class="text-center text-dark mt-4">THÔNG TIN TÀI KHOẢN</h2>
       @include('common.message')
       <div class="wapper mt-5">
         <form action="{{ route('profile.update', ['profile' => auth()->user()->id]) }}" method="post"
@@ -35,7 +35,7 @@
                 <div class="card-body">
                   <form class="form-horizontal form-material">
                     <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Name</label>
+                      <label class="col-md-12 p-0">Tên</label>
                       <div class="col-md-12 border-bottom p-0">
                         <input type="text" placeholder="Johnathan Doe" class="form-control p-0 border-0"
                           value="{{ auth()->user()->name }}" name="name">
@@ -49,21 +49,21 @@
                       </div>
                     </div>
                     <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Username</label>
+                      <label class="col-md-12 p-0">Tên đăng nhập</label>
                       <div class="col-md-12 border-bottom p-0">
                         <input type="username"class="form-control p-0 border-0" value="{{ auth()->user()->username }}"
                           name="username">
                       </div>
                     </div>
                     <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Phone Number</label>
+                      <label class="col-md-12 p-0">Số điện thoại</label>
                       <div class="col-md-12 border-bottom p-0">
                         <input type="text"class="form-control p-0 border-0" value="{{ auth()->user()->phoneNumber }}"
                           name="phoneNumber">
                       </div>
                     </div>
                     <div class="form-group mb-4">
-                      <label class="col-md-12 p-0">Address</label>
+                      <label class="col-md-12 p-0">Địa chỉ</label>
                       <div class="col-md-12 border-bottom p-0">
                         <input type="text"class="form-control p-0 border-0" value="{{ auth()->user()->address }}"
                           name="address">
@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group mb-4">
                       <div class="col-sm-12">
-                        <button type="submit" class="btn btn-success text-white">Update Your Profile</button>
+                        <button type="submit" class="btn btn-success text-white">Cập nhật thông tin tài khoản</button>
                       </div>
                     </div>
                   </form>

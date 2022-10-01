@@ -2,12 +2,12 @@
   <thead style="background-color: #021919;color:white">
     <tr>
       <th scope="col" class="text-white">#</th>
-      <th scope="col" class="text-white">User</th>
-      <th scope="col" class="text-white">Date</th>
-      <th scope="col" class="text-white">Payment Method</th>
-      <th scope="col" class="text-white">Total</th>
-      <th scope="col" class="text-white">Status</th>
-      <th scope="col" class="text-white">Action</th>
+      <th scope="col" class="text-white">Người đặt</th>
+      <th scope="col" class="text-white">Ngày đặt</th>
+      <th scope="col" class="text-white">Phương thức thanh toán</th>
+      <th scope="col" class="text-white">Tổng tiền</th>
+      <th scope="col" class="text-white">Trạng thái</th>
+      <th scope="col" class="text-white">Hoạt động</th>
     </tr>
   </thead>
   <tbody>
@@ -24,13 +24,13 @@
               <form action="{{ route('admin.order-confirm', ['order' => $order->id]) }}"method="POST">
                 @csrf
                 <input type="number" class="d-none" value="0" name="status">
-                <button class="text-white btn btn-danger btn-sm mt-1">On Progressing</button>
+                <button class="text-white btn btn-danger btn-sm mt-1">Chờ duyệt</button>
               </form>
             @else
               <form action="{{ route('admin.order-confirm', ['order' => $order->id]) }}"method="POST">
                 @csrf
                 <input type="number" class="d-none" value="1" name="status">
-                <button class="text-white btn btn-primary btn-sm mt-1">Shipping</button>
+                <button class="text-white btn btn-primary btn-sm mt-1">Đang chuyển</button>
               </form>
             @endif
           </td>
@@ -54,18 +54,18 @@
               <form action="{{ route('admin.order-confirm', ['order' => $order->id]) }}"method="POST">
                 @csrf
                 <input type="number" class="d-none" value="1" name="status">
-                <button class="text-white btn btn-primary btn-sm mt-1 rounded-pill">On Progressing</button>
+                <button class="text-white btn btn-primary btn-sm mt-1 rounded-pill">Chờ duyệt</button>
               </form>
             @elseif($order->status == 1)
               <form action="{{ route('admin.order-confirm', ['order' => $order->id]) }}"method="POST">
                 @csrf
                 <input type="number" class="d-none" value="2" name="status">
-                <button class="text-white btn btn-success btn-sm mt-1 rounded-pill">Shipping</button>
+                <button class="text-white btn btn-success btn-sm mt-1 rounded-pill">Đang chuyển</button>
               </form>
             @else
             <form action="{{ route('admin.order-delete', ['order' => $order->id]) }}"method="POST">
               @csrf
-              <button class="text-white tex-white btn-sm btn-danger btn mt-1 rounded-pill">Remove</button>
+              <button class="text-white tex-white btn-sm btn-danger btn mt-1 rounded-pill">Loại bỏ</button>
             </form>
               
             @endif

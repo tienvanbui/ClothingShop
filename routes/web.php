@@ -41,7 +41,7 @@ use App\Http\Controllers\User\UserOrderController;
 |
 */
 
-Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => '/admin', 'middleware' => ['auth','permission']], function () {
     // Action Bar Admin Ajax Router 
     Route::post('/show-listing-with-action-bar', [Controller::class, 'displayListing'])->name('showWithActionBar');
     //Dashboard Router

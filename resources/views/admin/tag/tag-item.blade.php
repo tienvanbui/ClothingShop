@@ -2,8 +2,8 @@
   <thead style="background-color:black;">
     <tr>
       <th scope="col" class="text-white">#</th>
-      <th scope="col" class="text-white">Tag Name</th>
-      <th scope="col" class="text-white">Action</th>
+      <th scope="col" class="text-white">Tên từ khóa</th>
+      <th scope="col" class="text-white">Hoạt động</th>
     </tr>
   </thead>
   <tbody>

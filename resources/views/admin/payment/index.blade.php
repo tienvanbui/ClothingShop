@@ -1,4 +1,4 @@
-@section('title', 'Payment Method List')
+@section('title', 'Danh sách phương thức thanh toán')
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
 @section('main-content')
@@ -7,16 +7,15 @@
       <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Payment Method</h4>
+            <h4 class="page-title">Phương thức thanh toán</h4>
           </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('payment.index') }}" class="fw-normal">Payment Method List</a></li>
+                <li><a href="{{ route('payment.index') }}" class="fw-normal">Danh sách phương thức thanh toán</a></li>
               </ol>
               <a href="{{ route('payment.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Create
-                Payment Method</a>
+                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo phương thức thanh toán</a>
             </div>
           </div>
         </div>
@@ -25,7 +24,7 @@
     </div>
     <div class="row">
       <div class="container">
-        <h1 class="text-center">PAYMENTS LIST</h1>
+        <h1 class="text-center my-4">DANH SÁCH PHƯƠNG THỨC</h1>
         @include('common.message')
         <div class="d-flex action-bar justify-content-between">
           @include('common.showPerPage')

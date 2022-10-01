@@ -23,6 +23,7 @@ class BlogController extends Controller
             'blog_content' => 'required|bail',
             'thumbnail' => 'required|bail',
         ];
+        
     }
     /**
      * Show the form for creating a new resource.

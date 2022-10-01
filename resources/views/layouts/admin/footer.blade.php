@@ -64,11 +64,11 @@
     //labelColor:"#cccccc", // text color
     //backgroundColor: '#333333', // border color
     data: [{
-        label: "Products",
+        label: "Sản phẩm",
         value: <?php echo $product_count; ?>
       },
       {
-        label: "Blogs",
+        label: "Tin tức",
         value: <?php echo $blog_count; ?>
       },
       {
@@ -80,11 +80,11 @@
         value: <?php echo $slider_count; ?>
       },
       {
-        label: "Tags",
+        label: "Từ khóa",
         value: <?php echo $tag_count; ?>
       },
       {
-        label: "Coupons",
+        label: "Phiếu giảm giá",
         value: <?php echo $coupon_count; ?>
       },
       {
@@ -92,15 +92,15 @@
         value: <?php echo $menu_count; ?>
       },
       {
-        label: "Abouts",
+        label: "Về chúng tôi",
         value: <?php echo $about_count; ?>
       },
       {
-        label: "Colors",
+        label: "Màu sắc",
         value: <?php echo $color_count; ?>
       },
       {
-        label: "Categories",
+        label: "Danh mục sản phẩm",
         value: <?php echo $category_count; ?>
       },
 

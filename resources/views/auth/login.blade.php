@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-  Login
+  Đăng nhập
 @endsection
 @section('content')
   <div class="row justify-content-center">
@@ -11,13 +11,13 @@
   <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4">
       <div class="login-wrap p-0">
-        <h3 class="mb-4 text-center">Have an account?</h3>
+        <h3 class="mb-4 text-center">Bạn có tài khoản?</h3>
         <form method="POST" action="{{ route('login') }}" class="signin-form">
           @csrf
           <div class="form-group">
             <input id="username" type="username" class="form-control @error('username') is-invalid @enderror"
               name="username" value="{{ old('username') }}" required autocomplete="username" autofocus
-              placeholder="Username">
+              placeholder="Tên đăng nhập">
             @error('username')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -29,7 +29,7 @@
           </div>
           <div class="form-group">
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-              name="password" required autocomplete="current-password" placeholder="Password">
+              name="password" required autocomplete="current-password" placeholder="Mật khẩu">
 
             @error('password')
               <span class="invalid-feedback" role="alert">
@@ -39,7 +39,7 @@
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-secondary text-white submit px-3 form-control">
-              {{ __('Sign In') }}
+              {{ __('Đăng nhập') }}
             </button>
           </div>
           <div class="form-group d-md-flex">
@@ -54,22 +54,22 @@
             <div class="w-50 text-md-right">
               @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" style="color: #fff">
-                  {{ __('Forgot Password?') }}
+                  {{ __('Quên mật khẩu?') }}
                 </a>
               @endif
             </div>
           </div>
         </form>
-        <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+        <p class="w-100 text-center">&mdash; Hoặc đăng nhập với &mdash;</p>
         <div class="social d-flex text-center">
           <a href="{{ route('redirect-facebook') }}" class="px-2 py-2 mr-md-1 rounded"><span
               class="ion-logo-facebook mr-2"></span> Facebook</a>
           <a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
         </div>
-        <p class="w-100 text-center">&mdash; Create New Account &mdash;</p>
+        <p class="w-100 text-center">&mdash; Đăng ký tài khoản &mdash;</p>
         <div class="social d-flex text-center">
           <a href="{{ route('register') }}" class="px-2 py-2 mr-md-1 rounded"><span
-              class="ion-logo-facebook mr-2"></span>Register</a>
+              class="ion-logo-facebook mr-2"></span>Đăng ký</a>
         </div>
       </div>
     </div>

@@ -2,10 +2,10 @@
   <thead style="background-color:black">
     <tr>
       <th scope="col" class="text-white">#</th>
-      <th scope="col" class="text-white">Name</th>
-      <th scope="col" class="text-white">Thumbnail</th>
-      <th scope="col" class="text-white">Time Out</th>
-      <th scope="col" class="text-white">Action</th>
+      <th scope="col" class="text-white">Tiêu đề</th>
+      <th scope="col" class="text-white">Ảnh</th>
+      <th scope="col" class="text-white">Ngày hết hạn</th>
+      <th scope="col" class="text-white">Hành động</th>
     </tr>
   </thead>
   <tbody>

@@ -81,9 +81,7 @@ class Controller extends BaseController
      */
     public function index()
     {
-        $list = Cache::rememberForever("$this->resourceName-" . request('page', 1), function () {
-            return $this->model::whereNull("$this->resourceName.deleted_at")->latest()->paginate($this->itemInPerPgae);
-        });
+        $list = $this->model::whereNull("$this->resourceName.deleted_at")->latest()->paginate($this->itemInPerPgae);
         return view($this->views['index'])->with(
             $this->resourceName,
             $list

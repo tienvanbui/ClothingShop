@@ -1,55 +1,41 @@
 @section('title')
-    Create Contact
+  Cập nhật thông tin
 @endsection
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
 @section('main-content')
-<div class="container">
-	<div class="row"> 
-        <div class="page-breadcrumb bg-white">
-                <div class="row align-items-center">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Contact</h4>
-                    </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <div class="d-md-flex">
-                            <ol class="breadcrumb ms-auto">
-                                <li><a href="{{route('contact.index')}}" class="fw-normal">Contact Information</a></li>
-                            </ol>
-                            <a href="{{route('contact.create')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Create Contact</a>
-                        </div>
-                    </div>
-                </div>
-        </div> 
-	</div>
+  <div class="container">
     <div class="row">
-        <div class="container">
-            <h1 class="text-center">CREATE CONTACT INFORMATION</h1> 
-            <form action="{{route('contact.store')}}" method="post">
-                 @csrf
-                <div class="form-group">
-                    <label for="address">Address</label>
-                <input type="text" class="form-control" id="address" aria-describedby="address" placeholder="Enter address of your shop" name="address" value="{{old('address')}}">
-                    @include('common.singleAlertError',['field'=>'address'])
-                </div>
-                <div class="form-group">
-                    <label for="talk">Lets Talk</label>
-                     <input type="text" class="form-control" id="talk" aria-describedby="talk" placeholder="Lets Talk" name="talk" value="{{old('talk')}}">
-                     @include('common.singleAlertError',['field'=>'talk'])
-                </div>
-                 <div class="form-group">
-                    <label for="saleEmail">Sales Support Email</label>
-                     <input type="email" class="form-control" id="sale_email" aria-describedby="sale_email" placeholder="Enter Sales Email Support" name="sale_email" value="{{old('sale_email')}}">
-                     @include('common.singleAlertError',['field'=>'sale_email'])
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary ">Create</button>
-                </div>
-            </form>
-        </div>
-	</div>
-</div>
+      <div class="container">
+        <h1 class="text-center mt-4">CẬP NHẬT THÔNG TIN LIÊN HỆ</h1>
+        <form action="{{ route('contact.update', ['contact' => $contact]) }}" method="post">
+          @method('put')
+          @csrf
+          <div class="form-group">
+            <label for="address">Địa chỉ</label><span style="color:red">*</span>
+            <input type="text" class="form-control" id="address" aria-describedby="address"
+              placeholder="Nhập địa chỉ cửa hàng" name="address" value="{{$contact->address}}">
+            @include('common.singleAlertError', ['field' => 'address'])
+          </div>
+          <div class="form-group">
+            <label for="talk">Số điện thoại cửa hàng</label><span style="color:red">*</span>
+            <input type="text" class="form-control" id="talk" aria-describedby="talk"
+              placeholder="Số điện thoại cửa hàng" name="talk" value="{{$contact->talk}}">
+            @include('common.singleAlertError', ['field' => 'talk'])
+          </div>
+          <div class="form-group">
+            <label for="saleEmail">Địa chỉ email hỗ trợ</label><span style="color:red">*</span>
+            <input type="email" class="form-control" id="sale_email" aria-describedby="sale_email"
+              placeholder="Nhập địa chỉ email hỗ trợ" name="sale_email" value="{{$contact->sale_email}}">
+            @include('common.singleAlertError', ['field' => 'sale_email'])
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary ">Cập nhật</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @endsection
 @include('layouts.admin.main')
 @include('layouts.admin.footer')

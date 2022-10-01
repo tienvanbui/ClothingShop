@@ -2,8 +2,8 @@
   <thead style="width: 100%;background-color:black;">
     <tr>
       <th scope="col" class="text-white">#</th>
-      <th scope="col" class="text-white">Payment Method</th>
-      <th style="width: 11%" class="text-white">Action</th>
+      <th scope="col" class="text-white">Phương thức thanh toán</th>
+      <th style="width: 11%" class="text-white">Hoạt động</th>
     </tr>
   </thead>
   <tbody>

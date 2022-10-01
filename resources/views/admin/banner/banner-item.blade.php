@@ -2,10 +2,10 @@
   <thead style="width: 100%;background-color:black">
     <tr>
       <th scope="col" class="text-white">#</th>
-      <th scope="col" class="text-white">Title</th>
-      <th scope="col" class="text-white">Description</th>
-      <th scope="col" class="text-white">Thumbnail</th>
-      <th style="width: 8%" class="text-white">Action</th>
+      <th scope="col" class="text-white">Tiêu đề</th>
+      <th scope="col" class="text-white">Mô tả</th>
+      <th scope="col" class="text-white">Hình ảnh</th>
+      <th style="width: 10%" class="text-white">Hoạt động</th>
     </tr>
   </thead>
   <tbody>

@@ -34,7 +34,7 @@
       <div class="top-bar">
         <div class="content-topbar flex-sb-m h-full container">
           <div class="left-top-bar">
-            Free shipping for standard order over $100
+            Miễn phí cho các đơn hàng hơn $100
           </div>
 
           <div class="right-top-bar flex-w h-full">
@@ -51,12 +51,11 @@
               <form action="{{ route('logout') }} " method="post" class="flex-c-m trans-04 p-lr-25">
                 @csrf
                 <button type='submit' class="btn btn-danger btn-sm">
-                  Logout
+                  Đăng xuất
                 </button>
               </form>
             @else
-              <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25" aria-pressed="true">Log
-                In</a>
+              <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25" aria-pressed="true">Đăng nhập</a>
             @endif
 
           </div>
@@ -135,7 +134,7 @@
       <ul class="topbar-mobile">
         <li>
           <div class="left-top-bar">
-            Free shipping for standard order over $100
+            Miễn phí cho các đơn hàng hơn $100
           </div>
         </li>
 
@@ -155,12 +154,11 @@
               <form action="{{ route('logout') }} " method="post" class="flex-c-m trans-04 p-lr-25">
                 @csrf
                 <button type='submit' class="btn btn-danger btn-sm">
-                  Logout
+                  Đăng xuất
                 </button>
               </form>
             @else
-              <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25" aria-pressed="true">Log
-                In</a>
+              <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25" aria-pressed="true">Đăng nhập</a>
             @endif
           </div>
         </li>
@@ -195,7 +193,7 @@
     <div class="header-cart flex-col-l p-l-65 p-r-25">
       <div class="header-cart-title flex-w flex-sb-m p-b-8">
         <span class="mtext-103 cl2">
-          Your Cart
+          Giở hàng
         </span>
 
         <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -232,16 +230,16 @@
 
           <div class="w-full">
             <div class="header-cart-total w-full p-tb-40">
-              Total: {{ '$' . number_format($totalPrice) }}
+              Tổng: {{ '$' . number_format($totalPrice) }}
             </div>
             <div class="header-cart-buttons flex-w w-full">
               <a href="{{ route('view-cart') }}"
                 class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                View Cart
+                Xem giỏ hàng
               </a>
               <a href="{{ route('payment.confirm') }}"
                 class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                Check Out
+                Duyệt đơn
               </a>
             </div>
           </div>

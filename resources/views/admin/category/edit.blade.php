@@ -1,5 +1,5 @@
 @section('title')
-    Edit Category
+    Cập nhật danh mục sản phẩm
 @endsection
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
@@ -9,15 +9,15 @@
 		<div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Category</h4>
+                        <h4 class="page-title">Danu mục</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                              <ol class="breadcrumb ms-auto">
-                                <li><a href="{{route('category.index')}}" class="fw-normal">Category List</a></li>
+                                <li><a href="{{route('category.index')}}" class="fw-normal">Danh mục sản phẩm</a></li>
                             </ol>
                             <a href="{{route('category.create')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Add Category</a>
+                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo danh mục sản phẩm</a>
                         </div>
                     </div>
                 </div>
@@ -25,17 +25,17 @@
             </div>
 	</div>
 	<div class="row">
-	    <h1 class="text-center">EDIT CATEGORY</h1>
+	    <h1 class="text-center">DANH MỤC SẢN PHẨM</h1>
         <form action="{{ route('category.update',['id'=>$category->id]) }}" method="post" name="category">
         @method("put")
         @csrf
         <div class="form-group">
-            <label for="name">CategoryName</label>
+            <label for="name">Tên danh mục</label>
             <input type="text" class="form-control" id="name" name="name" value="{{$category->name}}">
             @include('common.singleAlertError',['field'=>'name'])
         </div>
           <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-danger btn-block">Accept Update</button>
+        <button type="submit" class="btn btn-danger btn-block">Cập nhật</button>
           </div>
     </form>
 	</div>

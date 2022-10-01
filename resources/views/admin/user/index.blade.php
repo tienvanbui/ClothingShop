@@ -1,5 +1,5 @@
 @section('title')
-  Users List
+  Danh sách tài khoản
 @endsection
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
@@ -9,16 +9,16 @@
       <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Users</h4>
+            <h4 class="page-title">Tài khoản</h4>
           </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('manage_user.index') }}" class="fw-normal">Users List</a></li>
+                <li><a href="{{ route('manage_user.index') }}" class="fw-normal">Danh sách tài khoản</a></li>
               </ol>
               <a href="{{ route('manage_user.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Create
-                User</a>
+                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                tài khoản</a>
             </div>
           </div>
         </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="row">
       <div class="container">
-        <h1 class="text-center">USERS LIST</h1>
+        <h1 class="text-center my-4">DANH SÁCH TÀI KHOẢN</h1>
         @include('common.message')
         <div class="d-flex action-bar justify-content-between">
           @include('common.showPerPage')
