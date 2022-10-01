@@ -8,6 +8,20 @@ return [
         'Setting', //Setting::class
         'User', //User::class
         'Role', //Role::class
+        'Blog',//Blog::class
+        'Color',
+        'Size',
+        'Coupon',
+        'Menu',
+        'Tag',
+        'Order',
+        'Users',
+        'User Role',
+        'Permission',
+        'Contact',
+        'About',
+        'Payment Method',
+        'Product'
     ],
     'modul_features' =>[
         'list',// list objects of model
