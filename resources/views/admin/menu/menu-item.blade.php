@@ -2,8 +2,8 @@
   <thead style="width: 100%;background-color:black">
     <tr>
       <th scope="col"class="text-white">#</th>
-      <th scope="col"class="text-white">Name</th>
-      <th style="width: 8%"class="text-white">Action</th>
+      <th scope="col"class="text-white">Tên</th>
+      <th style="width: 20%"class="text-white">Hoạt động</th>
     </tr>
   </thead>
   <tbody>

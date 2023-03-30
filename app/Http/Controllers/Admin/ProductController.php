@@ -34,6 +34,11 @@ class ProductController extends Controller
             'category_id' => 'required|bail',
             'user_id' => 'required|bail',
         ];
+        $this->middleware(['permission:Product_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Product_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Product_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Product_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Product_delete'], ['only' => ['destroy']]);
     }
     /**
      * Show the form for creating a new resource.

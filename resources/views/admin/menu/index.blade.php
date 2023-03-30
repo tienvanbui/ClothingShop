@@ -1,5 +1,5 @@
 @section('title')
-  Menu
+  Mục lục
 @endsection
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
@@ -9,16 +9,15 @@
       <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Menu</h4>
+            <h4 class="page-title">Mục lục</h4>
           </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('menu.index') }}" class="fw-normal">Menu List</a></li>
+                <li><a href="{{ route('menu.index') }}" class="fw-normal">Danh sách mục lục</a></li>
               </ol>
               <a href="{{ route('menu.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Create
-                Menu Item</a>
+                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo mục lục</a>
             </div>
           </div>
         </div>
@@ -27,7 +26,7 @@
     <div class="row">
       <div class="container">
         <h1 class="text-center">MENU</h1>
-        @include('common.message');
+        @include('common.message')
         <div class="d-flex action-bar justify-content-between">
           @include('common.showPerPage')
           @include('common.search')

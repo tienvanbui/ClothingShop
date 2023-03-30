@@ -17,7 +17,8 @@
                 <li><a class="fw-normal">Quyền</a></li>
               </ol>
               <a href="{{ route('permission.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo quyền</a>
+                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                quyền</a>
             </div>
           </div>
         </div>

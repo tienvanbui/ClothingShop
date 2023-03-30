@@ -1,6 +1,6 @@
 
 @section('title')
-    View User Role
+  Chi tiết vai trò
 @endsection
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
@@ -10,15 +10,15 @@
 		<div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">User Role</h4>
+                        <h4 class="page-title">Vai trò</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="{{route('role.index')}}" class="fw-normal">User Roles List</a></li>
+                                <li><a href="{{route('role.index')}}" class="fw-normal">Danh sách vai trò</a></li>
                             </ol>
                             <a href="{{route('role.create')}}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Create User Role</a>
+                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo vai trò</a>
                         </div>
                     </div>
                 </div>
@@ -26,14 +26,14 @@
             </div>
 	</div>
   <div class="row">
-   <h1 class="text-center">View User Role</h1>
+   <h1 class="text-center mt-4">XEM CHI TIẾT VAI TRÒ</h1>
           <div class="col-md-12">
             <div class="form-group">
-              <label for="role_name">Role Name:</label>
+              <label for="role_name">Tên vai trò:</label>
               <input type="text" class="form-control" id="role_name" aria-describedby="role_name" name="role_name" value="{{$role->role_name}}" placeholder="Enter Role Name">
             </div>
             <div class="form-group">
-              <label for="role_description">Role Description:</label>
+              <label for="role_description">Mô tả:</label>
               <textarea name="role_description" id="ckeditor_user_role_show" cols="30" rows="10" class="form-control" placeholder="Enter Role Description">{{$role->role_description}}</textarea>
             </div>
           </div>
@@ -45,7 +45,7 @@
                   <label>
                     <input type="checkbox" class="checkbox_warpper" >                    
                   </label>
-                  Model {{$item->permission_name}}
+                  Chức năng {{$item->permission_name}}
                 </div>
                 <div class="row">
                   @foreach ($item->permissions as $child)      

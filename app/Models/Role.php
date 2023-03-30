@@ -25,6 +25,6 @@ class Role extends Model
         return ucwords($this->attributes['role_description']);
     }
     public function permissions(){
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Permission::class,'permission_role','role_id','permission_id');
     }
 }

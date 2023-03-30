@@ -14,11 +14,11 @@ class PaymentSeeder extends Seeder
     public function run()
     {
         Payment::create([
-            'payment_method' => 'Cash Payment',
+            'payment_method' => 'Trả tiền mặt',
             'slug'=>'Cash'
         ]);
         Payment::create([
-            'payment_method' => 'Card Payment',
+            'payment_method' => 'Thẻ ngân hàng',
             'slug'=>'Card'
         ]);
     }

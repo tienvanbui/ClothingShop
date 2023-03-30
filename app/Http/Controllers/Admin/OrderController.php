@@ -15,6 +15,11 @@ class OrderController extends Controller
         $this->setModel(Order::class);
         $this->resourceName = 'orders';
         $this->modelName = 'Order';
+        $this->middleware(['permission:Order_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Order_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Order_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Order_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Order_delete'], ['only' => ['destroy']]);
     }
 
     public function orderCheck()

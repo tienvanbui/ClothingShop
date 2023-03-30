@@ -23,7 +23,12 @@ class BlogController extends Controller
             'blog_content' => 'required|bail',
             'thumbnail' => 'required|bail',
         ];
-        
+        $this->middleware('auth');
+        $this->middleware(['permission:Blog_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Blog_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Blog_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Blog_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Blog_delete'], ['only' => ['destroy']]);
     }
     /**
      * Show the form for creating a new resource.

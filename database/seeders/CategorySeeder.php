@@ -14,7 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name'=>'Men']);
-        Category::create(['name'=>'Women']);
+        Category::create(['name'=>'Nam']);
+        Category::create(['name'=>'Nữ']);
     }
 }

@@ -1,5 +1,5 @@
 @section('title')
-    Edit Product
+    Cập nhật sản phẩm
 @endsection
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
@@ -9,40 +9,39 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Product</h4>
+                        <h4 class="page-title">Sản phẩm</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
                             <ol class="breadcrumb ms-auto">
-                                <li><a href="{{ route('product.index') }}" class="fw-normal">Products List</a></li>
+                                <li><a href="{{ route('product.index') }}" class="fw-normal">Danh sách sản phẩm</a></li>
                             </ol>
                             <a href="{{ route('product.create') }}"
-                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Create
-                                Product</a>
+                                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo sản phẩm</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <h1 class="text-center mt-3">Edit Product</h1>
+            <h1 class="text-center mt-3">CẬP NHẬT SẢN PHẨM</h1>
             @include('common.message')
             <form action="{{ route('product.update', ['product' => $product->id]) }}" method="post"
                 enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group">
-                    <label for="product_name">Product Name:</label>
+                    <label for="product_name">Tên sản phẩm:</label>
                     <input type="text" class="form-control" id="product_name" aria-describedby="product_name"
                         name="product_name" value="{{ $product->product_name }}">
                     @include('common.singleAlertError', ['field' => 'product_name'])
                 </div>
 
                 <div class="form-group">
-                    <label for="product_image">Product Image:</label>
+                    <label for="product_image">Ảnh sản phẩm:</label>
                     <input type="file" class="form-control-file" name="product_image" id="product_image">
                     <div id="featureImgHelpBlock" class="form-text text-dark">
-                        Your images must have type *jpeg, *png, *bmp, *gif, *svg.
+                       Ảnh phải địng dạng *jpeg, *png, *bmp, *gif, *svg.
                     </div>
                     <div class="card h-100" style="width: 18rem;">
                         <img src="{{ asset($product->product_image) }}" class="card-img-top"
@@ -53,20 +52,20 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="product_seo">Product Seo</label>
+                    <label for="product_seo">Mô tả ngắn</label>
                     <input type="text" class="form-control" id="product_seo" aria-describedby="product_seo"
                         name="product_seo" value="{{$product->seo_product}}">
                 </div>
                 <div class="form-group">
-                    <label for="price">Price:</label>
+                    <label for="price">Giá:</label>
                     <input type="number" class="form-control" id="price" name='price' value="{{ $product->price }}">
                     @include('common.singleAlertError', ['field' => 'price'])
                 </div>
                 <div class="form-group">
-                    <label for="img_path">Image Detail:</label>
+                    <label for="img_path">Ảnh sản phẩm chi tiết:</label>
                     <input type="file" class="form-control-file" name="img_path[]" id="img_path" multiple>
                     <div id="img_pathHelpBlock" class="form-text text-dark">
-                        Your images must have type *jpeg, *png, *bmp, *gif, *svg.
+                        Ảnh phải định dạng type *jpeg, *png, *bmp, *gif, *svg.
                     </div>
                     <div class="card-group">
                         @foreach ($product->productImages as $itemImgs)
@@ -86,7 +85,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="category_id">Category:</label>
+                    <label for="category_id">Danh mục sản phẩm:</label>
                     <select class="form-control" id="category_id" name="category_id">
                         @foreach ($category as $itemcategory)
                             <option name="category_id" value="{{ $product->category_id }}"
@@ -95,7 +94,7 @@
                         @endforeach
                     </select>
                 </div>
-                <label for="size_id">Size Id</label>
+                <label for="size_id">Kích thước</label>
                 <div class="form-group">
                     @foreach ($sizes as $item)
                         <div class="form-check form-check-inline size-div_checkbox">
@@ -108,15 +107,15 @@
                     <div class="form-check-inline">
                         <input class="form-check-input remove-all-size_selection" type="radio" name="option-radio-size"
                             id="SizeRemoveAll" style="visibility: hidden;">
-                        <label class="form-check-label" for="SizeRemoveAll">Remove All</label>
+                        <label class="form-check-label" for="SizeRemoveAll">Bỏ hết</label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input select-all-size_selection" type="radio" name="option-radio-size"
                             id="SizeSelectAll" style="visibility: hidden;">
-                        <label class="form-check-label" for="SizeSelectAll">Select All</label>
+                        <label class="form-check-label" for="SizeSelectAll">Chọn hết</label>
                     </div>
                 </div>
-                <label for="color_id">Color Id</label>
+                <label for="color_id">Màu sắc</label>
                 <div class="form-group">
                     @foreach ($colors as $item)
                         <div class="form-check form-check-inline color-div_checkbox">
@@ -129,46 +128,46 @@
                     <div class="form-check-inline">
                         <input class="form-check-input remove-all-color_selection" type="radio"
                             name="option-radio-color" id="ColorRemoveAll" style="visibility: hidden;">
-                        <label class="form-check-label" for="ColorRemoveAll">Remove All</label>
+                        <label class="form-check-label" for="ColorRemoveAll">Bỏ hết</label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input select-all-color_selection" type="radio"
                             name="option-radio-color" id="ColorSelectAll" style="visibility: hidden;">
-                        <label class="form-check-label" for="ColorSelectAll">Select All</label>
+                        <label class="form-check-label" for="ColorSelectAll">Chọn hết</label>
                     </div>
                 </div>
-                <button class="btn btn-success d-flex btn-sm set_quanlities mb-2"> +Set Quanlities</button>
-                <label>Quanlities</label>
+                <button class="btn btn-success d-flex btn-sm set_quanlities mb-2"> +Thiết lập số lượng</button>
+                <label>Số lượng</label>
                 <div id="product_quanlities-by-sizes">
                     @if (request()->ajax())
                         @include('admin.product.manage-quanlities')
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="description">Description:</label>
+                    <label for="description">Mô tả chi tiết:</label>
                     <textarea name="description" id="ckeditor_product_edit" cols="30" rows="10" class="form-control">{{ $product->productDetail->description }}</textarea>
                     @include('common.singleAlertError', ['field' => 'description'])
                 </div>
                 <div class="form-group">
-                    <label for="weight">Weight:</label>
+                    <label for="weight">Cân nặng:</label>
                     <input type="text" class="form-control" id="weight" name='weight'
                         value="{{ $product->productDetail->weight }}" value="{{ old('weight') }}">
                     @include('common.singleAlertError', ['field' => 'weight'])
                 </div>
                 <div class="form-group">
-                    <label for="dimension">Dimension:</label>
+                    <label for="dimension">Kích thước:</label>
                     <input type="text" class="form-control" id="dimension" name='dimension'
                         value="{{ $product->productDetail->dimension }}" value="{{ old('dimension') }}">
                     @include('common.singleAlertError', ['field' => 'dimension'])
                 </div>
                 <div class="form-group">
-                    <label for="materials">Materials:</label>
+                    <label for="materials">Chất liệu:</label>
                     <input type="text" class="form-control" id="materials" name='materials'
                         value="{{ $product->productDetail->materials }}" value="{{ old('materials') }}">
                     @include('common.singleAlertError', ['field' => 'materials'])
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary text-white mb-2">Update</button>
+                    <button type="submit" class="btn btn-primary text-white mb-2">Cập nhật</button>
                 </div>
             </form>
         </div>

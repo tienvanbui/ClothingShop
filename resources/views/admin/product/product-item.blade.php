@@ -2,11 +2,11 @@
   <thead style="width: 100%;background-color:black;">
     <tr>
       <th scope="col" class="text-white">#</th>
-      <th scope="col" class="text-white">Name</th>
-      <th scope="col" class="text-white">Product Image</th>
-      <th scope="col" class="text-white">Price</th>
-      <th scope="col" class="text-white">Category</th>
-      <th style="width: 11%" class="text-white">Action</th>
+      <th scope="col" class="text-white">Tên</th>
+      <th scope="col" class="text-white">Ảnh</th>
+      <th scope="col" class="text-white">Giá</th>
+      <th scope="col" class="text-white">Danh mục</th>
+      <th style="width: 11%" class="text-white">Hành động</th>
     </tr>
   </thead>
   <tbody>

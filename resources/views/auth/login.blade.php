@@ -5,7 +5,7 @@
 @section('content')
   <div class="row justify-content-center">
     <div class="col-md-6 text-center mb-5">
-      <h2 class="heading-section">{{ __('Login Your Account') }}</h2>
+      <h2 class="heading-section">{{ __('ĐĂNG NHẬP') }}</h2>
     </div>
   </div>
   <div class="row justify-content-center">
@@ -48,7 +48,7 @@
                 {{ old('remember') ? 'checked' : '' }}>
 
               <label class="form-check-label checkbox-wrap checkbox-primary" for="remember">
-                {{ __('Remember Me') }}
+                {{ __('Nhớ mật khẩu') }}
               </label>
             </div>
             <div class="w-50 text-md-right">

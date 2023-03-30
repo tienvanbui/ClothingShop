@@ -83,56 +83,65 @@
             </div>
           </div>
         </li>
-        <li class="sidebar-item accordion-item">
-          <h2 class="accordion-header" id="flush-headdingSixten">
-            <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#flush-collapseSixTeen" aria-expanded="false" aria-controls="flush-collapseSixTeen"><i
-                class="fas fa-paint-brush"></i>Quản lý màu sắc</span>
-          </h2>
-          <div id="flush-collapseSixTeen" class="accordion-collapse collapse" aria-labelledby="flush-headdingSixten"
-            data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-              <ul class="sidebar-nav">
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark item-link"
-                    href="
+        @can(['Color_list', 'Color_create'])
+          <li class="sidebar-item accordion-item">
+            <h2 class="accordion-header" id="flush-headdingSixten">
+              <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseSixTeen" aria-expanded="false" aria-controls="flush-collapseSixTeen"><i
+                  class="fas fa-paint-brush"></i>Quản lý màu sắc</span>
+            </h2>
+            <div id="flush-collapseSixTeen" class="accordion-collapse collapse" aria-labelledby="flush-headdingSixten"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                <ul class="sidebar-nav">
+                  @can('Color_list')
+                    <li class="sidebar-item">
+                      <a class="sidebar-link waves-effect waves-dark item-link"
+                        href="
                                           {{ route('color.index') }}">
-                    <span>Danh sách màu sắc</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="waves-effect waves-dark sidebar-link item-link" href="{{ route('color.create') }}">
-                    <span>Tạo màu sắc</span>
-                  </a>
-                </li>
-              </ul>
+                        <span>Danh sách màu sắc</span>
+                      </a>
+                    </li>
+                  @endcan
+                  @can('Color_create')
+                    <li class="sidebar-item">
+                      <a class="waves-effect waves-dark sidebar-link item-link" href="{{ route('color.create') }}">
+                        <span>Tạo màu sắc</span>
+                      </a>
+                    </li>
+                  @endcan
+
+                </ul>
+              </div>
             </div>
-          </div>
-        </li>
-        <li class="sidebar-item accordion-item">
-          <h2 class="accordion-header" id="flush-heading17">
-            <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#flush-coll17" aria-expanded="false" aria-controls="flush-coll17"><i
-                class="fas fa-cut"></i>Quản lý kích thước</span>
-          </h2>
-          <div id="flush-coll17" class="accordion-collapse collapse" aria-labelledby="flush-heading17"
-            data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-              <ul class="sidebar-nav">
-                <li class="sidebar-item">
-                  <a class="sidebar-link waves-effect waves-dark item-link" href="{{ route('size.index') }}">
-                    <span>Danh sách kích thước</span>
-                  </a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="waves-effect waves-dark sidebar-link item-link" href="{{ route('size.create') }}">
-                    <span>Tạo kích thước</span>
-                  </a>
-                </li>
-              </ul>
+          </li>
+        @endcan
+        @can(['Size_list', 'Size_create'])
+          <li class="sidebar-item accordion-item">
+            <h2 class="accordion-header" id="flush-heading17">
+              <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-coll17" aria-expanded="false" aria-controls="flush-coll17"><i
+                  class="fas fa-cut"></i>Quản lý kích cỡ</span>
+            </h2>
+            <div id="flush-coll17" class="accordion-collapse collapse" aria-labelledby="flush-heading17"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                <ul class="sidebar-nav">
+                  <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark item-link" href="{{ route('size.index') }}">
+                      <span>Danh sách kích cỡ</span>
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a class="waves-effect waves-dark sidebar-link item-link" href="{{ route('size.create') }}">
+                      <span>Tạo kích cỡ</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+        @endcan
         <li class="sidebar-item accordion-item">
           <h2 class="accordion-header" id="flush-head19">
             <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -171,6 +180,30 @@
                 <li class="sidebar-item">
                   <a class="sidebar-link waves-effect waves-dark item-link" href="{{ route('coupon.create') }}">
                     <span>Tạo phiếu giảm giá</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="sidebar-item accordion-item">
+          <h2 class="accordion-header" id="flush-head40">
+            <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#flush-coll40" aria-expanded="false" aria-controls="flush-head40"><i
+                class="fas fa-gift"></i>Sự kiện giảm giá</span>
+          </h2>
+          <div id="flush-coll40" class="accordion-collapse collapse" aria-labelledby="flush-head40"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark item-link" href="{{ route('discount.index') }}">
+                    <span>Danh sách sự kiện giảm giá</span>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link waves-effect waves-dark item-link" href="{{ route('discount.create') }}">
+                    <span>Tạo sự kiện giảm giá mới</span>
                   </a>
                 </li>
               </ul>
@@ -321,7 +354,7 @@
             </div>
           </div>
         </li>
-        <li class="sidebar-item accordion-item">
+        {{-- <li class="sidebar-item accordion-item">
           <h2 class="accordion-header" id="flush-headingSeven">
             <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
               data-bs-target="#flush-collapsedSeven" aria-expanded="false" aria-controls="flush-collapsedSeven"><i
@@ -339,7 +372,7 @@
               </ul>
             </div>
           </div>
-        </li>
+        </li> --}}
         <li class="sidebar-item accordion-item">
           <h2 class="accordion-header" id="flush-head21">
             <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"

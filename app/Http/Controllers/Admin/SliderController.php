@@ -25,6 +25,11 @@ class SliderController extends Controller
             'slider_image' => 'required|image|bail',
             'description' => 'required'
         ];
+        $this->middleware(['permission:Slider_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Slider_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Slider_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Slider_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Slider_delete'], ['only' => ['destroy']]);
     }
 
     /**

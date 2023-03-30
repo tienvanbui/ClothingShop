@@ -23,6 +23,11 @@ class CouponController extends Controller
             'coupon_use_number' => 'required',
             'coupon_price_discount' => 'required',
         ];
+        $this->middleware(['permission:Coupon_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Coupon_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Coupon_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Coupon_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Coupon_delete'], ['only' => ['destroy']]);
     }
     /**
      * Store a newly created resource in storage.
