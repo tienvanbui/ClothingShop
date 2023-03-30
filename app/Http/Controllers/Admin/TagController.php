@@ -16,6 +16,11 @@ class TagController extends Controller
             'index' => 'admin.tag.index',
             'create' => 'admin.tag.create'
         ];
+        $this->middleware(['permission:Tag_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Tag_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Tag_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Tag_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Tag_delete'], ['only' => ['destroy']]);
     }
     public function store(Request $request)
     {

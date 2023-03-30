@@ -43,13 +43,17 @@
               <td>{{ $contact->talk }}</td>
               <td>{{ $contact->sale_email }}</td>
               <td>
-                <a href="{{ route('contact.edit', ['contact' => $contact->id]) }}"
-                  class="btn btn-primary btn-sm text-white"><i class="fas fa-edit"></i></a>
-                @include('common.delete', [
-                    'routeName' => 'contact.destroy',
-                    'itemname' => 'contact',
-                    'item' => $contact,
-                ])
+                @if (auth()->user()->hasPermission('Contact_update'))
+                  <a href="{{ route('contact.edit', ['contact' => $contact->id]) }}"
+                    class="btn btn-primary btn-sm text-white"><i class="fas fa-edit"></i></a>
+                @endif
+                @if (auth()->user()->hasPermission('Contact_delete'))
+                  @include('common.delete', [
+                      'routeName' => 'contact.destroy',
+                      'itemname' => 'contact',
+                      'item' => $contact,
+                  ])
+                @endif
               </td>
             </tr>
           </tbody>

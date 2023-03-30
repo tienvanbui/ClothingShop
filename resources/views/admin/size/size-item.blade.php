@@ -12,13 +12,17 @@
         <th scope="row">{{ $index + 1 }}</th>
         <td>{{ $item->size_name }}</td>
         <td>
-          <a href="{{ route('size.edit', ['id' => $item->id]) }}" class="btn btn-success text-white btn-sm"><i
-              class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'size.destroy',
-              'itemname' => 'id',
-              'item' => $item->id,
-          ])
+          @if (auth()->user()->hasPermission('Size_update'))
+            <a href="{{ route('size.edit', ['id' => $item->id]) }}" class="btn btn-success text-white btn-sm"><i
+                class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('Size_delete'))
+            @include('common.delete', [
+                'routeName' => 'size.destroy',
+                'itemname' => 'id',
+                'item' => $item->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

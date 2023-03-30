@@ -20,6 +20,7 @@
           <td>{{ $order->payment_method }}</td>
           <td>{{ '$' . $order->total }}</td>
           <td>
+            @if (auth()->user()->hasPermission('Order_update'))
             @if ($order->status == 0)
               <form action="{{ route('admin.order-confirm', ['order' => $order->id]) }}"method="POST">
                 @csrf
@@ -33,11 +34,14 @@
                 <button class="text-white btn btn-primary btn-sm mt-1">Đang chuyển</button>
               </form>
             @endif
+            @endif
           </td>
           <td>
+            @if (auth()->user()->hasPermission('Order_show'))
             <a href="{{ route('admin.order-show', ['order' => $order->id]) }}"
               class="btn btn-info btn-inline text-white btn-sm mt-1"><i class="fas fa-eye"></i>
             </a>
+            @endif
           </td>
         </tr>
       @endforeach

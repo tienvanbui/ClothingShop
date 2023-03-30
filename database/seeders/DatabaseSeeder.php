@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            
             CategorySeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
@@ -25,7 +26,8 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             CouponSeeder::class,
             PaymentSeeder::class,
-            TagSeeder::class
+            TagSeeder::class,
+            PermissionSeeder::class,
         ]);
     }
 }

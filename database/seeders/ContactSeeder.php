@@ -14,8 +14,8 @@ class ContactSeeder extends Seeder
     public function run()
     {
         Contact::create([
-            'address'=>'Address Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US',
-            'talk'=>'+1 800 1236879',
+            'address'=>'Tầng 5,Tòa nhà Ecolife,Tố Hữu,Nam Từ Liêm,Hà Nội',
+            'talk'=>'0365932588',
             'sale_email'=>'tienvanbui1982001@gmail.com',
         ]);
     }

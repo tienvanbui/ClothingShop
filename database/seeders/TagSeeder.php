@@ -13,9 +13,9 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        Tag::create(['tag_name'=>'Street Style']);
-        Tag::create(['tag_name'=>'Beauty']);
-        Tag::create(['tag_name'=>'Life Style']);
-        Tag::create(['tag_name'=>'Fashion	']);
+        Tag::create(['tag_name'=>'Thể thao']);
+        Tag::create(['tag_name'=>'Hiện đại']);
+        Tag::create(['tag_name'=>'Thường ngày']);
+        Tag::create(['tag_name'=>'Thời trang']);
     }
 }

@@ -22,11 +22,11 @@ class CategoryController extends Controller
         $this->validateRule = [
             'name'=>'string|required|max:30|bail|unique:categories',
         ];
-        $this->middleware('permission:Category_list',[['only' => 'index']]);
-        $this->middleware('permission:Category_create',[['only' => 'create','store']]);
-        $this->middleware('permission:Category_show',[['only' => 'edit']]);
-        $this->middleware('permission:Category_update',[['only' => 'update']]);
-        $this->middleware('permission:Category_delete',[['only' => 'delete']]);
+        $this->middleware(['permission:Category_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Category_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Category_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Category_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Category_delete'], ['only' => ['destroy']]);
     }
     public function update($id,Request $request){
         if($this->startValidationProcess($request)){
@@ -34,7 +34,7 @@ class CategoryController extends Controller
             $dataUpdate->update([
                 'name'=>$request->name
             ]);
-            return redirect()->route('category.index')->withToastSuccess(" $this->modelName Updated Successfully!");
+            return redirect()->route('category.index')->withToastSuccess("Danh mục sản phẩm cập nhật thành công!");
         }
     }
 }

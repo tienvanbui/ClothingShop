@@ -49,5 +49,6 @@ class AppServiceProvider extends ServiceProvider
             $category_count = Category::all()->count();
             $view->with('product_count',$product_count)->with('blog_count',$blog_count)->with('banner_count',$banner_count)->with('tag_count',$tag_count)->with('slider_count',$slider_count)->with('coupon_count',$coupon_count)->with('menu_count',$menu_count)->with('about_count',$about_count)->with('color_count',$color_count)->with('category_count',$category_count);
         });
+    
     }
 }

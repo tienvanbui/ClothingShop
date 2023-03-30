@@ -20,7 +20,11 @@ class ContactController extends Controller
             'talk'=>'required|string|numeric|bail',
             'sale_email'=>'required|email|bail',
         ];
-
+        $this->middleware(['permission:Contact_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Contact_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Contact_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Contact_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Contact_delete'], ['only' => ['destroy']]);
     }
      /**
      * Display a listing of the resource.

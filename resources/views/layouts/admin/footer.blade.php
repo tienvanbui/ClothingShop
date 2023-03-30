@@ -76,7 +76,7 @@
         value: <?php echo $banner_count; ?>
       },
       {
-        label: "Sliders",
+        label: "Trình chiếu",
         value: <?php echo $slider_count; ?>
       },
       {
@@ -88,7 +88,7 @@
         value: <?php echo $coupon_count; ?>
       },
       {
-        label: "Menus",
+        label: "Mục lục",
         value: <?php echo $menu_count; ?>
       },
       {

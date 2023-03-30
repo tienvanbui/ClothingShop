@@ -14,11 +14,15 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('slider.index') }}" class="fw-normal">Danh sách trình chiếu</a></li>
+                @if (auth()->user()->hasPermission('Slider_list'))
+                  <li><a href="{{ route('slider.index') }}" class="fw-normal">Danh sách trình chiếu</a></li>
+                @endif
               </ol>
-              <a href="{{ route('slider.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
-                trình chiếu</a>
+              @if (auth()->user()->hasPermission('Slider_list'))
+                <a href="{{ route('slider.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  trình chiếu</a>
+              @endif
             </div>
           </div>
         </div>

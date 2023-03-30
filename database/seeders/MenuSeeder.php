@@ -15,44 +15,44 @@ class MenuSeeder extends Seeder
     public function run()
     {
         Menu::create([
-            'name'=>'Home',
+            'name'=>'Trang chủ',
             'parent_id'=>0,
-            'slug'=>'home'
+            'slug'=>'trang-chu'
         ]);
         Menu::create([
-            'name'=>'Shop',
+            'name'=>'Cửa hàng',
             'parent_id'=>0,
-            'slug'=>'shop'
+            'slug'=>'cua-hang'
         ]);
         Menu::create([
-            'name'=>'Men',
+            'name'=>'Nam',
             'parent_id'=>2,
-            'slug'=>'men'
+            'slug'=>'nam'
         ]);
         Menu::create([
-            'name'=>'Women',
+            'name'=>'Nữ',
             'parent_id'=>2,
-            'slug'=>'women'
+            'slug'=>'nu'
         ]);
         Menu::create([
-            'name'=>'Cart',
+            'name'=>'Giỏ hàng',
             'parent_id'=>0,
-            'slug'=>'cart'
+            'slug'=>'gio-hang'
         ]);
         Menu::create([
-            'name'=>'Blog',
+            'name'=>'Tin tức',
             'parent_id'=>0,
-            'slug'=>'blog'
+            'slug'=>'tin-tuc'
         ]);
         Menu::create([
-            'name'=>'About',
+            'name'=>'Về chúng tôi',
             'parent_id'=>0,
-            'slug'=>'about'
+            'slug'=>'ve-chung-toi'
         ]);
         Menu::create([
-            'name'=>'Contact',
+            'name'=>'Liên hệ',
             'parent_id'=>0,
-            'slug'=>'contact'
+            'slug'=>'lien-he'
         ]);
     }
 }

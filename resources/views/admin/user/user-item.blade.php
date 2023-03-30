@@ -30,13 +30,17 @@
           @endif
         </td>
         <td>
-          <a href="{{ route('manage_user.edit', ['manage_user' => $user->id]) }}"
-            class="btn btn-success btn-sm text-white"><i class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'manage_user.destroy',
-              'itemname' => 'manage_user',
-              'item' => $user->id,
-          ])
+          @if (auth()->user()->hasPermission('User_update'))
+            <a href="{{ route('manage_user.edit', ['manage_user' => $user->id]) }}"
+              class="btn btn-success btn-sm text-white"><i class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('User_delete'))
+            @include('common.delete', [
+                'routeName' => 'manage_user.destroy',
+                'itemname' => 'manage_user',
+                'item' => $user->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

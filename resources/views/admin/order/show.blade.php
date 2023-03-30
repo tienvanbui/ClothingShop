@@ -12,7 +12,9 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
+                @if (auth()->user()->hasPermission('Order_list'))
                 <li><a href="{{ route('admin.order-check') }}" class="fw-normal">Danh sách đơn hàng</a></li>
+                @endif
               </ol>
             </div>
           </div>

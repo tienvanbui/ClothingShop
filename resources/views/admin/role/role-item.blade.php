@@ -2,9 +2,9 @@
   <thead style="background-color:black;">
     <tr>
       <th scope="col" class="text-white">#</th>
-      <th scope="col" class="text-white">Name</th>
-      <th scope="col" class="text-white">Role Description</th>
-      <th scope="col" class="text-white">Action</th>
+      <th scope="col" class="text-white">Tên</th>
+      <th scope="col" class="text-white">Mô tả</th>
+      <th scope="col" class="text-white">Hành động</th>
     </tr>
   </thead>
   <tbody>

@@ -25,6 +25,7 @@ use App\Http\Controllers\User\UserCartController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\DashBoardController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Controller;
@@ -41,7 +42,7 @@ use App\Http\Controllers\User\UserOrderController;
 |
 */
 
-Route::group(['prefix' => '/admin', 'middleware' => ['auth','permission']], function () {
+Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     // Action Bar Admin Ajax Router 
     Route::post('/show-listing-with-action-bar', [Controller::class, 'displayListing'])->name('showWithActionBar');
     //Dashboard Router
@@ -105,7 +106,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth','permission']], func
     Route::resource('/manage-user', UserController::class)->except('show')->names('manage_user');
 
     //Permission Router
-    Route::resource('/permission', PermissionController::class)->names('permission');
+    // Route::resource('/permission', PermissionController::class)->names('permission');
 
     //Product Router
     Route::resource('/product', ProductController::class)->names('product');
@@ -120,6 +121,9 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth','permission']], func
     Route::get('/order/order-show-detail/{order}', [AdminOrderController::class, 'orderShow'])->name('admin.order-show');
     Route::post('/order/confirm-order/{order}', [AdminOrderController::class, 'orderConfirm'])->name('admin.order-confirm');
     Route::post('/order/delete-order/{order}', [AdminOrderController::class, 'orderDelete'])->name('admin.order-delete');
+    //Discount Router
+    Route::resource('/discount', DiscountController::class)->names('discount');
+    Route::put('/discount/update-status/{id}', [DiscountController::class,'changeStatus'])->name('discount.changeStatus');
 });
 
 Auth::routes();

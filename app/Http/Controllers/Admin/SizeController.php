@@ -21,6 +21,11 @@ class SizeController extends Controller
         $this->validateRule = [
             'size_name'=>"required|string|bail",
         ];
+        $this->middleware(['permission:Size_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Size_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Size_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Size_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Size_delete'], ['only' => ['destroy']]);
         
     }
     public function edit($id){

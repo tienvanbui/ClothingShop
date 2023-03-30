@@ -32,13 +32,17 @@
         <td>{{ $coupon->coupon_use_number }}</td>
         <td>{{ $coupon->coupon_used_count }}</td>
         <td>
-          <a href="{{ route('coupon.edit', ['coupon' => $coupon->id]) }}" class="btn btn-success btn-sm text-white"><i
-              class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'coupon.destroy',
-              'itemname' => 'coupon',
-              'item' => $coupon->id,
-          ])
+          @if (auth()->user()->hasPermission('Coupon_update'))
+            <a href="{{ route('coupon.edit', ['coupon' => $coupon->id]) }}" class="btn btn-success btn-sm text-white"><i
+                class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('Coupon_delete'))
+            @include('common.delete', [
+                'routeName' => 'coupon.destroy',
+                'itemname' => 'coupon',
+                'item' => $coupon->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

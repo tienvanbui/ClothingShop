@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4 ">
                 <select name="size_selection[]" class="form-select">
-                    <option>.....Choose.....</option>
+                    <option>.....Chọn.....</option>
                     @foreach ($sizes as $size)
                         <option value="{{ $size->id }}">Size {{ $size->size_name }}</option>
                     @endforeach
@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-4 ">
                 <select name="color_selection[]" class="form-select">
-                    <option>.....Choose.....</option>
+                    <option>.....Chọn.....</option>
                     @foreach ($colors as $color)
                         <option value="{{ $color->id }}">{{ $color->color_name }}</option>
                     @endforeach

@@ -20,6 +20,11 @@ class PaymentController extends Controller
             'index' => 'admin.payment.index',
             'create' => 'admin.payment.create'
         ];
+        $this->middleware(['permission:Payment Method_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Payment Method_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Payment Method_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Payment Method_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Payment Method_delete'], ['only' => ['destroy']]);
     }
 
     /**

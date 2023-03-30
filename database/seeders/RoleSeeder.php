@@ -16,11 +16,11 @@ class RoleSeeder extends Seeder
     {
         Role::create([
             'role_name'=>'admin',
-            'role_description'=>'the person who is a manager of website'
+            'role_description'=>'Người toàn quyền quản lý ứng dụng'
         ]);
         Role::create([
             'role_name'=>'user',
-            'role_description'=>'the person who had an account'
+            'role_description'=>'Người đã đăng ký tài khoản ứng dụng'
         ]);
        
     }

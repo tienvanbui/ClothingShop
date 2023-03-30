@@ -70,4 +70,7 @@ class Product extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+    public function discounts(){
+        return $this->belongsToMany(Discount::class,'discount_products','product_id','discount_id');
+    }
 }

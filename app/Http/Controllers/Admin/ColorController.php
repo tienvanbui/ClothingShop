@@ -21,6 +21,11 @@ class ColorController extends Controller
         $this->validateRule = [
             'color_name'=>"required|string|bail",
         ];
+        $this->middleware(['permission:Color_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Color_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Color_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Color_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Color_delete'], ['only' => ['destroy']]);
     }
     public function edit($id){
         $color = Color::FindOrFail($id);

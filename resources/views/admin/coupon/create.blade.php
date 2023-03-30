@@ -12,11 +12,15 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('coupon.index') }}" class="fw-normal">Danh sách phiếu giảm giá</a></li>
+                @if (auth()->user()->hasPermission('Coupon_list'))
+                  <li><a href="{{ route('coupon.index') }}" class="fw-normal">Danh sách phiếu giảm giá</a></li>
+                @endif
               </ol>
-              <a href="{{ route('coupon.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
-                phiếu giảm giá</a>
+              @if (auth()->user()->hasPermission('Coupon_create'))
+                <a href="{{ route('coupon.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  phiếu giảm giá</a>
+              @endif
             </div>
           </div>
         </div>

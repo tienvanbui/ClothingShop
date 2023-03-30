@@ -20,6 +20,11 @@ class UserController extends Controller
             'create' => 'admin.user.create',
             'edit' => 'admin.user.edit',
         ];
+        $this->middleware(['permission:User_list'], ['only' => ['index']]);
+        $this->middleware(['permission:User_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:User_show'], ['only' => ['show']]);
+        $this->middleware(['permission:User_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:User_delete'], ['only' => ['destroy']]);
     }
    
     /**

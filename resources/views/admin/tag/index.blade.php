@@ -14,10 +14,15 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('tag.index') }}" class="fw-normal">Danh sách từ khóa</a></li>
+                @if (auth()->user()->hasPermission('Tag_list'))
+                  <li><a href="{{ route('tag.index') }}" class="fw-normal">Danh sách từ khóa</a></li>
+                @endif
               </ol>
-              <a href="{{ route('tag.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo từ khóa</a>
+              @if (auth()->user()->hasPermission('Tag_create'))
+                <a href="{{ route('tag.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  từ khóa</a>
+              @endif
             </div>
           </div>
         </div>

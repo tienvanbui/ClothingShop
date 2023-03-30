@@ -16,13 +16,17 @@
         <td>{!! $banner->content !!}</td>
         <td><img src="{{ asset($banner->banner_image) }}" style="width: 10rem"></td>
         <td>
-          <a href="{{ route('banner.edit', ['banner' => $banner->id]) }}" class="btn btn-success btn-sm text-white"><i
-              class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'banner.destroy',
-              'itemname' => 'banner',
-              'item' => $banner->id,
-          ])
+          @if (auth()->user()->hasPermission('Banner_update'))
+            <a href="{{ route('banner.edit', ['banner' => $banner->id]) }}" class="btn btn-success btn-sm text-white"><i
+                class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('Banner_delete'))
+            @include('common.delete', [
+                'routeName' => 'banner.destroy',
+                'itemname' => 'banner',
+                'item' => $banner->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

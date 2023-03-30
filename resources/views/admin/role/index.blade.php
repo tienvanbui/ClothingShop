@@ -1,5 +1,5 @@
 @section('title')
-  User Role List
+  Danh sách vai trò người dùng
 @endsection
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
@@ -9,16 +9,15 @@
       <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">User Role</h4>
+            <h4 class="page-title">Vai trò</h4>
           </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('role.index') }}" class="fw-normal">User Roles List</a></li>
+                <li><a href="{{ route('role.index') }}" class="fw-normal">Danh sách vai trò</a></li>
               </ol>
               <a href="{{ route('role.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Create
-                User Role</a>
+                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo vai trò</a>
             </div>
           </div>
         </div>
@@ -27,7 +26,7 @@
     </div>
     <div class="row">
       <div class="container">
-        <h1 class="text-center">USER ROLE LIST</h1>
+        <h1 class="text-center">DANH SÁCH VAI TRÒ</h1>
         <div class="d-flex action-bar justify-content-between">
           @include('common.showPerPage')
           @include('common.search')
