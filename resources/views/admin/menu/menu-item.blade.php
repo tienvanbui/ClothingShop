@@ -9,16 +9,20 @@
   <tbody>
     @foreach ($menus as $index => $item)
       <tr>
-        <td>{{ $index + 1}}</td>
+        <td>{{ $index + 1 }}</td>
         <td>{{ $item->name }}</td>
         <td>
-          <a href="{{ route('menu.edit', ['menu' => $item->id]) }}" class="btn btn-success btn-sm text-white"><i
-              class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'menu.destroy',
-              'itemname' => 'menu',
-              'item' => $item->id,
-          ])
+          @if (auth()->user()->hasPermission('Menu_update'))
+            <a href="{{ route('menu.edit', ['menu' => $item->id]) }}" class="btn btn-success btn-sm text-white"><i
+                class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('Menu_delete'))
+            @include('common.delete', [
+                'routeName' => 'menu.destroy',
+                'itemname' => 'menu',
+                'item' => $item->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

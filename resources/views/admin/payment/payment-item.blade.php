@@ -12,13 +12,17 @@
         <th scope="row">{{ $index + 1 }}</th>
         <td>{{ $payment->payment_method }}</td>
         <td>
+          @if (auth()->user()->hasPermission('Payment Method_update'))
           <a href="{{ route('payment.edit', ['payment' => $payment->id]) }}" class="btn btn-success btn-sm text-white"><i
               class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('Payment Method_delete'))
           @include('common.delete', [
               'routeName' => 'payment.destroy',
               'itemname' => 'payment',
               'item' => $payment->id,
           ])
+          @endif
         </td>
       </tr>
     @endforeach

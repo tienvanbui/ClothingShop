@@ -20,8 +20,8 @@
             'Role', //Role::class
             'Coupon',
             'Users',
-            'User Role',
             'Contact',
+            'Discount'
         ],
         'modul_features' =>[
             'list',// list objects of model

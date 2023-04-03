@@ -12,10 +12,15 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('about.index') }}" class="fw-normal">Về chúng tôi</a></li>
+                @if (auth()->user()->hasPermission('About_list'))
+                  <li><a href="{{ route('about.index') }}" class="fw-normal">Về chúng tôi</a></li>
+                @endif
               </ol>
-              <a href="{{ route('about.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo thông tin</a>
+              @if (auth()->user()->hasPermission('About_create'))
+                <a href="{{ route('about.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  thông tin</a>
+              @endif
             </div>
           </div>
         </div>

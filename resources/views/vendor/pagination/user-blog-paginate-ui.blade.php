@@ -1,16 +1,16 @@
 @if ($paginator->hasPages())
     <p class="text-sm text-gray-700 leading-5" style="text-align: end;">
-        {!! __('Showing') !!}
+        {!! __('Hiển thị') !!}
         @if ($paginator->firstItem())
             <span class="font-medium">{{ $paginator->firstItem() }}</span>
-            {!! __('to') !!}
+            {!! __('tới') !!}
             <span class="font-medium">{{ $paginator->lastItem() }}</span>
         @else
             {{ $paginator->count() }}
         @endif
-        {!! __('of') !!}
+        {!! __('trong') !!}
         <span class="font-medium">{{ $paginator->total() }}</span>
-        {!! __('results') !!}
+        {!! __('kết quả ') !!}
     </p>
     <nav aria-label="Page navigation example" >
         <ul class="pagination justify-content-center">
@@ -18,13 +18,13 @@
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
                     <span class="page-link" aria-hidden="true" style="border-radius: 50%;margin-right:10px">
-                        Prev</span>
+                        Trước</span>
                 </li>
             @else
                 <li class="page-item">
                     <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev"
                         aria-label="@lang('pagination.previous')" style="border-radius: 50%;margin-right:10px;">
-                        Prev </a>
+                        Trước </a>
                 </li>
             @endif
 
@@ -60,11 +60,11 @@
             @if ($paginator->hasMorePages())
                 <li class="page-item">
                     <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next"
-                        aria-label="@lang('pagination.next') " style="border-radius: 50%">Next</a>
+                        aria-label="@lang('pagination.next') " style="border-radius: 50%">Sau</a>
                 </li>
             @else
                 <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span class="page-link" aria-hidden="true" style="border-radius: 50%">Next</span>
+                    <span class="page-link" aria-hidden="true" style="border-radius: 50%">Sau</span>
                 </li>
             @endif
         </ul>

@@ -14,10 +14,15 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('category.index') }}" class="fw-normal">Danh sách danh mục sản phẩm</a></li>
+                @if (auth()->user()->hasPermission('Category_list'))
+                  <li><a href="{{ route('category.index') }}" class="fw-normal">Danh sách danh mục sản phẩm</a></li>
+                @endif
               </ol>
-              <a href="{{ route('category.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo danh mục</a>
+              @if (auth()->user()->hasPermission('Category_create'))
+                <a href="{{ route('category.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  danh mục</a>
+              @endif
             </div>
           </div>
         </div>

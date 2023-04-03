@@ -18,14 +18,17 @@
         <td>{!! $item->description !!}</td>
         <td>{!! $item->quote !!}</td>
         <td>
-          <a href="{{ route('about.edit', ['about' => $item->id]) }}" class="btn btn-success btn-sm text-white"><i
-              class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'about.destroy',
-              'itemname' => 'about',
-              'item' => $item->id,
-          ])
-
+          @if (auth()->user()->hasPermission('About_update'))
+            <a href="{{ route('about.edit', ['about' => $item->id]) }}" class="btn btn-success btn-sm text-white"><i
+                class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('About_delete'))
+            @include('common.delete', [
+                'routeName' => 'about.destroy',
+                'itemname' => 'about',
+                'item' => $item->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

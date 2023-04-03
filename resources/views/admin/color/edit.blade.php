@@ -9,15 +9,20 @@
       <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Màu sắc</h4>
+            <h4 class="page-title">Màu sắc sản phẩm</h4>
           </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('color.index') }}" class="fw-normal">Danh sách màu sắc</a></li>
+                @if (auth()->user()->hasPermission('Color_list'))
+                  <li><a href="{{ route('color.index') }}" class="fw-normal">Danh sách màu sắc</a></li>
+                @endif
               </ol>
-              <a href="{{ route('color.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo màu sắc sản phẩm</a>
+              @if (auth()->user()->hasPermission('Color_create'))
+                <a href="{{ route('color.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  màu sắc sản phẩm</a>
+              @endif
             </div>
           </div>
         </div>

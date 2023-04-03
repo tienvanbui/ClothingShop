@@ -8,8 +8,10 @@
       <th scope="col" class="fw-bold text-dark">Tổng tiền</th>
       <th scope="col" class="fw-bold text-dark">Trạng thái</th>
       <th class="fw-bold">
+        @if (auth()->user()->hasPermission('Order_list'))
         <a href="{{ route('admin.order-check') }}" class="fw-bold btn btn-primary text-white rounded-pill"
           style="border-radius: 50%" role="button">Xem tất cả</a>
+        @endif
       </th>
     </tr>
   </thead>

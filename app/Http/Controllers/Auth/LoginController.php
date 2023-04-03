@@ -81,7 +81,7 @@ class LoginController extends Controller
         } else if ($nameRoleOfUser == 'Admin') {
             return redirect('/admin/dashboard');
         } else {
-            return redirect('/home');
+            return redirect('/admin/dashboard');
         }
     }
     /**
@@ -99,5 +99,14 @@ class LoginController extends Controller
             }
         }
         return redirect()->route('home-user');
+    }
+     /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function adminLoginForm()
+    {
+        return view('auth.login');
     }
 }

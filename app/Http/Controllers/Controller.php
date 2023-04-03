@@ -155,6 +155,6 @@ class Controller extends BaseController
      */
     protected function list()
     {
-        return view($this->views['list']);
+         return view($this->views['list']);   
     }
 }

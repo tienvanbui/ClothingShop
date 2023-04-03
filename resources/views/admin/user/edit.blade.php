@@ -14,11 +14,17 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
+                @if (auth()->user()->hasPermission('User_list'))
+                
                 <li><a href="{{ route('manage_user.index') }}" class="fw-normal">Danh sách tài khoản</a></li>
+                @endif
               </ol>
+              @if (auth()->user()->hasPermission('User_create'))
+
               <a href="{{ route('manage_user.create') }}"
                 class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
                 tài khoản</a>
+                @endif
             </div>
           </div>
         </div>

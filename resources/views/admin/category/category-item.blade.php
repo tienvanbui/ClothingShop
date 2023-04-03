@@ -12,13 +12,17 @@
         <th scope="row">{{ $index + 1 }}</th>
         <td>{{ $item->name }}</td>
         <td>
-          <a href="{{ route('category.edit', ['id' => $item->id]) }}" class="btn btn-success text-white btn-sm"><i
-              class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'category.destroy',
-              'itemname' => 'id',
-              'item' => $item->id,
-          ])
+          @if (auth()->user()->hasPermission('Category_update'))
+            <a href="{{ route('category.edit', ['id' => $item->id]) }}" class="btn btn-success text-white btn-sm"><i
+                class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('Category_delete'))
+            @include('common.delete', [
+                'routeName' => 'category.destroy',
+                'itemname' => 'id',
+                'item' => $item->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

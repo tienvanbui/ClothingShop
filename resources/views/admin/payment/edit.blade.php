@@ -12,10 +12,15 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('payment.index') }}" class="fw-normal">Danh sách phương thức thanh toán</a></li>
+                @if (auth()->user()->hasPermission('Payment Method_list'))
+                  <li><a href="{{ route('payment.index') }}" class="fw-normal">Danh sách phương thức thanh toán</a></li>
+                @endif
               </ol>
-              <a href="{{ route('payment.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo phương thức thanh toán</a>
+              @if (auth()->user()->hasPermission('Payment Method_create'))
+                <a href="{{ route('payment.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  phương thức thanh toán</a>
+              @endif
             </div>
           </div>
         </div>

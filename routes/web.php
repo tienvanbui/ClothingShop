@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -123,8 +124,9 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::post('/order/delete-order/{order}', [AdminOrderController::class, 'orderDelete'])->name('admin.order-delete');
     //Discount Router
     Route::resource('/discount', DiscountController::class)->names('discount');
+    Route::put('/discount/update-status/{id}', [DiscountController::class,'changeStatus'])->name('discount.changeStatus');
 });
-
+Route::get('/admin/login',[LoginController::class,'adminLoginForm'])->name('admin.login');
 Auth::routes();
 Route::get('/redirect-fabebook', [SocialLoginController::class, 'redirectToFacebook'])->name('redirect-facebook');
 Route::get('/facebook_callback', [SocialLoginController::class, 'processLoginWithFacebook']);

@@ -14,14 +14,19 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('banner.index') }}" class="fw-normal">Danh sách banner</a></li>
+                @if (auth()->user()->hasPermission('Banner_list'))
+                <li><a href="{{ route('banner.index') }}" class="fw-normal">Banner</a></li>
+                @endif
               </ol>
+              @if (auth()->user()->hasPermission('Banner_list'))
               <a href="{{ route('banner.create') }}"
                 class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
-                banner</a>
+                Banner</a>
+                @endif
             </div>
           </div>
         </div>
+        <!-- /.col-lg-12 -->
       </div>
     </div>
     <div class="row">
