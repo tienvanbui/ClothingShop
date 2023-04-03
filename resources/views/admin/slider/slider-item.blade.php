@@ -14,13 +14,17 @@
         <td>{{ $item->title }}</td>
         <td><img src="{{ asset($item->slider_image) }}" width="100%"></td>
         <td>
-          <a href="{{ route('slider.edit', ['slider' => $item->id]) }}" class="btn btn-success btn-sm text-white"><i
-              class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'slider.destroy',
-              'itemname' => 'slider',
-              'item' => $item->id,
-          ])
+          @if (auth()->user()->hasPermission('Slider_update'))
+            <a href="{{ route('slider.edit', ['slider' => $item->id]) }}" class="btn btn-success btn-sm text-white"><i
+                class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('Slider_delete'))
+            @include('common.delete', [
+                'routeName' => 'slider.destroy',
+                'itemname' => 'slider',
+                'item' => $item->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

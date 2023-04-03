@@ -51,7 +51,7 @@ class SliderController extends Controller
             }
         }
         $slider = Slider::create($dataStore);
-        return redirect()->route('slider.index')->withToastSuccess("$this->modelName Stored Successfully!");
+        return redirect()->route('slider.index')->withToastSuccess("Tạo thành công!");
     }
     /**
      * Show the form for editing the specified resource.
@@ -74,7 +74,7 @@ class SliderController extends Controller
     public function update(Request $request, Slider $slider)
     {
         if ($this->startValidationProcess($request)) {
-            $this->delteOldImageWhenUpdate($request, 'slider_iamge', $slider);
+            $this->delteOldImageWhenUpdateWithCheckExists($request, 'slider_iamge', $slider);
             $dataUpdate = [
                 'title' => $request->title,
                 'description' => $request->description,
@@ -84,7 +84,7 @@ class SliderController extends Controller
                 $dataUpdate['slider_image'] = $checkImageHasUploaded['filePath'];
             }
             $slider->update($dataUpdate);
-            return redirect()->route('slider.index')->withToastSuccess("$this->modelName  Updated Successfully!");
+            return redirect()->route('slider.index')->withToastSuccess("Cập nhật thành công!");
         }
     }
 
@@ -100,6 +100,6 @@ class SliderController extends Controller
             unlink(storage_path("/app" . "/public" . str_replace("/storage", '', $slider->slider_image)));
         }
         $slider->delete();
-        return redirect()->route('slider.index')->withToastSuccess("$this->modelName  Deleted Successfully!");
+        return redirect()->route('slider.index')->withToastSuccess("Xóa thành công!");
     }
 }

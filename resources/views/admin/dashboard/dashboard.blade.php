@@ -18,7 +18,7 @@
             <li>
               <i class="fas fa-university text-white" style="font-size: 35px"></i>
             </li>
-            <li class="ms-auto"><span class="counter text-white">{{ '$' . number_format($earnings) }}</span></li>
+            <li class="ms-auto"><span class="counter text-white">{{ number_format($earnings)}}</span></li>
           </ul>
         </div>
       </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="row">
       <form method="post">
-        <h3 class="text-capitalize text-center fw-bold">Thống kê doanh số đặt hàng</h3>
+        <h3 class="text-capitalize text-center fw-bold my-4">Thống kê doanh số đặt hàng</h3>
         <div class="d-flex justify-content-between">
           <div class="col-md-3 col-sm-12">
             <p class="d-inline-flex"><span class="fw-bold" style="margin-right:10px">Từ: </span><input type="text"
@@ -88,7 +88,7 @@
         <div id="statistic-chart-donus" style="height: 250px;"></div>
       </div>
       <div class="col-md-12 col-sm-12 col-lg-4">
-        <h3 class="fw-bold">Danh sách bài viết được đọc nhiều nhất</h3>
+        <h3 class="fw-bold">Bài viết được đọc nhiều</h3>
         <ul class="list-group">
           @foreach ($listBlogMostViewed as $index => $value)
             <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -100,7 +100,7 @@
         </ul>
       </div>
       <div class="col-md-12 col-sm-12 col-lg-4">
-        <h3 class="fw-bold">Danh sách sản phẩm được xem nhiều nhất</h3>
+        <h3 class="fw-bold">Sản phẩm được xem nhiều</h3>
         <ul class="list-group">
           @foreach ($listProductMostViewed as $index => $value)
             <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -113,9 +113,12 @@
       </div>
     </div>
     <div class="row">
+      @if (auth()->user()->hasPermission('Order_list'))
       <div class="col-md-12 col-sm-12 col-lg-8">
         @include('admin.dashboard.order-item', ['orders' => $orders])
       </div>
+      @endif
+      @if (auth()->user()->hasPermission('User_list'))
       <div class="col-md-12 col-sm-12 col-lg-4">
         <table class="table caption-top mt-5">
           <caption class="text-success fw-bold fs-6"><span
@@ -149,6 +152,7 @@
           </tbody>
         </table>
       </div>
+      @endif
     </div>
   </div>
   </div>

@@ -1,9 +1,9 @@
-@section('title', 'Contact')
+@section('title', 'Liên hệ')
 @include('layouts.user.header')
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{ asset('/images/user/bg-01.jpg') }});">
   <h2 class="ltext-105 cl0 txt-center">
-    Contact
+    Liên hệ
   </h2>
 </section>
 
@@ -22,12 +22,12 @@
         <form action="{{ route('mail-contact') }}" method="POST">
           @csrf
           <h4 class="mtext-105 cl2 txt-center p-b-30">
-            Send Us A Message
+            Gửi chúng tôi vướng mắc
           </h4>
 
           <div class="bor8 m-b-20 how-pos4-parent">
             <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email"
-              placeholder="Your Email Address" value="{{ $adminMail }}" disabled>
+              placeholder="Địa chỉ email" value="{{ $adminMail }}" disabled>
             <img class="how-pos4 pointer-none" src="{{ asset('/images/user/icons/icon-email.png') }}" alt="ICON">
           </div>
 
@@ -36,7 +36,7 @@
           </div>
 
           <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-            Submit
+            Gửi
           </button>
         </form>
       </div>
@@ -49,7 +49,7 @@
 
           <div class="size-212 p-t-2">
             <span class="mtext-110 cl2">
-              Address
+              Địa chỉ
             </span>
 
             <p class="stext-115 cl6 size-213 p-t-18">
@@ -65,7 +65,7 @@
 
           <div class="size-212 p-t-2">
             <span class="mtext-110 cl2">
-              Lets Talk
+              Số điện thoại
             </span>
 
             <p class="stext-115 cl1 size-213 p-t-18">
@@ -81,7 +81,7 @@
 
           <div class="size-212 p-t-2">
             <span class="mtext-110 cl2">
-              Sales Support
+              Email tư vấn
             </span>
 
             <p class="stext-115 cl1 size-213 p-t-18">

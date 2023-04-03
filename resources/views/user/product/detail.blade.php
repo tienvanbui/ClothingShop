@@ -1,4 +1,4 @@
-@section('title', 'Product Detail')
+@section('title', 'Chi tiết sản phẩm')
 @include('layouts.user.header')
 <!-- Product Detail -->
 <section class="sec-product-detail bg0 p-t-65 p-b-60 mt-5">
@@ -34,7 +34,7 @@
           </h4>
 
           <span class="mtext-106 cl2">
-            {{ '$' . number_format($product->price) }}
+            {{ $product->price . 'VNĐ' }}
           </span>
 
           <p class="stext-102 cl3 p-t-23">
@@ -46,7 +46,7 @@
             <div class="p-t-33">
               <div class="flex-w flex-r-m p-b-10">
                 <div class="size-203 flex-c-m respon6">
-                  Color
+                  Màu sắc
                 </div>
                 <div class="size-204 respon6-next">
                   <div class="rs1-select2 bor8 bg0">
@@ -66,12 +66,12 @@
 
               <div class="flex-w flex-r-m p-b-10">
                 <div class="size-203 flex-c-m respon6">
-                  Size
+                  Kích cỡ
                 </div>
                 <div class="size-204 respon6-next">
                   <div class="rs1-select2 bor8 bg0">
                     <select class="js-select2 size-select-option" name="size_id">
-                      <option>Choose an option</option>
+                      <option>Chọn kích cỡ</option>
                       @foreach ($product->sizes as $size)
                         <option value="{{ $size->id }}"> {{ $size->size_name }}</option>
                       @endforeach
@@ -101,7 +101,7 @@
 
                   <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
                     type="submit">
-                    Add to cart
+                    Thêm vào giỏ
                   </button>
                 </div>
           </form>
@@ -118,15 +118,14 @@
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item p-b-10">
-          <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+          <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Mô tả</a>
         </li>
 
         <li class="nav-item p-b-10">
-          <a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional
-            information</a>
+          <a class="nav-link" data-toggle="tab" href="#information" role="tab">Thông tin chi tiết</a>
         </li>
         <li class="nav-item p-b-10">
-          <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews
+          <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh giá
           </a>
         </li>
       </ul>
@@ -148,7 +147,7 @@
               <ul class="p-lr-28 p-lr-15-sm">
                 <li class="flex-w flex-t p-b-7">
                   <span class="stext-102 cl3 size-205">
-                    Weight
+                    Cân nặng
                   </span>
 
                   <span class="stext-102 cl6 size-206">
@@ -158,7 +157,7 @@
 
                 <li class="flex-w flex-t p-b-7">
                   <span class="stext-102 cl3 size-205">
-                    Dimensions
+                    Kích thước
                   </span>
 
                   <span class="stext-102 cl6 size-206">
@@ -167,7 +166,7 @@
                 </li>
                 <li class="flex-w flex-t p-b-7">
                   <span class="stext-102 cl3 size-205">
-                    Color
+                    Màu
                   </span>
                   @php
                     
@@ -187,7 +186,7 @@
 
                 <li class="flex-w flex-t p-b-7">
                   <span class="stext-102 cl3 size-205">
-                    Size
+                    Kích cỡ
                   </span>
                   <span class="stext-102 cl6 size-206">
                     <span class="stext-102 cl6 size-206">
@@ -220,16 +219,16 @@
                 <form class="w-full" method="POST" id="review-product-detail">
                   @csrf
                   <h5 class="mtext-108 cl2 p-b-7">
-                    Add a review
+                    Đánh giá sản phẩm
                   </h5>
 
                   <p class="stext-102 cl6">
-                    Your email address will not be published. Required fields are marked *
+                    Địa chỉ email của bạn sẽ không được công bố. Các trường bắt buộc được đánh dấu *
                   </p>
 
                   <div class="flex-w flex-m p-t-50 p-b-23">
                     <span class="stext-102 cl3 m-r-16">
-                      Your Rating
+                      
                     </span>
                     <span class="wrap-rating fs-18 cl11 pointer">
                       @for ($i = 1; $i < 6; ++$i)
@@ -242,14 +241,14 @@
 
                   <div class="row p-b-25">
                     <div class="col-12 p-b-5">
-                      <label class="stext-102 cl3" for="review">Your review</label>
+                      <label class="stext-102 cl3" for="review">Đánh giá của bạn</label>
                       <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10 text-review-detail-product" id="review"
                         name="review"></textarea>
                     </div>
 
                     @if (auth()->check())
                       <div class="col-sm-6 p-b-5">
-                        <label class="stext-102 cl3" for="name">Name</label>
+                        <label class="stext-102 cl3" for="name">Tên</label>
                         <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text"
                           name="name" value="{{ auth()->user()->name }}" disabled>
                         <input class="size-111 bor8 stext-102 cl2 p-lr-20 dis-none" type="text" name="user_id"
@@ -258,7 +257,7 @@
                   </div>
                 @else
                   <div class="col-sm-6 p-b-5">
-                    <label class="stext-102 cl3" for="name">Name</label>
+                    <label class="stext-102 cl3" for="name">Tên</label>
                     <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
                   </div>
                   @endif
@@ -267,7 +266,7 @@
                 name="product_id" value="{{ $product->id }}">
               <button type="submit"
                 class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10 btnSubmit-rating">
-                Submit
+                Gửi
               </button>
               </form>
             </div>
@@ -284,7 +283,7 @@
     </span>
 
     <span class="stext-107 cl6 p-lr-25">
-      Categories: {{ $product->category->name }}
+      Danh mục: {{ $product->category->name }}
     </span>
   </div>
 </section>
@@ -294,7 +293,7 @@
   <div class="container">
     <div class="p-b-45">
       <h3 class="ltext-106 cl5 txt-center">
-        Related Products
+        Sản phẩm liên quan
       </h3>
     </div>
     <!-- Slide2 -->
@@ -312,7 +311,7 @@
                   <button
                     class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 qickView-product"
                     data-product_id="{{ $relateItem->id }}'">
-                    QickView
+                    Xem nhanh
                   </button>
                 </form>
               </div>
@@ -327,7 +326,7 @@
                   </a>
 
                   <span class="stext-105 cl3">
-                    {{ '$' . number_format($relateItem->price) }}
+                    {{ number_format($relateItem->price).'VNĐ' }}
                   </span>
                 </div>
 

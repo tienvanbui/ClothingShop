@@ -17,42 +17,42 @@ class MenuSeeder extends Seeder
         Menu::create([
             'name'=>'Trang chủ',
             'parent_id'=>0,
-            'slug'=>'trang-chu'
+            'slug'=>'home'
         ]);
         Menu::create([
             'name'=>'Cửa hàng',
             'parent_id'=>0,
-            'slug'=>'cua-hang'
+            'slug'=>'shop'
         ]);
         Menu::create([
             'name'=>'Nam',
             'parent_id'=>2,
-            'slug'=>'nam'
+            'slug'=>'men'
         ]);
         Menu::create([
             'name'=>'Nữ',
             'parent_id'=>2,
-            'slug'=>'nu'
+            'slug'=>'women'
         ]);
         Menu::create([
             'name'=>'Giỏ hàng',
             'parent_id'=>0,
-            'slug'=>'gio-hang'
+            'slug'=>'cart'
         ]);
         Menu::create([
             'name'=>'Tin tức',
             'parent_id'=>0,
-            'slug'=>'tin-tuc'
+            'slug'=>'blog'
         ]);
         Menu::create([
             'name'=>'Về chúng tôi',
             'parent_id'=>0,
-            'slug'=>'ve-chung-toi'
+            'slug'=>'about'
         ]);
         Menu::create([
             'name'=>'Liên hệ',
             'parent_id'=>0,
-            'slug'=>'lien-he'
+            'slug'=>'contact'
         ]);
     }
 }

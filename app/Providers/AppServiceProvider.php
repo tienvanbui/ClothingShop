@@ -43,11 +43,11 @@ class AppServiceProvider extends ServiceProvider
             $slider_count = Slider::all()->count();
             $tag_count = Tag::all()->count();
             $coupon_count = Coupon::all()->count();
-            $menu_count = Menu::all()->count();
             $about_count = About::all()->count();
             $color_count = Color::all()->count();
             $category_count = Category::all()->count();
-            $view->with('product_count',$product_count)->with('blog_count',$blog_count)->with('banner_count',$banner_count)->with('tag_count',$tag_count)->with('slider_count',$slider_count)->with('coupon_count',$coupon_count)->with('menu_count',$menu_count)->with('about_count',$about_count)->with('color_count',$color_count)->with('category_count',$category_count);
+            $view->with('product_count',$product_count)->with('blog_count',$blog_count)->with('banner_count',$banner_count)->with('tag_count',$tag_count)->with('slider_count',$slider_count)->with('coupon_count',$coupon_count)->with('about_count',$about_count)->with('color_count',$color_count)->with('category_count',$category_count);
         });
+    
     }
 }

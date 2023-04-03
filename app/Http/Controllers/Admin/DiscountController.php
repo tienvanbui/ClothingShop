@@ -22,8 +22,8 @@ class DiscountController extends Controller
             'discount_percent' => 'required|numeric|bail',
             'discount_event_name' => 'nullable|string|bail',
             'description_discount_event' => 'nullable|string|bail',
-            'start_date_event' => 'required|date_format:Y-m-d H:i:s',
-            'end_date_event' => 'required|date_format:Y-m-d H:i:s',
+            'start_date_event' => 'required|date_format:Y-m-d',
+            'end_date_event' => 'required|date_format:Y-m-d',
         ];
         
     }
@@ -37,12 +37,12 @@ class DiscountController extends Controller
     {
         if ($this->startValidationProcess($request)) {
             $discount = new Discount();
-            $discount->discount_type =  $request->discount_type;
+            $discount->discount_percent =  $request->discount_percent;
             $discount->discount_event_name =  $request->discount_event_name;
             $discount->description_discount_event = $request->description_discount_event;
             $discount->start_date_event = $request->start_date_event;
             $discount->end_date_event = $request->end_date_event;
-            $discount->active = $request->active;
+            $discount->active = $request->active == true ? 1 : 0;
             $discount->save();
             $arrayProductWillSales = (Product::all())->pluck('id');
             $discount->products()->attach($arrayProductWillSales);
@@ -71,14 +71,18 @@ class DiscountController extends Controller
     {
         if ($this->startValidationProcess($request)) {
             $discountUpdate = Discount::findOrFail($discount->id);
-            $discountUpdate->coupon_code =  $request->coupon_code;
-            $discountUpdate->coupon_condition = $request->coupon_condition;
-            $discountUpdate->coupon_use_number = $request->coupon_use_number;
-            $discountUpdate->coupon_price_discount = $request->coupon_price_discount;
-            $discount->active = $request->active;
-            $discount->save();
+            $discountUpdate->discount_percent =  $request->discount_percent;
+            $discountUpdate->discount_event_name =  $request->discount_event_name;
+            $discountUpdate->description_discount_event = $request->description_discount_event;
+            $discountUpdate->start_date_event = $request->start_date_event;
+            $discountUpdate->end_date_event = $request->end_date_event;
+            $discountUpdate->active = $request->active == true ? 1 : 0;
+            $discountUpdate->save();
             return redirect()->route('coupon.index')->withToastSuccess('Cập nhật sự kiện giảm giá thành công!');
         }
+    }
+    public function changeStatus($id){
+        
     }
 
     /**

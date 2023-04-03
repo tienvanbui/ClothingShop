@@ -14,10 +14,15 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('menu.index') }}" class="fw-normal">Danh sách mục lục</a></li>
+                @if (auth()->user()->hasPermission('Menu_list'))
+                  <li><a href="{{ route('menu.index') }}" class="fw-normal">Danh sách mục lục</a></li>
+                @endif
               </ol>
-              <a href="{{ route('menu.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo mục lục</a>
+              @if (auth()->user()->hasPermission('Menu_create'))
+                <a href="{{ route('menu.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  mục lục</a>
+              @endif
             </div>
           </div>
         </div>
@@ -25,7 +30,11 @@
     </div>
     <div class="row">
       <div class="container">
+<<<<<<< HEAD
         <h1 class="text-center">MENU</h1>
+=======
+        <h1 class="text-center mt-4">MỤC LỤC</h1>
+>>>>>>> 4318ef38fa794457b12c41f5f72b711fe1242a06
         @include('common.message')
         <div class="d-flex action-bar justify-content-between">
           @include('common.showPerPage')

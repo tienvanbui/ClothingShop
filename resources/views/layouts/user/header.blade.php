@@ -34,12 +34,12 @@
       <div class="top-bar">
         <div class="content-topbar flex-sb-m h-full container">
           <div class="left-top-bar">
-            Miễn phí cho các đơn hàng hơn $100
+            Xu thế thời trang 2023
           </div>
 
           <div class="right-top-bar flex-w h-full">
             <a href="{{ route('about-user') }}" class="flex-c-m trans-04 p-lr-25">
-              Help & FAQs
+              FAQs
             </a>
             @if (auth()->check())
               <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25">
@@ -72,26 +72,36 @@
 
           <!-- Menu desktop -->
           <div class="menu-desktop">
-            <ul class="main-menu">
-              @foreach ($menus as $parentMenuItem)
-                <li>
-                  <a href='{{ route("$parentMenuItem->slug-user") }}'>{{ $parentMenuItem->name }}</a>
-                  @if ($parentMenuItem->menus()->count())
-                    <ul class="sub-menu">
-                      @foreach ($parentMenuItem->menus as $itemChild)
-                        <li><a href="{{ route('user.shop.showByCategory', ['slug' => $itemChild->slug]) }}"
-                            class="shop_show-category">{{ $itemChild->name }}</a>
-                        </li>
-                      @endforeach
-                    </ul>
-                    <span class="arrow-main-menu">
-                      <i class="fa fa-angle-down" aria-hidden="true"></i>
-                    </span>
-                  @endif
-                </li>
-              @endforeach
-            </ul>
-          </div>
+						<ul class="main-menu">
+							<li class="menu">
+								<a href="{{route('home-user')}}">Trang chủ</a>
+							</li>
+							<li class="label1" data-label1="hot">
+								<a href="{{route('shop-user')}}">Cửa hàng</a>
+                <ul class="sub-menu">
+                  @foreach ($menus as $category)
+									<li><a href="{{ route('user.shop.showByCategory', ['id' => $category->id]) }}">{{$category->name}}</a></li>
+                  @endforeach
+								</ul>
+							</li>
+
+							<li >
+								<a href="{{route("cart-user")}}">Giỏ hàng</a>
+							</li>
+
+							<li>
+								<a href="{{route("blog-user")}}">Tin tức</a>
+							</li>
+
+							<li>
+								<a href="{{route("about-user")}}">Về chúng tôi</a>
+							</li>
+
+							<li>
+								<a href="{{route("contact-user")}}">Liên hệ</a>
+							</li>
+						</ul>
+					</div>	
 
           <!-- Icon header -->
           <div class="wrap-icon-header flex-w flex-r-m">
@@ -134,14 +144,14 @@
       <ul class="topbar-mobile">
         <li>
           <div class="left-top-bar">
-            Miễn phí cho các đơn hàng hơn $100
+            Xu thế thời trang 2023
           </div>
         </li>
 
         <li>
           <div class="right-top-bar flex-w h-full">
             <a href="{{ route('about-user') }}" class="flex-c-m p-lr-10 trans-04">
-              Help & FAQs
+              FAQs
             </a>
 
             @if (auth()->check())
@@ -165,23 +175,40 @@
       </ul>
 
       <ul class="main-menu-m">
-        @foreach ($menus as $parentMenuItem)
+        <ul class="main-menu-m">
           <li>
-            <a href='{{ route("$parentMenuItem->slug-user") }}'>{{ $parentMenuItem->name }}</a>
-            @if ($parentMenuItem->menus()->count())
-              <ul class="sub-menu">
-                @foreach ($parentMenuItem->menus as $itemChild)
-                  <li><a
-                      href="{{ route('user.shop.showByCategory', ['slug' => $itemChild->slug]) }}">{{ $itemChild->name }}</a>
-                  </li>
-                @endforeach
-              </ul>
-              <span class="arrow-main-menu">
-                <i class="fa fa-angle-down" aria-hidden="true"></i>
-              </span>
-            @endif
+            <a href="{{route('home-user')}}">Trang chủ</a>
+            
+            <span class="arrow-main-menu-m">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </span>
           </li>
-        @endforeach
+  
+          <li>
+            <a href="{{route('shop-user')}}" class="label1 rs1" data-label1="hot">Cửa hàng</a>
+            <ul class="sub-menu-m">
+              @foreach ($menus as $category)
+              <li><a href="{{ route('user.shop.showByCategory', ['id' => $category->id]) }}">{{$category->name}}</a></li>
+              @endforeach
+            </ul>
+          </li>
+  
+          <li>
+            <a href="{{route('cart-user')}}" >Giỏ hàng</a>
+          </li>
+  
+          <li>
+            <a href="{{route('blog-user')}}">Tin tức</a>
+          </li>
+  
+          <li>
+            <a href="{{route('about-user')}}">Về chúng tôi</a>
+          </li>
+  
+          <li>
+            <a href="{{route('contact-user')}}">Liên hệ</a>
+          </li>
+        </ul>
       </ul>
     </div>
   </header>
@@ -193,7 +220,7 @@
     <div class="header-cart flex-col-l p-l-65 p-r-25">
       <div class="header-cart-title flex-w flex-sb-m p-b-8">
         <span class="mtext-103 cl2">
-          Giở hàng
+          Giỏ hàng
         </span>
 
         <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -219,7 +246,7 @@
 
                     <span class="header-cart-item-info">
                       {{ $product->pivot->buy_quanlity }} x
-                      {{ '$' . number_format($product->price) }}
+                      {{ $product->price .'VNĐ' }}
                     </span>
                   </div>
                 </li>
@@ -230,7 +257,7 @@
 
           <div class="w-full">
             <div class="header-cart-total w-full p-tb-40">
-              Tổng: {{ '$' . number_format($totalPrice) }}
+              Tổng: {{ number_format($totalPrice).'VNĐ' }}
             </div>
             <div class="header-cart-buttons flex-w w-full">
               <a href="{{ route('view-cart') }}"

@@ -23,10 +23,15 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('blog.index') }}" class="fw-normal">Danh sách tin tức</a></li>
+                @if (auth()->user()->hasPermission('Blog_list'))
+                  <li><a href="{{ route('blog.index') }}" class="fw-normal">Danh mục tin tức</a></li>
+                @endif
               </ol>
-              <a href="{{ route('blog.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo tin tức</a>
+              @if (auth()->user()->hasPermission('Blog_create'))
+                <a href="{{ route('blog.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  tin tức</a>
+              @endif
             </div>
           </div>
         </div>

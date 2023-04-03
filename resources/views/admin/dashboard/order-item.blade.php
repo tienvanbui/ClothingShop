@@ -8,8 +8,10 @@
       <th scope="col" class="fw-bold text-dark">Tổng tiền</th>
       <th scope="col" class="fw-bold text-dark">Trạng thái</th>
       <th class="fw-bold">
+        @if (auth()->user()->hasPermission('Order_list'))
         <a href="{{ route('admin.order-check') }}" class="fw-bold btn btn-primary text-white rounded-pill"
           style="border-radius: 50%" role="button">Xem tất cả</a>
+        @endif
       </th>
     </tr>
   </thead>
@@ -20,7 +22,7 @@
         <td>{{ ucwords($order->username) }}</td>
         <td>{{ date('d/m/Y', strtotime($order->created_at)) }}</td>
         <td>{{ $order->payment_method }}</td>
-        <td>{{ '$' . number_format($order->total) }}</td>
+        <td>{{ number_format($order->total) . 'VNĐ' }}</td>
         <td>
           @if ($order->status == 0)
             <form action="{{ route('admin.order-confirm', ['order' => $order->id]) }}"method="POST">

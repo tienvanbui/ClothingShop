@@ -60,8 +60,8 @@ $(document).ready(function () {
             success: function (data) {
                 $('#comment-post_with_ajax')[0].reset();
                 swal({
-                    title: "Thank for your comment!",
-                    text: "Your comment is posetd!",
+                    title: "Cảm ơn bình luận của bạn!",
+                    text: "Bình luận của bạn được đăng!",
                     icon: "success",
                     closeOnClickOutside: true,
                     buttons: false
@@ -154,7 +154,7 @@ $(document).ready(function () {
             success: function (response) {
                 $('#product_name').text(response.product_name);
                 $('#product_price').text(response.product_price);
-                $('#product_seo').text((response.seo_product).replace('$', ''));
+                $('#product_seo').text((response.seo_product).replace('VNĐ', ''));
                 $('#product_size').html(response.sizes);
                 $('#product_color').html(response.colors);
                 $('#product_galleries  .item-slick3  .pos-relative  img').attr('src', response.product_image);
@@ -232,8 +232,8 @@ $(document).ready(function () {
         }
         else {
             swal({
-                title: "Something was wrong!",
-                text: "Please choose the filter condition!",
+                title: "Có cái gì đó không đúng!",
+                text: "Vui lòng chọn điều kiện lọc!",
                 icon: "error",
                 closeOnClickOutside: true,
                 buttons: false
@@ -349,8 +349,8 @@ $(document).ready(function () {
         var nameProduct = $(this).parent().parent().parent().parent().parent().find('.js-name-detail').text();
         if (product_id == '' || buy_quanlity == '' || size_id == 'Choose an option' || color_id == 'Choose an option') {
             swal({
-                title: "Something was wrong!",
-                text: "Please choose the option and quanlities!",
+                title: "Có cái gì đó không đúng!",
+                text: "Vui lòng chọn tùy chọn và số lượng!",
                 icon: "error",
                 closeOnClickOutside: true,
                 buttons: false
@@ -375,14 +375,14 @@ $(document).ready(function () {
             dataType: "JSON",
             success: function (response) {
                 if (response.status == 'fail') {
-                    swal(response.product_name, "already exists in the cart.Please double check the product color and size!", "error").then((result) => { $('.js-modal1').removeClass('show-modal1') });
+                    swal(response.product_name, "đã tồn tại trong giỏ hàng. Vui lòng kiểm tra kỹ màu sắc và kích thước sản phẩm!", "error").then((result) => { $('.js-modal1').removeClass('show-modal1') });
                     $('.icon-header-noti').attr('data-notify', response.product_in_cart);
                 }
                 else if (response.status == 'warning') {
-                    swal(response.product_name, "out of stock.Please choose another products!", "error").then((result) => { $('.js-modal1').removeClass('show-modal1') });
+                    swal(response.product_name, "hết hàng.Làm ơn chọn sản phẩm khác!", "error").then((result) => { $('.js-modal1').removeClass('show-modal1') });
                 }
                 else {
-                    swal(response.product_name, "is added to cart !", "success").then((result) => { $('.js-modal1').removeClass('show-modal1') });
+                    swal(response.product_name, "đã thêm vào giỏ !", "success").then((result) => { $('.js-modal1').removeClass('show-modal1') });
                     $('.header-cart-count').attr('data-notify', response.product_in_cart);
                     $('.add-ajax-product-insert').append(response.product_item_in_cart);
                     $('.header-cart-total').text('Total:$' + response.product_sum_all_product_price);
@@ -404,8 +404,8 @@ $(document).ready(function () {
         var nameProduct = $('#product_name').text();
         if (product_id == '' || buy_quanlity == '' || size_id == 'Choose an option' || color_id == 'Choose an option') {
             swal({
-                title: "Something was wrong!",
-                text: "Please choose the option and quanlities!",
+                title: "Có cái gì đó không đúng!",
+                text: "Làm ơn chọn đầy đủ và số lượng!",
                 icon: "error",
                 closeOnClickOutside: true,
                 buttons: false
@@ -413,8 +413,8 @@ $(document).ready(function () {
         }
         else if (buy_quanlity <= 0) {
             swal({
-                title: "Something was wrong!",
-                text: "The qualities must greater than or equal to 0!",
+                title: "Có cái gì đó không đúng!",
+                text: "Số lượng sản phẩm phải lớn hơn hoặc bằng 0!",
                 icon: "error",
                 closeOnClickOutside: true,
                 buttons: false
@@ -438,8 +438,8 @@ $(document).ready(function () {
             product_id: product_id,
         };
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this data!",
+            title: "Bạn có chắc chắn xóa?",
+            text: "Sau khi xóa, bạn sẽ không thể khôi phục dữ liệu này!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -450,7 +450,7 @@ $(document).ready(function () {
                     url: "/user/delete-form-cart/" + product_id,
                     data: data,
                     success: function (response) {
-                        swal("Poof! Your data has been deleted!", {
+                        swal("Dữ liệu của bạn đã bị xóa!", {
                             icon: "success",
                         }).then((result) => {
                             location.reload();
@@ -481,7 +481,7 @@ $(document).ready(function () {
                 url: "/user/update-cart/" + product_id,
                 data: data,
                 success: function (response) {
-                    swal("Poof! Your data has been updated!", {
+                    swal("Dữ liệu của bạn đã được cập nhật!", {
                         icon: "success",
                     }).then((result) => {
                         location.reload();
@@ -491,8 +491,8 @@ $(document).ready(function () {
         }
         else {
             swal({
-                title: "Something was wrong!",
-                text: "The qualities must greater than or equal to 0!",
+                title: "Có cái gì đó không đúng!",
+                text: "Số lượng phải lớn hơn hoặc bằng 0!",
                 icon: "error",
                 closeOnClickOutside: true,
                 buttons: false
@@ -518,34 +518,34 @@ $(document).ready(function () {
                 success: function (response) {
                     if (response.status == 'success') {
                         swal({
-                            title: "Successfully!",
-                            text: "You added discount code!",
+                            title: "Thành công!",
+                            text: "Bạn đã áp dụng phiếu giảm giá!",
                             icon: "success",
                         }).then(() => {
-                            $('.discount_payment_type').text('$' + response.discountPrice);
-                            $('.total-after-discounting').text('$' + response.totalAfterDiscount);
+                            $('.discount_payment_type').text(response.discountPrice);
+                            $('.total-after-discounting').text(response.totalAfterDiscount);
                             $('.discount-price-of-products').val(response.totalAfterDiscount);
                         });
                         $('.confirm-cart_couponCode_input').attr('disabled', 'disabled');
                     }
                     else if (response.status == 'full') {
                         swal({
-                            title: "Unsuccessfully!",
-                            text: "Coupon code has been used or expired!",
+                            title: "Không thành công!",
+                            text: "Phiếu giảm giá đã được dùng hoặc hết hạn!",
                             icon: "warning",
                         }).then(() => {
-                            $('.discount_payment_type').text('$' + 0);
-                            $('.total-after-discounting').text('$' + response.totalAfterDiscount);
+                            $('.discount_payment_type').text( 0);
+                            $('.total-after-discounting').text(response.totalAfterDiscount);
                         });
                     }
                     else {
                         swal({
-                            title: "Unsuccessfully!",
-                            text: "Discount code wasn't added.Please check the coupon code!",
+                            title: "Không thành công!",
+                            text: "Mã giảm giá chưa được thêm vào. Vui lòng kiểm tra mã phiếu giảm giá!",
                             icon: "error",
                         }).then(() => {
-                            $('.discount_payment_type').text('$' + 0);
-                            $('.total-after-discounting').text('$' + response.totalAfterDiscount);
+                            $('.discount_payment_type').text(0);
+                            $('.total-after-discounting').text(response.totalAfterDiscount);
                         });
                     }
                 }
@@ -558,8 +558,8 @@ $(document).ready(function () {
         var slug_paymentMethod = $(this).data('slug_payment');
         if (slug_paymentMethod == 'Card') {
             swal({
-                title: "Unsuccessfully!",
-                text: "Current payment method not supported.Please choose another payment method!",
+                title: "Không thành công!",
+                text: "Phương thức thanh toán hiện tại không được hỗ trợ. Vui lòng chọn phương thức thanh toán khác!",
                 icon: "error",
             }).then(() => {
                 $(this).prop('checked', false);
@@ -586,8 +586,8 @@ $(document).ready(function () {
                 user_id: user_id
             };
             swal({
-                title: "Are you sure?",
-                text: "Once placed, your order cannot be repaired!",
+                title: "Bạn chắc chắn?",
+                text: "Sau khi đặt hàng, đơn đặt hàng của bạn không thể được sửa chữa!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -601,7 +601,7 @@ $(document).ready(function () {
                         success: function (response) {
                             if (response.status == 'success') {
                                 swal({
-                                    title: "Order Success!",
+                                    title: "Đặt hàng thành công!",
                                     icon: "success",
                                 }).then(() => {
                                     window.location.href = '/user/thank-to-order';
@@ -609,8 +609,8 @@ $(document).ready(function () {
                             }
                             if (response.status == 'fail') {
                                 swal({
-                                    title: "Order Fail.",
-                                    text: "Please check your cart after paying for your order!",
+                                    title: "Đặt hàng không thành công!.",
+                                    text: "Vui lòng kiểm tra giỏ hàng của bạn sau khi thanh toán cho đơn đặt hàng của bạn!",
                                     icon: "error",
                                 }).then(() => {
                                     window.location.href = '/product/view-product-list';
@@ -665,8 +665,8 @@ $(document).ready(function () {
         var product_id = $('input[name="product_id"]').val();
         if (_token == '' || rated_num == '' || review == '' || user_id == '' || product_id == '') {
             swal({
-                title: "Ratting Fail!",
-                text: "Please fill out all information before submitting a review!",
+                title: "Đánh giá thất bại!",
+                text: "Vui lòng điền đầy đủ thông tin trước khi gửi đánh giá!",
                 icon: "error",
             });
         }
@@ -685,8 +685,8 @@ $(document).ready(function () {
                 success: function (data) {
 
                     swal({
-                        title: "Thank for your review!",
-                        text: "Your review was posetd!",
+                        title: "Cảm ơn đã đánh giá!",
+                        text: "Đánh giá của bạn đã được đăng!",
                         icon: "success",
                         closeOnClickOutside: true,
                         buttons: false

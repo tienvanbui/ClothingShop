@@ -44,7 +44,7 @@ class CouponController extends Controller
             $coupon->coupon_use_number = $request->coupon_use_number;
             $coupon->coupon_price_discount = $request->coupon_price_discount;
             $coupon->save();
-            return redirect()->route('coupon.index')->withToastSuccess('Coupon was created successfully!');
+            return redirect()->route('coupon.index')->withToastSuccess('Tạo thành công!');
         }
     }
     /**
@@ -74,7 +74,7 @@ class CouponController extends Controller
             $couponUpdate->coupon_use_number = $request->coupon_use_number;
             $couponUpdate->coupon_price_discount = $request->coupon_price_discount;
             $coupon->save();
-            return redirect()->route('coupon.index')->withToastSuccess('Coupon was updated successfully!');
+            return redirect()->route('coupon.index')->withToastSuccess('Cập nhật thành công!');
         }
     }
 
@@ -87,6 +87,6 @@ class CouponController extends Controller
     public function destroy(Coupon $coupon)
     {
         $coupon->delete();
-        return redirect()->route('coupon.index')->withToastSuccess('Coupon was deleted successfully!');
+        return redirect()->route('coupon.index')->withToastSuccess('Xóa thành công!');
     }
 }

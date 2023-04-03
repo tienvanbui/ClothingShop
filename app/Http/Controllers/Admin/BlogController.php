@@ -61,7 +61,7 @@ class BlogController extends Controller
 
             $blogStored = Blog::Create($dataStore);
             $blogStored->tags()->attach($request->tags);
-            return redirect()->route('blog.index')->withToastSuccess('Blog Stored Successfully!');
+            return redirect()->route('blog.index')->withToastSuccess('Tạo mới thành công!');
         }
     }
 
@@ -118,7 +118,7 @@ class BlogController extends Controller
             }
             $blog->update($dataUpdate);
             $blog->tags()->sync($request->tags);
-            return redirect()->route('blog.index')->withToastSuccess('Blog Updated Successfully!');
+            return redirect()->route('blog.index')->withToastSuccess('Cập nhật thành công!');
         }
     }
 
@@ -133,6 +133,6 @@ class BlogController extends Controller
         $this->delteOldImageWhenUpdateWithoutCheckExists('thumbnail', $blog);
         $blog->tags()->detach();
         $blog->delete();
-        return redirect()->route('blog.index')->withToastSuccess('Blog Deleted successfully!');
+        return redirect()->route('blog.index')->withToastSuccess('Xóa thành công!');
     }
 }

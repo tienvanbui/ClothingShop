@@ -3653,4 +3653,6 @@ input.num-product::-webkit-inner-spin-button {
 .blog-time_selection:hover {
   cursor: pointer;
 }
-
+.blog-content_detail img {
+  width: 100% !important;
+}

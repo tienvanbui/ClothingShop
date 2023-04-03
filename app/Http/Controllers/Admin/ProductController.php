@@ -27,7 +27,7 @@ class ProductController extends Controller
             'show' => 'admin.product.show'
         ];
         $this->validateRule = [
-            'product_name' => 'required|unique:products|bail',
+            'product_name' => 'required|bail',
             'product_image' => 'required|image|bail',
             'product_image_name' => 'required|bail',
             'price' => 'required|bail',
@@ -109,7 +109,7 @@ class ProductController extends Controller
                     'quanlities' => $quanlities[$i]
                 ]);
             }
-            return redirect()->route('product.index')->withToastSuccess( "$this->modelName Stored Successfully!");
+            return redirect()->route('product.index')->withToastSuccess( "Tạo mới thành công!");
         } catch (Exception $exception) {
             return redirect()->back()->withToastError($exception->getMessage());
         }
@@ -212,7 +212,7 @@ class ProductController extends Controller
                     'quanlities' => $quanlities[$i]
                 ]);
             }
-            return redirect()->route('product.index')->withToastSuccess("$this->modelName Updated Successfully!");
+            return redirect()->route('product.index')->withToastSuccess("Cập nhật thành công!");
         } catch (Exception $exception) {
             return redirect()->back()->withToastError($exception->getMessage());
         }
@@ -238,7 +238,7 @@ class ProductController extends Controller
         $product->sizes()->detach();
         $product->delete();
         $product->productColorSizeses()->delete();
-        return redirect()->route('product.index')->withToastSuccess("$this->modelName Deleted Successfully!");
+        return redirect()->route('product.index')->withToastSuccess("Xóa thành công!");
     }
     public function manageQuanlities(Request $request)
     {

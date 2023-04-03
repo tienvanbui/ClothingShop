@@ -1,8 +1,8 @@
-@section('title', 'Track your order')
+@section('title', 'Kiểm tra đơn hàng')
 @include('layouts.user.header')
 <div class="container" style="margin-top: 150px;margin-bottom:150px;">
   <div class="row">
-    <h3 class="fw-bold" style="font-weight: bold;margin-bottom:40px;">Your Order</h3>
+    <h3 class="fw-bold" style="font-weight: bold;margin-bottom:40px;">Đơn hàng của bạn</h3>
   </div>
   <div class="row">
     <div class="col-md-12 col-sm-12 col-lg-12">
@@ -10,12 +10,12 @@
         <thead>
           <tr>
             <th scope="col" style="font-weight: bold">#</th>
-            <th scope="col" style="font-weight: bold">Product Name</th>
-            <th scope="col" style="font-weight: bold">Image</th>
-            <th scope="col" style="font-weight: bold">Price</th>
-            <th scope="col" style="font-weight: bold">Quanlity</th>
-            <th scope="col" style="font-weight: bold">Date</th>
-            <th scope="col" style="font-weight: bold">Status</th>
+            <th scope="col" style="font-weight: bold">Tên sản phẩm</th>
+            <th scope="col" style="font-weight: bold">Ảnh</th>
+            <th scope="col" style="font-weight: bold">Giá</th>
+            <th scope="col" style="font-weight: bold">Số lượng</th>
+            <th scope="col" style="font-weight: bold">Ngày đặt</th>
+            <th scope="col" style="font-weight: bold">Trạng thái</th>
           </tr>
         </thead>
         <tbody>
@@ -25,7 +25,7 @@
               <th scope="row">{{ $index + 1 }}</th>
               <td>{{ $product->product_name }}</td>
               <td><img src="{{ asset($product->product_image) }} " width="100px" height="100px"></td>
-              <td>{{ '$' . number_format($product->price) }}</td>
+              <td>{{ number_format($product->price).'VNĐ' }}</td>
               <td>{{ $product->buy_quanlity }}</td>
               <td>{{ date('d/m/Y H:i:s', strtotime($product->created_at)) }}</td>
               <td>

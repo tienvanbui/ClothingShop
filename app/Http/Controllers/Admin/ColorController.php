@@ -41,7 +41,7 @@ class ColorController extends Controller
                     'color_name'=>$request->color_name,
                 ]
             );
-            return redirect()->route('color.index')->withToastSuccess('Color Updated Successfully!');
+            return redirect()->route('color.index')->withToastSuccess('Cập nhật thành công!');
         }
         
     }

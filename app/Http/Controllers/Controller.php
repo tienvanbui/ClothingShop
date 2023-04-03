@@ -15,7 +15,7 @@ use App\Models\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
-
+use App\Models\Category;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -145,9 +145,7 @@ class Controller extends BaseController
      */
     protected function getAppMenu()
     {
-        $menus = Cache::remember('menus-list', 60 * 60, function () {
-            return Menu::where('parent_id', 0)->get();
-        });
+        $menus = Category::all();
         return $this->menus = $menus;
     }
     /**
@@ -155,6 +153,6 @@ class Controller extends BaseController
      */
     protected function list()
     {
-        return view($this->views['list']);
+         return view($this->views['list']);   
     }
 }

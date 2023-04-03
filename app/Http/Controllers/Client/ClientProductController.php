@@ -69,13 +69,13 @@ class ClientProductController extends Controller
     /**
      * Display a listing of the product by category.
      **/
-    public function showProductByCategory($slug)
+    public function showProductByCategory($id)
     {
         if (auth()->check()) {
             $this->cartDisplayInform(auth()->user()->id);
         }
         $colors = Color::all();
-        $category_id = (Category::where('name', ucwords($slug))->first())->id;
+        $category_id = (Category::where('id', $id)->first())->id;
         $products = Product::where('category_id', $category_id)->latest()->paginate(config('appConst.appConst.ITEM_IN_PER_PAGE'));
         return view('user.product.index', [
             'colors' => $colors,
@@ -138,7 +138,7 @@ class ClientProductController extends Controller
                             ' . csrf_field() . '
                             <button
                                 class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 qickView-product" data-product_id="' . $row->id . '">
-                                Qick View
+                                Xem nhanh
                             </button>
                             </form>
                         </div>
@@ -150,7 +150,7 @@ class ClientProductController extends Controller
                                 </a>
 
                                 <span class="stext-105 cl3">
-                                    ' . '$' . number_format($row->price) . '
+                                    ' .  number_format($row->price) .'VNĐ'. '
                                 </span>
                             </div>
                                 <button type="button" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
@@ -167,14 +167,14 @@ class ClientProductController extends Controller
                 }
                 $output .= '<div class="flex-c-m flex-w w-full p-t-45">
                     <button class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04 loadMoreButton-product_user" data-id="' . $lastId . '">
-                        Load More
+                        Xem nhiều hơn
                     </button>
                 </div>';
             } else {
                 $output .= ' 
                 <div class="flex-c-m flex-w w-full">
                     <button class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                        No Data Found
+                        Không có dữ liệu
                     </button>
                 </div>';
             }
@@ -195,8 +195,8 @@ class ClientProductController extends Controller
             $output['product_image'] = $product->product_image;
             $output['product_image_name'] = $product->product_image_name;
             $output['seo_product'] = $product->seo_product;
-            $output['colors'] = '<option>Choose an option</option>';
-            $output['sizes'] = '<option>Choose an option</option>';
+            $output['colors'] = '<option>Chọn màu sắc</option>';
+            $output['sizes'] = '<option>Chọn kích thước</option>';
             foreach ($product->colors as $color) {
                 $output['colors'] .= "<option value=" . $color->id . ">" . $color->color_name . "</option>";
             }
@@ -632,14 +632,14 @@ class ClientProductController extends Controller
                 $output .= '
             <div class="text-center" style="width: 100%">
                 <button class="buton-product_comment_loadmore stext-101 size-125  bor2 hov-btn3 mt-5" data-id ="' . $lastId . '">
-                    + More Comments
+                    + Xem nhiều đánh giá hơn
                 </button>
             </div>';
             } else {
                 $output .= '
             <div class="text-center" style="width: 100%">
                 <button class=" stext-101 size-125  bor2 hov-btn3 mt-5 ">
-                    No Data Found
+                    Không có dữ liệu
                 </button>
             </div>';
             }

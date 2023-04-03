@@ -58,7 +58,6 @@
       '#2ae240',
       '#0d15d5',
       '#7ee91c',
-      '#17f3b5',
       '#0d4d0d',
     ],
     //labelColor:"#cccccc", // text color
@@ -76,7 +75,7 @@
         value: <?php echo $banner_count; ?>
       },
       {
-        label: "Sliders",
+        label: "Trình chiếu",
         value: <?php echo $slider_count; ?>
       },
       {
@@ -86,10 +85,6 @@
       {
         label: "Phiếu giảm giá",
         value: <?php echo $coupon_count; ?>
-      },
-      {
-        label: "Menus",
-        value: <?php echo $menu_count; ?>
       },
       {
         label: "Về chúng tôi",

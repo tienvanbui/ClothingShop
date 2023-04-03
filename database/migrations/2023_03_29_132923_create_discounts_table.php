@@ -18,9 +18,10 @@ class CreateDiscountsTable extends Migration
             $table->integer('discount_percent'); 
             $table->string('discount_event_name')->nullable();
             $table->text('description_discount_event')->nullable();
-            $table->dateTime('start_date_event');
-            $table->dateTime('end_date_event');
+            $table->date('start_date_event');
+            $table->date('end_date_event');
             $table->smallInteger('active')->default(0);
+            $table->timestamps();
             $table->softDeletes();
         });
     }

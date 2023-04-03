@@ -61,7 +61,7 @@ class BannerController extends Controller
                 $dataStore['banner_image'] = $checkBannerImage['filePath'];
             }
             $banner = Banner::create($dataStore);
-            return redirect()->route('banner.index')->withToastSuccess('Banner Stored Successfully!');
+            return redirect()->route('banner.index')->withToastSuccess('Tạo mới thành công!');
         }
     }
     /**
@@ -96,7 +96,7 @@ class BannerController extends Controller
                 $dataUpdate['banner_image'] = $checkBannerImage['filePath'];
             }
             $banner->update($dataUpdate);
-            return redirect()->route('banner.index')->withToastSuccess('Banner Updated Successfully!');
+            return redirect()->route('banner.index')->withToastSuccess('Cập nhật thành công!');
         }
     }
 
@@ -112,6 +112,6 @@ class BannerController extends Controller
             unlink(storage_path("/app"."/public". str_replace("/storage",'',$banner->banner_image)));
          }
          $banner->delete();
-         return redirect()->route('banner.index')->withToastSuccess('Banner Deleted Successfully!');
+         return redirect()->route('banner.index')->withToastSuccess('Xóa thành công');
     }
 }

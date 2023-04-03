@@ -6,7 +6,7 @@
     <div class="container">
         <div class="p-b-10">
             <h3 class="ltext-103 cl5">
-                Product Overview
+                Tổng quan sản phẩm
             </h3>
         </div>
 
@@ -15,13 +15,13 @@
                 <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
                     <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
                     <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                    Filter
+                    Lọc
                 </div>
 
                 <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
                     <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
                     <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                    Search
+                    Tìm kiếm
                 </div>
             </div>
 
@@ -40,19 +40,19 @@
                 <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                     <div class="filter-col1 p-r-15 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
-                            Sort By
+                            Lọc theo
                         </div>
 
                         <ul>
                             <li class="p-b-6">
                                 <a class="filter-link stext-106 trans-04" data-sortting_by="price-low-to-high">
-                                    Price: Low to High
+                                    Giá:thấp tới cao
                                 </a>
                             </li>
 
                             <li class="p-b-6">
                                 <a class="filter-link stext-106 trans-04" data-sortting_by="price-high-to-low">
-                                    Price: High to Low
+                                    Giá:cao tới thấp
                                 </a>
                             </li>
                         </ul>
@@ -60,37 +60,37 @@
 
                     <div class="filter-col2 p-r-15 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
-                            Price
+                            Giá
                         </div>
 
                         <ul>
                             <li class="p-b-6">
-                                <a class="filter-link stext-106 trans-04" data-price="from-0-to-50">
-                                    $0 - $50
+                                <a class="filter-link stext-106 trans-04" data-price="from-0-to-50000">
+                                    0VNĐ - 50.000VNĐ
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a class="filter-link stext-106 trans-04" data-price="from-50-to-100">
-                                    $50 - $100
+                                <a class="filter-link stext-106 trans-04" data-price="from-50000-to-100000">
+                                    50.000VNĐ - 100.000VNĐ
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a class="filter-link stext-106 trans-04" data-price="from-100-to-150">
-                                    $100 - $150
+                                <a class="filter-link stext-106 trans-04" data-price="from-100000-to-150000">
+                                    100.000VNĐ - 150.000VNĐ
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a class="filter-link stext-106 trans-04" data-price="from-150-to-200">
-                                    $150- $200
+                                <a class="filter-link stext-106 trans-04" data-price="from-150000-to-200000">
+                                    150.000VNĐ - 200.000VNĐ
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a class="filter-link stext-106 trans-04" data-price="from-200-to-1000">
-                                    $200+
+                                <a class="filter-link stext-106 trans-04" data-price="from-200000-to-1000000">
+                                    200.000VNĐ
                                 </a>
                             </li>
                         </ul>
@@ -98,7 +98,7 @@
 
                     <div class="filter-col3 p-r-15 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
-                            Color
+                            Màu sắc
                         </div>
 
                         <ul>
@@ -117,11 +117,11 @@
                     </div>
                     <div class="filter-col4 p-r-15 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
-                            Filter
+                            Lọc
                         </div>
                         <form action="POST">
                             @csrf
-                            <button class="filter-accpet btn btn-danger">Filter</button>
+                            <button class="filter-accpet btn btn-danger">Lọc</button>
                         </form>
 
                     </div>

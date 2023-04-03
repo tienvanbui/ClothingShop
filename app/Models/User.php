@@ -95,4 +95,9 @@ class User extends Authenticatable
         }
         return $userOnlined;
     }
+    public function hasPermission($permission_name){
+        $isHasPermission = ((auth()->user()->role)->permissions()->where('key_code',$permission_name)->first()) ? ((auth()->user()->role)->permissions()->where('key_code',$permission_name)->first())->key_code : null;
+        return $isHasPermission ? true : false;
+    }
+
 }

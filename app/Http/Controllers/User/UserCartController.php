@@ -58,8 +58,8 @@ class UserCartController extends Controller
                 } else {
                     $productNeedCheck = Product::whereId($request->product_id)->first();
                     $priceOfProduct = $productNeedCheck->price;
-                    if (strpos($priceOfProduct, '$') !== false) {
-                        $priceOfProduct = str_replace('$', '', $priceOfProduct);
+                    if (strpos($priceOfProduct, ',') !== false) {
+                        $priceOfProduct = str_replace(',', '', $priceOfProduct);
                     }
                     $cart->products()->attach(
                         $request->product_id,
@@ -85,7 +85,7 @@ class UserCartController extends Controller
                         </a>      
                         <span class="header-cart-item-info">
                             ' . $request->buy_quanlity . ' x
-                            $' . number_format(((int)$request->buy_quanlity * (int)$priceOfProduct)) . '
+                            ' . number_format(((int)$request->buy_quanlity * (int)$priceOfProduct)) .'VNĐ' . '
                         </span>
                     </div>  
                  </li>';
@@ -111,8 +111,8 @@ class UserCartController extends Controller
                 ->join('cart_products', 'carts.id', '=', 'cart_products.cart_id')->select('cart_products.*')
                 ->first();
             $priceOfProduct = (Product::whereId($request->product_id)->first())->price;
-            if (strpos($priceOfProduct, '$') !== false) {
-                $priceOfProduct = str_replace('$', '', $priceOfProduct);
+            if (strpos($priceOfProduct, ',') !== false) {
+                $priceOfProduct = str_replace(',', '', $priceOfProduct);
             }
             $cart->products()->detach($request->product_id);
             $cart->products()->attach(
@@ -198,7 +198,7 @@ class UserCartController extends Controller
                 $newOrder = new Order();
                 $newOrder->user_id = $request->user_id;
                 $newOrder->payment_id = $request->payment_id;
-                $newOrder->total = $request->total;
+                $newOrder->total =$request->total;
                 $newOrder->address_shipping = $request->addressShipping;
                 $newOrder->phoneNumber_shipping = $request->phoneNumberShipping;;
                 $newOrder->save();
@@ -210,7 +210,7 @@ class UserCartController extends Controller
                             'buy_quanlity' => $product->pivot->buy_quanlity,
                             'color_id' => $product->pivot->color_id,
                             'size_id' => $product->pivot->size_id,
-                            'price' => $product->price
+                            'price' =>   str_replace(',', '',$product->price) 
                         ]
                     );
                 }
@@ -219,7 +219,7 @@ class UserCartController extends Controller
                     ->join('products', 'order_products.product_id', '=', 'products.id')
                     ->select('order_products.buy_quanlity', 'products.product_name', 'products.product_image', 'products.price')
                     ->get();
-                sendMailAppectOrderdEvent::dispatch(auth()->user()->name, auth()->user()->email, $productsInYourOrder);
+                //sendMailAppectOrderdEvent::dispatch(auth()->user()->name, auth()->user()->email, $productsInYourOrder);
                 $response['status'] = 'success';
             }
             return response($response);

@@ -46,12 +46,12 @@ class HomeController extends Controller
             $product = Product::find($request->id);
             $output['product_id'] = $product->id;
             $output['product_name'] = $product->product_name;
-            $output['product_price'] = '$' . $product->price;
+            $output['product_price'] = $product->price.'VNĐ';
             $output['product_image'] = $product->product_image;
             $output['product_image_name'] = $product->product_image_name;
             $output['seo_product'] = $product->seo_product;
-            $output['colors'] = '<option>Choose an option</option>';
-            $output['sizes'] = '<option>Choose an option</option>';
+            $output['colors'] = '<option>Chọn màu sản phẩm</option>';
+            $output['sizes'] = '<option>Chọn kích cỡ</option>';
             foreach ($product->colors as $color) {
                 $output['colors'] .= "<option value=" . $color->id . ">" . $color->color_name . "</option>";
             }

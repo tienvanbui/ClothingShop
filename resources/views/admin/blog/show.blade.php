@@ -1,4 +1,4 @@
-@section('title', 'Detail Blog')
+@section('title', 'Chi tiết tin tức')
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
 @section('main-content')
@@ -12,23 +12,25 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a
-                    href="
-                                    {{ route('blog.index') }}
-                                   "
-                    class="fw-normal">Danh sách tin tức</a></li>
+                @if (auth()->user()->hasPermission('Blog_list'))
+                  <li><a href="{{ route('blog.index') }}" class="fw-normal">Danh mục tin tức</a></li>
+                @endif
               </ol>
-              <a href="
-                                    {{ route('blog.create') }}
-                                   "
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
-                tin tức</a>
+              @if (auth()->user()->hasPermission('Blog_create'))
+                <a href="{{ route('blog.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  tin tức</a>
+              @endif
             </div>
           </div>
         </div>
+        <!-- /.col-lg-12 -->
       </div>
     </div>
     <div class="row mt-5">
+      <div class="col-sm-12 p-4 text-center" style="font-size: 20px;font-weight:800">
+        {{$blog->blog_name}}
+      </div>
       <div class="col-sm-12 p-4">
         {!! $blog->blog_content !!}
       </div>

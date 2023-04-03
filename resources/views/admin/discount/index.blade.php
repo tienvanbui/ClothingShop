@@ -12,10 +12,15 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
-                <li><a href="{{ route('discount.index') }}" class="fw-normal">Danh sách sự kiện giảm giá</a></li>
+                @if (auth()->user()->hasPermission('Discount_list'))
+                  <li><a href="{{ route('discount.index') }}" class="fw-normal">Danh sách sự kiện giảm giá</a></li>
+                @endif
               </ol>
-              <a href="{{ route('discount.create') }}"
-                class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo sự kiện giảm giá</a>
+              @if (auth()->user()->hasPermission('Discount_create'))
+                <a href="{{ route('discount.create') }}"
+                  class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                  sự kiện giảm giá</a>
+              @endif
             </div>
           </div>
         </div>
@@ -31,7 +36,7 @@
           @include('common.search')
         </div>
         <div id="admin-data">
-          @include('admin.discount.discount-item',['discounts' => $discounts])
+          @include('admin.discount.discount-item', ['discounts' => $discounts])
         </div>
         <input type="hidden" id="hidden_page_admin" value="1" />
         <input type="hidden" id="hidden_table" value="discounts" />

@@ -84,6 +84,6 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        return redirect()->route('contact.index')->withToastSuccess('Contact Deleted Successfully!');
+        return redirect()->route('contact.index')->withToastSuccess('Thông tin liên hệ xóa thành công!');
     }
 }

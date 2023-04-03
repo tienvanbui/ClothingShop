@@ -39,7 +39,7 @@ class PaymentController extends Controller
             $newPayment = new Payment();
             $newPayment->payment_method = $request->payment_method;
             $newPayment->save();
-            return redirect()->route('payment.index')->withToastSuccess('Payment Method was created successfully!');
+            return redirect()->route('payment.index')->withToastSuccess('Tạo thành công!');
         }
     }
     /**
@@ -66,7 +66,7 @@ class PaymentController extends Controller
             $payment->update([
                 'payment_method' => $request->payment_method,
             ]);
-            return redirect()->route('payment.index')->withToastSuccess('Payment Method was updated successfully!');
+            return redirect()->route('payment.index')->withToastSuccess('Cập nhật thành công!');
         }
     }
 
@@ -79,6 +79,6 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         $payment->delete();
-        return redirect()->route('payment.index')->withToastSuccess('Payment Method was deleted successfully!');
+        return redirect()->route('payment.index')->withToastSuccess('Xóa thành công!');
     }
 }

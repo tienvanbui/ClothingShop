@@ -52,7 +52,7 @@ class AboutController extends Controller
                 $dataStore['thumbnail'] = $checkThumbnailOfAbout['filePath'];
             }
             About::create($dataStore);
-            return redirect()->route('about.index')->withToastSuccess('About Stored Successfully!');
+            return redirect()->route('about.index')->withToastSuccess('Thông tin về chúng tôi thêm thành công!');
         }
     }
     /**
@@ -87,7 +87,7 @@ class AboutController extends Controller
                 $dataUpdate['thumbnail'] = $checkThumbnailOfAbout['filePath'];
             }
             $about->update($dataUpdate);
-            return redirect()->route('about.index')->withToastSuccess('About Updated Successfully!');
+            return redirect()->route('about.index')->withToastSuccess('Thông tin về chúng tôi cập nhật thành công!');
         }
     }
 
@@ -103,6 +103,6 @@ class AboutController extends Controller
             unlink(storage_path("/app" . "/public" . str_replace("/storage", '', $about->thumbnail)));
         }
         $about->delete();
-        return redirect()->route('about.index')->withToastSuccess('About Deleted Successfully!');
+        return redirect()->route('about.index')->withToastSuccess('Thông tin về chúng tôi xóa thành công!');
     }
 }

@@ -32,7 +32,7 @@ class Product extends Model
     }
     public function getPriceAttribute($value)
     {
-        return number_format($value);
+        return $value;
     }
     public function category()
     {

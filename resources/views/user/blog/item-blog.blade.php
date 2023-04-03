@@ -25,16 +25,16 @@
          <div class="flex-w flex-sb-m p-t-18">
            <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
              <span>
-               <span class="cl4">By</span>: {{ $item->user->username }}
+               <span class="cl4">Bởi</span>: {{ $item->user->username }}
                <span class="cl12 m-l-4 m-r-6">{!! '|' !!}</span>
              </span>
              <span>
                @php
                  $stringTags = '';
                  foreach ($item->tags as $tagItem) {
-                     $stringTags .= "$tagItem->tag_name" . ',';
+                     $stringTags .= "$tagItem->tag_name" . ', ';
                  }
-                 echo rtrim($stringTags, ',');
+                 echo rtrim($stringTags, ', ');
                @endphp
              </span>
              <span class="cl12 m-l-4 m-r-6">{!! '|' !!}</span>
@@ -43,7 +43,7 @@
              </span>
            </span>
            <a href="{{ route('detail-blog', ['id' => $item->id]) }}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-             Continue Reading
+             Đọc tiếp
              <i class="fa fa-long-arrow-right m-l-9"></i>
            </a>
          </div>

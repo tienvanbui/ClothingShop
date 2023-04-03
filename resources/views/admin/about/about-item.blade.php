@@ -4,8 +4,6 @@
       <th scope="col" class="text-white">#</th>
       <th scope="col" class="text-white">Tiêu đề</th>
       <th style="width: 25%" class="text-white">Ảnh</th>
-      <th scope="col" class="text-white">Mô tả</th>
-      <th scope="col" class="text-white">Trích dẫn</th>
       <th scope="col" style="width: 10%" class="text-white">Hành động</th>
     </tr>
   </thead>
@@ -15,17 +13,18 @@
         <th scope="row">{{ $index + 1 }}</th>
         <td>{{ $item->title }}</td>
         <td><img src="{{ asset($item->thumbnail) }}" width="100%"></td>
-        <td>{!! $item->description !!}</td>
-        <td>{!! $item->quote !!}</td>
         <td>
-          <a href="{{ route('about.edit', ['about' => $item->id]) }}" class="btn btn-success btn-sm text-white"><i
-              class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'about.destroy',
-              'itemname' => 'about',
-              'item' => $item->id,
-          ])
-
+          @if (auth()->user()->hasPermission('About_update'))
+            <a href="{{ route('about.edit', ['about' => $item->id]) }}" class="btn btn-success btn-sm text-white"><i
+                class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('About_delete'))
+            @include('common.delete', [
+                'routeName' => 'about.destroy',
+                'itemname' => 'about',
+                'item' => $item->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

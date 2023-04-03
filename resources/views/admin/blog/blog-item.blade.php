@@ -16,17 +16,23 @@
         <td><img src="{{ asset($blog->thumbnail) }}" width="50px" height="50px"></td>
         <td>{{ $blog->outdate }}</td>
         <td>
-          <a href="
+          @if (auth()->user()->hasPermission('Blog_show'))
+            <a href="
                 {{ route('blog.show', ['blog' => $blog->id]) }}"
-            class="btn btn-primary btn-sm  text-white "><i class="fas fa-eye"></i></a>
-          <a href="
+              class="btn btn-primary btn-sm  text-white "><i class="fas fa-eye"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('Blog_update'))
+            <a href="
                 {{ route('blog.edit', ['blog' => $blog->id]) }}"
-            class="btn btn-success btn-sm text-white "><i class="fas fa-edit"></i></a>
-          @include('common.delete', [
-              'routeName' => 'blog.destroy',
-              'itemname' => 'blog',
-              'item' => $blog->id,
-          ])
+              class="btn btn-success btn-sm text-white "><i class="fas fa-edit"></i></a>
+          @endif
+          @if (auth()->user()->hasPermission('Blog_delete'))
+            @include('common.delete', [
+                'routeName' => 'blog.destroy',
+                'itemname' => 'blog',
+                'item' => $blog->id,
+            ])
+          @endif
         </td>
       </tr>
     @endforeach

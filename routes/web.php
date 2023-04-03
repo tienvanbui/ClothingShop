@@ -123,6 +123,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::post('/order/delete-order/{order}', [AdminOrderController::class, 'orderDelete'])->name('admin.order-delete');
     //Discount Router
     Route::resource('/discount', DiscountController::class)->names('discount');
+    Route::put('/discount/update-status/{id}', [DiscountController::class,'changeStatus'])->name('discount.changeStatus');
 });
 
 Auth::routes();
@@ -170,7 +171,7 @@ Route::post('/loadComment-blog-with-ajax', [CommonBlogController::class, 'loadCo
 //client--------------product
 Route::get('/product/view-product-list', [ClientProductController::class, 'listProduct'])->name('shop-user');
 Route::get('/product/product-detail/{product}', [ClientProductController::class, 'showDetail'])->name('shop.show');
-Route::get('/product/category-product/category={slug}', [ClientProductController::class, 'showProductByCategory'])->name('user.shop.showByCategory');
+Route::get('/product/category-product/category={id}', [ClientProductController::class, 'showProductByCategory'])->name('user.shop.showByCategory');
 Route::post('/product/load-more-with-ajax', [ClientProductController::class, 'loadMoreProduct'])->name('loadMore.product');
 Route::post('/home/qick-view-ajax', [HomeController::class, 'qickViewSpecifiedProduct'])->name('qickView.home');
 Route::post('/filter-product-with-ajax', [ClientProductController::class, 'showProductByFilter'])->name('filter-product');

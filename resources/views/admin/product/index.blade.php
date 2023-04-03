@@ -14,10 +14,14 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <div class="d-md-flex">
               <ol class="breadcrumb ms-auto">
+                @if (auth()->user()->hasPermission('Product_list'))
                 <li><a href="{{ route('product.index') }}" class="fw-normal">Danh sách sản phẩm</a></li>
+                @endif
               </ol>
+              @if (auth()->user()->hasPermission('Product_create'))
               <a href="{{ route('product.create') }}"
                 class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo sản phẩm</a>
+              @endif
             </div>
           </div>
         </div>

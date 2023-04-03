@@ -34,6 +34,7 @@ class DashBoardController extends Controller
             ->with('listBlogMostViewed', $listBlogMostViewed)
             ->with('orders', $orders)
             ->with('userOnlines', $userOnline);
+        
     }
     public function statisticEarningsFilterByDate(Request $request)
     {

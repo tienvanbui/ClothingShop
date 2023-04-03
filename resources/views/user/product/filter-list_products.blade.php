@@ -11,7 +11,7 @@
                         <button
                             class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 qickView-product"
                             data-product_id="{{ $item->id }}'">
-                            Qick View
+                            Xem nhanh
                         </button>
                     </form>
 
@@ -24,7 +24,7 @@
                         </a>
 
                         <span class="stext-105 cl3">
-                            {{ '$'.number_format($item->price) }}
+                            {{ number_format($item->price ).'VNĐ' }}
                         </span>
                     </div>
                     <form method="POST">
@@ -49,14 +49,14 @@
             @csrf
             <button
                 class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04 loadMoreButton-product_user_filter" data-product_id="{{$item->id}}">
-                Load More
+                Hiển thị nhiều hơn
             </button>
         </form>
     </div>
 @else
     <div class="flex-c-m flex-w w-full">
         <button class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04 ">
-            No Data Found
+            Không có dữ liệu
         </button>
     </div>
 @endif

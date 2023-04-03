@@ -7,26 +7,30 @@ Tạo mục lục
 <div class="container">
     <div class="row">
         <div class="page-breadcrumb bg-white">
-            <div class="row align-items-center">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Mục lục</h4>
-                </div>
-                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                    <div class="d-md-flex">
-                        <ol class="breadcrumb ms-auto">
-                            <li><a href="{{ route('menu.index') }}" class="fw-normal">Danh sách mục lục</a></li>
-                        </ol>
-                        <a href="{{ route('menu.create') }}"
-                            class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
-                            mục lục</a>
-                    </div>
-                </div>
+          <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+              <h4 class="page-title">Mục lục</h4>
             </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+              <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                  @if (auth()->user()->hasPermission('Menu_list'))
+                    <li><a href="{{ route('menu.index') }}" class="fw-normal">Danh sách mục lục</a></li>
+                  @endif
+                </ol>
+                @if (auth()->user()->hasPermission('Menu_create'))
+                  <a href="{{ route('menu.create') }}"
+                    class="btn btn-success  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">Tạo
+                    mục lục</a>
+                @endif
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     <div class="row">
         <div class="container">
-            <h1 class="text-center">TẠO MENU</h1>
+            <h1 class="text-center mt-4">TẠO MỤC LỤC</h1>
             <form action="{{route('menu.store')}}" method="post">
                 @csrf
                 <div class="form-group">

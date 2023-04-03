@@ -11,7 +11,7 @@
 
         <span class="header-cart-item-info">
             {{ $product->pivot->buy_quanlity }} x
-            {{ '$' . number_format($product->price) }}
+            {{ number_format($product->price) .'VNĐ' }}
         </span>
     </div>
 </li>

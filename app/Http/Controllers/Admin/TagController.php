@@ -30,7 +30,7 @@ class TagController extends Controller
         $tag = new Tag();
         $tag->fill($request->all());
         $tag->save();
-        return redirect()->route('tag.index')->withToastSuccess('Tag Stored Successfully!');
+        return redirect()->route('tag.index')->withToastSuccess('Tạo mới thành công!');
     }
     /**
      * Show the form for editing the specified resource.
@@ -58,7 +58,7 @@ class TagController extends Controller
         Tag::where('id', $tag->id)->update([
             'tag_name' => $request->tag_name
         ]);
-        return redirect()->route('tag.index')->withToastSuccess('Tag Updated successfully!');
+        return redirect()->route('tag.index')->withToastSuccess('Cập nhật thành công!');
     }
 
     /**
@@ -70,6 +70,6 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return redirect()->route('tag.index')->withToastSuccess('Tag Deleted  successfully!');
+        return redirect()->route('tag.index')->withToastSuccess('Xóa thành công!');
     }
 }

@@ -1,10 +1,10 @@
-@section('title', 'Blog')
+@section('title', 'Tin tức')
 @include('layouts.user.header')
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92"
     style="background-image: url({{ asset('/images/user/bg-02.jpg') }});">
     <h2 class="ltext-105 cl0 txt-center">
-        Blog
+        Tin tức
     </h2>
 </section>
 
@@ -34,7 +34,7 @@
                     </div>
                     <div class="p-t-55">
                         <h4 class="mtext-112 cl2 p-b-33">
-                            Categories
+                            Danh mục
                         </h4>
 
                         <ul>
@@ -51,7 +51,7 @@
 
                     <div class="p-t-55">
                         <h4 class="mtext-112 cl2 p-b-20">
-                            Archive
+                            Lưu trữ
                         </h4>
 
                         <ul>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="p-t-50">
                         <h4 class="mtext-112 cl2 p-b-27">
-                            Tags
+                            Từ khóa
                         </h4>
                         <div class="flex-w m-r--5">
                             @foreach ($tags as $tag)

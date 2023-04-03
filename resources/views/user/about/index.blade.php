@@ -1,10 +1,10 @@
-@section('title', 'About')
+@section('title', 'Về chúng tôi')
 @include('layouts.user.header')
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92"
     style="background-image: url({{ asset('images/user/bg-01.jpg') }});">
     <h2 class="ltext-105 cl0 txt-center">
-        About
+        Về chúng tôi
     </h2>
 </section>
 

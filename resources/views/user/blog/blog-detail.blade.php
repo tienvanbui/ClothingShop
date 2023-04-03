@@ -1,9 +1,9 @@
-@section('title', 'Blog Detail')
+@section('title', 'Chi tiết tin tức')
 @include('layouts.user.header')
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{ asset('/images/user/bg-02.jpg') }});">
   <h2 class="ltext-105 cl0 txt-center">
-    Blog
+    Tin tức
   </h2>
 </section>
 <!-- Content page -->
@@ -53,14 +53,14 @@
               {{ $blog->blog_name }}
             </h4>
 
-            <p class="stext-117 cl6 p-b-26">
+            <div class="stext-117 cl6 p-b-26 blog-content_detail">
               {!! $blog->blog_content !!}
-            </p>
+            </div>
           </div>
           {{-- Tags --}}
           <div class="flex-w flex-t p-t-16">
             <span class="size-216 stext-116 cl8 p-t-4">
-              Tags
+              Từ khóa
             </span>
             <div class="flex-w size-217">
               @foreach ($blog->tags as $item)
@@ -77,27 +77,27 @@
           {{-- Comment --}}
           <div class="p-t-40">
             <h5 class="mtext-113 cl2 p-b-12">
-              Leave a Comment
+              Để lại bình luận
             </h5>
 
             <p class="stext-107 cl6 p-b-40">
-              Your email address will not be published. Required fields are marked *
+              Địa chỉ email của bạn sẽ không được công bố. Các trường bắt buộc được đánh dấu *
             </p>
             @auth
               <form method="POST" id="comment-post_with_ajax">
                 @csrf
                 <div class="bor19 m-b-20">
                   <input class="stext-111 cl2 plh3 size-116 p-lr-18 comment-user_blog" type="text" name="username"
-                    placeholder="Name *" value="{{ auth()->user()->name }}" disabled>
+                    placeholder="Tên *" value="{{ auth()->user()->name }}" disabled>
                 </div>
                 <input type="hidden" id="comment-user_id_blog" value="{{ auth()->user()->id }}">
                 <div class="bor19 m-b-20">
                   <textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15 comment-user_comment" name="cmt_blog"
-                    placeholder="Comment..."></textarea>
+                    placeholder="Đánh giá..."></textarea>
                 </div>
 
                 <button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04 buton-post_comment">
-                  Post Comment
+                  Gửi
                 </button>
               </form>
 
@@ -107,15 +107,15 @@
                 @csrf
                 <div class="bor19 m-b-20">
                   <input class="stext-111 cl2 plh3 size-116 p-lr-18 comment-user_blog" type="text" name="username"
-                    placeholder="Name *">
+                    placeholder="Tên *">
                 </div>
                 <div class="bor19 m-b-20">
                   <textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15 comment-user_comment" name="cmt_blog"
-                    placeholder="Comment..."></textarea>
+                    placeholder="Đánh giá..."></textarea>
                 </div>
 
                 <button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04 buton-post_comment">
-                  Post Comment
+                  Gửi
                 </button>
               </form>
 
@@ -129,7 +129,7 @@
           {{-- Categories --}}
           <div class="p-t-55">
             <h4 class="mtext-112 cl2 p-b-33">
-              Categories
+              Danh mục
             </h4>
             <ul>
               @foreach ($tags as $tag)
@@ -145,7 +145,7 @@
           {{-- Archive --}}
           <div class="p-t-55">
             <h4 class="mtext-112 cl2 p-b-20">
-              Archive
+              Lưu trữ
             </h4>
             <ul>
               <li class="p-b-7">
@@ -167,7 +167,7 @@
           {{-- Tags --}}
           <div class="p-t-50">
             <h4 class="mtext-112 cl2 p-b-27">
-              Tags
+              Từ khóa
             </h4>
             <div class="flex-w m-r--5">
               @foreach ($tags as $tag)

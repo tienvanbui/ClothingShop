@@ -30,7 +30,6 @@ class CreateProductsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->unsignedBigInteger('viewed_number_count')->default(0);
-            $table->unsignedBigInteger('discount_id');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -13,9 +13,9 @@ class ColorSeeder extends Seeder
      */
     public function run()
     {
-        Color::create(['color_name'=>'Trắng']);
-        Color::create(['color_name'=>'Đen']);
-        Color::create(['color_name'=>'Xám']);
-        Color::create(['color_name'=>'Xanh']);
+        Color::create(['color_name'=>'White']);
+        Color::create(['color_name'=>'Black']);
+        Color::create(['color_name'=>'Gray']);
+        Color::create(['color_name'=>'Blue']);
     }
 }
