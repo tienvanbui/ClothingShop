@@ -33,14 +33,8 @@ class CouponSeeder extends Seeder
             'coupon_price_discount' => 50,
         ]);
         Coupon::create([
-            'coupon_code' => 'GGTMB',
-            'coupon_condition' => 0,
-            'coupon_use_number' => 5,
-            'coupon_price_discount' => 100,
-        ]);
-        Coupon::create([
             'coupon_code' => 'GGTM',
-            'coupon_condition' => 0,
+            'coupon_condition' => 1,
             'coupon_use_number' => 40,
             'coupon_price_discount' => 10,
         ]);

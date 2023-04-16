@@ -2,35 +2,35 @@
 <footer class="bg3 p-t-75 p-b-32">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 col-lg-3 p-b-50">
+      <div class="col-sm-6 col-lg-4 p-b-50">
         <h4 class="stext-301 cl0 p-b-30">
-          Đơn hàng
+          ĐƠN HÀNG
         </h4>
 
         <ul>
           <li class="p-b-10">
             <a href="{{ route('order.track-user') }}" class="stext-107 cl7 hov-cl1 trans-04">
-              Duyệt đơn hàng
+              Kiểm tra tình trạng
             </a>
           </li>
         </ul>
       </div>
 
-      <div class="col-sm-6 col-lg-3 p-b-50">
+      <div class="col-sm-6 col-lg-4 p-b-50">
         <h4 class="stext-301 cl0 p-b-30">
-          Giúp đỡ
+          GIÚP ĐỠ
         </h4>
 
         <ul>
           <li class="p-b-10">
             <a href="/view-about" class="stext-107 cl7 hov-cl1 trans-04">
-              FAQs
+              Về chúng tôi
             </a>
           </li>
         </ul>
       </div>
 
-      <div class="col-sm-6 col-lg-3 p-b-50">
+      <div class="col-sm-6 col-lg-4 p-b-50">
         <h4 class="stext-301 cl0 p-b-30">
           LIÊN LẠC
         </h4>
@@ -41,7 +41,7 @@
 
       </div>
 
-      <div class="col-sm-6 col-lg-3 p-b-50">
+      {{-- <div class="col-sm-6 col-lg-3 p-b-50">
         <h4 class="stext-301 cl0 p-b-30">
           Bản tin
         </h4>
@@ -59,7 +59,7 @@
             </button>
           </div>
         </form>
-      </div>
+      </div> --}}
     </div>
   </div>
 </footer>
@@ -98,6 +98,8 @@
     });
   });
 </script>
+@include('sweetalert::alert')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="{{ asset('/css/user/vendor/sweetalert/sweetalert.min.js') }}"></script>
 <script src="{{ asset('/js/user/main.js') }}"></script>
 <script src="{{ asset('/js/user/call-ajax.js') }}"></script>

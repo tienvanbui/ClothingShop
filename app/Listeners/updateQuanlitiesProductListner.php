@@ -16,11 +16,12 @@ class updateQuanlitiesProductListner
      */
     public function handle($event)
     {
-        foreach ($event->products as $product) {
+        foreach ($event->order->products as $product) {
             $productNeedUpdate = DB::table('product_color_sizes')
                 ->where('product_color_sizes.product_id', '=', $product->pivot->product_id)
                 ->where('product_color_sizes.color_id', '=', $product->pivot->color_id)
                 ->where('product_color_sizes.size_id', '=', $product->pivot->size_id)->first();
+            
             DB::table('product_color_sizes')
                 ->where('product_color_sizes.product_id', '=', $product->pivot->product_id)
                 ->where('product_color_sizes.color_id', '=', $product->pivot->color_id)

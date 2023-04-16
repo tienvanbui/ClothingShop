@@ -14,7 +14,7 @@ class DashBoardController extends Controller
     public function list()
     {
         $usersCount = (User::all())->count();
-        $orderCount = (Order::where('status', '=', 0)->get())->count();
+        $orderCount = (Order::all())->count();
         $earnings = DB::table('earnings')->sum('earnings');
         $listProductMostViewed = DB::table('products')->where('viewed_number_count', '>', 0)->orderByDesc('viewed_number_count')->take(10)->get();
         $listBlogMostViewed = DB::table('blogs')->where('viewed_number_count', '>', 0)->orderByDesc('viewed_number_count')->take(10)->get();

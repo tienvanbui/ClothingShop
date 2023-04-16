@@ -19,7 +19,12 @@ class ColorController extends Controller
             'create'=> 'admin.color.create',
         ];
         $this->validateRule = [
-            'color_name'=>"required|string|bail",
+            'color_name'=>"required|max:255|bail|unique:colors",
+        ];
+        $this->messageValidate = [
+            'color_name.required' => 'Tên màu sắc không được để trống.',
+            'color_name.max' => 'Tên màu sắc tối đa 255 ký tự.',
+            'color_name.unique' => 'Tên màu sắc đã tồn tại'
         ];
         $this->middleware(['permission:Color_list'], ['only' => ['index']]);
         $this->middleware(['permission:Color_create'], ['only' => ['create', 'store']]);
@@ -33,7 +38,12 @@ class ColorController extends Controller
     }
     public function update(Request $request,$id){
        
-        $validator = $request->validate($this->validateRule);
+        $validator = $request->validate([
+            'color_name'=>"required|max:255",
+        ],[
+            'color_name.required' => 'Tên màu sắc không được để trống.',
+            'color_name.max' => 'Tên màu sắc tối đa 255 ký tự.',
+        ]);
         if($validator){
             $color = Color::FindOrFail($id);
             $color->update(

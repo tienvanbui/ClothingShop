@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Order;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-
 class Statistic extends Command
 {
     /**
@@ -38,12 +38,13 @@ class Statistic extends Command
      */
     public function handle()
     {
-        $data = DB::table('orders')
-            ->join('order_products', 'orders.id', '=', 'order_products.order_id')
-            ->whereNotNull('orders.deleted_at')
-            ->select(DB::raw('count(orders.id) as quanlities_orders'), DB::raw('SUM(orders.total) as earnings'), DB::raw('SUM(order_products.product_id) as quanlities_products_in_order'), DB::raw('DATE_FORMAT(orders.created_at, "%Y-%m-%d") as formatted_dob'))
-            ->groupBy('formatted_dob')
-            ->get();
+        $data = Order::join('order_products', 'orders.id', '=', 'order_products.order_id')
+        ->select(DB::raw('count(orders.id)/2 as quanlities_orders'), DB::raw('SUM(orders.total)/2 as earnings'), DB::raw('count(order_products.product_id) as quanlities_products_in_order'), DB::raw('DATE_FORMAT(orders.created_at, "%Y-%m-%d") as formatted_dob'))
+        ->where('orders.status',1)
+        ->orWhere('orders.status',2)
+        ->groupBy('formatted_dob')
+        ->get();
+        DB::table('earnings')->delete();
         foreach ($data as  $item) {
             DB::table('earnings')->insert([
                 'earnings' => $item->earnings,

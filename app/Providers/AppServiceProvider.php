@@ -14,7 +14,9 @@ use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Slider;
+use Illuminate\Support\Facades\DB;
 use App\Models\Tag;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,8 +37,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (config('app.env') !== 'local') {
+            URL::forceScheme('https');
+        }
         Menu::observe(MenuObserver::class);
         view()->composer('admin.*', function ($view) {
+            $unread_notification_count = DB::table('notifications')->where('read_at',NULL)->get()->count();
             $product_count = Product::all()->count();
             $blog_count = Blog::all()->count();
             $banner_count = Banner::all()->count();
@@ -46,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
             $about_count = About::all()->count();
             $color_count = Color::all()->count();
             $category_count = Category::all()->count();
-            $view->with('product_count',$product_count)->with('blog_count',$blog_count)->with('banner_count',$banner_count)->with('tag_count',$tag_count)->with('slider_count',$slider_count)->with('coupon_count',$coupon_count)->with('about_count',$about_count)->with('color_count',$color_count)->with('category_count',$category_count);
+            $view->with('product_count',$product_count)->with('blog_count',$blog_count)->with('banner_count',$banner_count)->with('tag_count',$tag_count)->with('slider_count',$slider_count)->with('coupon_count',$coupon_count)->with('about_count',$about_count)->with('color_count',$color_count)->with('category_count',$category_count)->with('unread_notification_count',$unread_notification_count);
         });
     
     }

@@ -21,9 +21,17 @@ class SliderController extends Controller
             'create' => 'admin.slider.create',
         ];
         $this->validateRule = [
-            'title' => 'required|string|bail|max:100',
+            'title' => 'required|bail|max:100',
             'slider_image' => 'required|image|bail',
-            'description' => 'required'
+            'description' => 'required|max:255'
+        ];
+        $this->messageValidate = [
+            'title.required' => 'Trường này là bắt buộc',
+            'slider_image.required' => 'Trường này là bắt buộc',
+            'description.required' => 'Trường này là bắt buộc',
+            'description.max' => 'Tối đa 255 ký tự',
+            'title.max' => 'Tối đa 100 ký tự',
+            'slider_image.image' => 'Trường này phải có định dạng ảnh',
         ];
         $this->middleware(['permission:Slider_list'], ['only' => ['index']]);
         $this->middleware(['permission:Slider_create'], ['only' => ['create', 'store']]);
@@ -40,7 +48,7 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->startValidationProcess($request)) {
+        if ($this->startValidationProcess($request,$this->messageValidate)) {
             $dataStore = [
                 'title' => $request->title,
                 'description' => $request->description,
@@ -73,7 +81,7 @@ class SliderController extends Controller
      */
     public function update(Request $request, Slider $slider)
     {
-        if ($this->startValidationProcess($request)) {
+        if ($this->startValidationProcess($request,$this->messageValidate)) {
             $this->delteOldImageWhenUpdateWithCheckExists($request, 'slider_iamge', $slider);
             $dataUpdate = [
                 'title' => $request->title,

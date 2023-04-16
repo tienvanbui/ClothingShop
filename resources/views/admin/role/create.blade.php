@@ -57,7 +57,7 @@
                   <label>
                     <input type="checkbox" class="checkbox_warpper">                    
                   </label>
-                  Chức năng {{$item->permission_name}}
+                  Chức năng {{__($item->permission_name)}}
                 </div>
                 <div class="row">
                   @foreach ($item->permissions as $child)      
@@ -66,7 +66,7 @@
                     <label>
                       <input type="checkbox" name="permission_id[]" class="checkbox_childrent" value={{$child->id}} multiple>
                     </label>
-                      {{$child->permission_name}}
+                      {{__($child->permission_name)}}
                     </h5>                
                 </div>                                    
                   @endforeach  
@@ -76,7 +76,7 @@
                 </div>
             </div>
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-danger text-white">Lưu</button>
+          <button type="submit" class="btn btn-primary text-white">Lưu</button>
         </div>
     </form>
   </div>

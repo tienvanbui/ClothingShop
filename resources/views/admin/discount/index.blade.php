@@ -1,4 +1,4 @@
-@section('title', 'Tạo sự kiện giảm giá')
+@section('title', 'Danh sách sự kiện giảm giá')
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
 @section('main-content')

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\JsonResponse;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -54,6 +56,9 @@ class LoginController extends Controller
         $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
+        ], [
+            'username.required' => 'Tên đăng nhập không được bỏ trống',
+            'password.required' => 'Mật khẩu không được bỏ trống',
         ]);
     }
     /**
@@ -75,13 +80,50 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+
         $nameRoleOfUser = $user->role->role_name;
         if ($nameRoleOfUser == 'User') {
+            if (Session::has('cart')) {
+                $sessionCart = Session::get('cart');
+                $cart = Cart::firstOrCreate([
+                    'user_id' => auth()->user()->id
+                ]);
+                foreach ($sessionCart as $item) {
+                    $product = $cart->products()
+                        ->wherePivot('product_id', $item['product_id'])
+                        ->wherePivot('color_id', $item['color_id'])
+                        ->wherePivot('size_id', $item['size_id'])
+                        ->first();
+                    if (empty($product)) {
+                        $cart->products()->attach(
+                            $item['product_id'],
+                            [
+                                'buy_quanlity' => $item['buy_quanlity'],
+                                'total_price' => $item['total_price'],
+                                'color_id' => $item['color_id'],
+                                'size_id' => $item['size_id']
+                            ]
+                        );
+                    } else {
+                        $cart->products()
+                            ->wherePivot('product_id', $item['product_id'])
+                            ->wherePivot('color_id', $item['color_id'])
+                            ->wherePivot('size_id', $item['size_id'])
+                            ->update([
+                                'buy_quanlity' => $product->pivot->buy_quanlity + $item['buy_quanlity'],
+                                'total_price' => $item['total_price'],
+                                'color_id' => $item['color_id'],
+                                'size_id' => $item['size_id']
+                            ]);
+                    }
+                }
+                Session::forget('cart');
+            }
             return redirect('/home');
         } else if ($nameRoleOfUser == 'Admin') {
             return redirect('/admin/dashboard');
         } else {
-            return redirect('/home');
+            return redirect('/admin/dashboard');
         }
     }
     /**
@@ -99,5 +141,14 @@ class LoginController extends Controller
             }
         }
         return redirect()->route('home-user');
+    }
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function adminLoginForm()
+    {
+        return view('auth.login');
     }
 }

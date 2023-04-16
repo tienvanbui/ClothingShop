@@ -18,10 +18,19 @@ class CouponController extends Controller
             'create' => 'admin.coupon.create',
         ];
         $this->validateRule = [
-            'coupon_code' => 'required|string|unique:coupons|max:10|min:4|bail',
+            'coupon_code' => 'required|unique:coupons|max:10|min:4|bail',
             'coupon_condition' => 'required',
             'coupon_use_number' => 'required',
             'coupon_price_discount' => 'required',
+        ];
+        $this->messageValidate = [
+            'coupon_code.required' => "Trường này không được để trống",
+            'coupon_code.unique' => "Giá trị đã tồn tại",
+            'coupon_code.max' => "Trường này tối đa 10 ký tự",
+            'coupon_code.min' => "Trường này tối thiểu 4 ký tự",
+            'coupon_condition.required' => "Trường này không được để trống",
+            'coupon_use_number.required' => "Trường này không được để trống",
+            'coupon_price_discount.required' => "Trường này không được để trống",
         ];
         $this->middleware(['permission:Coupon_list'], ['only' => ['index']]);
         $this->middleware(['permission:Coupon_create'], ['only' => ['create', 'store']]);
@@ -37,7 +46,7 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->startValidationProcess($request)) {
+        if ($this->startValidationProcess($request,$this->messageValidate)) {
             $coupon = new Coupon();
             $coupon->coupon_code =  $request->coupon_code;
             $coupon->coupon_condition = $request->coupon_condition;
@@ -67,7 +76,20 @@ class CouponController extends Controller
      */
     public function update(Request $request, Coupon $coupon)
     {
-        if ($this->startValidationProcess($request)) {
+        $validator = $request->validate([
+            'coupon_code' => 'required|max:10|min:4|bail',
+            'coupon_condition' => 'required',
+            'coupon_use_number' => 'required',
+            'coupon_price_discount' => 'required',
+        ],[
+            'coupon_code.required' => "Trường này không được để trống",
+            'coupon_code.max' => "Trường này tối đa 10 ký tự",
+            'coupon_code.min' => "Trường này tối thiểu 4 ký tự",
+            'coupon_condition.required' => "Trường này không được để trống",
+            'coupon_use_number.required' => "Trường này không được để trống",
+            'coupon_price_discount.required' => "Trường này không được để trống",
+        ]);
+        if ($validator) {
             $couponUpdate = Coupon::findOrFail($coupon->id);
             $couponUpdate->coupon_code =  $request->coupon_code;
             $couponUpdate->coupon_condition = $request->coupon_condition;

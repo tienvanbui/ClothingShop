@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="">
   <meta name="description" content="">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
   <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/plugins/images/favicon.png') }}">
@@ -27,7 +28,7 @@
 
     .accordion-button:not(.collapsed) {
       color: #ffffff;
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.8);
     }
 
     .sidebar-item>a:hover {
@@ -57,7 +58,47 @@
       background-color: black !important;
       color: #ffffff !important;
     }
-
+    .left-sidebar {
+      z-index: 1;
+    }
+    #notification-icon{
+      position: relative;
+    }
+    #notification-icon span{
+      position: absolute;
+      top: 0;
+      background: red;
+      border-radius: 99px;
+      width: 20px;
+      height: 20px;
+      left: 12px;
+      text-align: center;
+    }
+    .box-content_notification{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 1000px;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      display: none;
+    }
+    .notificationContent {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 1000px;
+      background: white;
+    }
+    .unread_notify{
+      color: black;
+      font-weight: 400;
+    }
+    .unread_notify:hover{
+      color: black;
+    }
     /* svg {
       width: 60px !important;
       height: 40px !important;
@@ -65,7 +106,7 @@
   </style>
 </head>
 
-<body>
+<body style="position: relative">
   <!-- ============================================================== -->
   <!-- Preloader - style you can find in spinners.css -->
   <!-- ============================================================== -->
@@ -112,24 +153,31 @@
         <!-- ============================================================== -->
         <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5"
           style="background-color: black">
-          <div style="margin-left: 20px" id="hidden-side_bar"><i class="fa fa-bars" aria-hidden="true"
+          <div style="margin-left: 20px" id="hidden-side_bar">
+            <i class="fa fa-bars" aria-hidden="true"
               style="font-size: 25px;color:white"></i></div>
           <!-- ============================================================== -->
           <!-- Right side toggle and nav items -->
           <!-- ============================================================== -->
+          
           <ul class="navbar-nav ms-auto d-flex align-items-center" >
             <!-- User profile and search -->
             <!-- ============================================================== -->
+            <li id="notification-icon">
+              <i class="fa fa-bell" aria-hidden="true" style="font-size: 25px;color:white;cursor: pointer;margin-top:5px;margin-right:20px"></i>
+              <span class="text-white" id="notifications_unread_count">{{$unread_notification_count}}</span>
+            </li>
             <li>
-              <div class="profile-pic">
-                <img src="{{ auth()->user()->avatar }}" alt="user-img" width="36" class="img-circle"><span
-                  class="text-white font-medium">{{ auth()->user()->name }}</span>
+              <div class="profile-pic" >
+                <img src="{{ auth()->user()->avatar }}" alt="user-img" width="36" class="img-circle" style="height: 30px"><span
+                  class="text-white font-medium" >{{ auth()->user()->name }}</span>
               </div>
             </li>
             <!-- ============================================================== -->
             <!-- User profile and search -->
             <!-- ============================================================== -->
           </ul>
+          @include('layouts.admin.notification')
         </div>
       </nav>
     </header>

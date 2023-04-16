@@ -18,17 +18,30 @@ class ProfileController extends Controller
             'index' => 'admin.profile.index'
         ];
         $this->validateRule = [
-            'name' => 'bail|string|required|max:30|min:10',
+            'name' => 'required|max:30|min:10',
             'email' => 'required|email|bail',
             'username' => 'required|alpha_dash|max:30|bail',
             'avatar' => 'required',
-            'phoneNumber' => 'required|bail',
-            'address' => 'required|string'
+            'phoneNumber' => 'required|numeric',
+            'address' => 'required|max:255'
+        ];
+        $this->messageValidate = [
+            'name.required' => 'Trường này không được để trống',
+            'email.required' => 'Trường này không được để trống',
+            'username.required' => 'Trường này không được để trống',
+            'avatar.required' => 'Trường này không được để trống',
+            'phoneNumber.required' => 'Trường này không được để trống',
+            'phoneNumber.numeric' => 'Trường này phải là số',
+            'address.required' => 'Trường này không được để trống',
+            'name.max' => 'Tối đa 30 ký tự',
+            'address.max' => 'Tối đa 255 ký tự',
+            'username.max' => 'Tối đa 30 ký tự',
+            'username.min' => 'Tối thiếu 10 ký tự',
         ];
     }
     public function update(Request $request)
     {
-        if ($this->startValidationProcess($request)) {
+        if ($this->startValidationProcess($request,$this->messageValidate)) {
             $data = $this->uploadAvataruser($request);
             if (!empty($data)) {
                 $dataUpdateAvatar['avatar'] = $data['file_path'];
@@ -41,9 +54,9 @@ class ProfileController extends Controller
                     'address' => $request->address,
                     'role_id' => auth()->user()->id
                 ]);
-                return redirect()->route('profile.index')->with('toast_success', "$this->modelName Updated Successfully!");
+                return redirect()->route('profile.index')->with('toast_success', "Cập nhật thông tin thành công!");
             }
-            return redirect()->route('profile.index')->with('toast_error', 'Woops,something is wrong!');
+            return redirect()->route('profile.index')->with('toast_error', 'Có gì đó không đúng!');
         }
     }
 }

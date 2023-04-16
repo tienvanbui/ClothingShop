@@ -1,11 +1,11 @@
-@section('title', 'Dashboard')
+@section('title', 'Tổng quan')
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
 @section('main-content')
   <div class="page-breadcrumb bg-white">
     <div class="row align-items-center">
       <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-        <h4 class="page-title">Dashboard</h4>
+        <h4 class="page-title">Tổng quan</h4>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="row">
       <form method="post">
-        <h3 class="text-capitalize text-center fw-bold my-4">Thống kê doanh số đặt hàng</h3>
+        <h3 class="text-capitalize text-center fw-bold my-4">Thống kê doanh số</h3>
         <div class="d-flex justify-content-between">
           <div class="col-md-3 col-sm-12">
             <p class="d-inline-flex"><span class="fw-bold" style="margin-right:10px">Từ: </span><input type="text"

@@ -45,7 +45,7 @@
                   <label>
                     <input type="checkbox" class="checkbox_warpper" >                    
                   </label>
-                  Chức năng {{$item->permission_name}}
+                  Chức năng {{ __($item->permission_name) }}
                 </div>
                 <div class="row">
                   @foreach ($item->permissions as $child)      
@@ -54,7 +54,7 @@
                     <label>
                       <input type="checkbox" name="permission_id[]" class="checkbox_childrent" value={{$child->id}} multiple  {{$pemissionOfRole->contains('id',$child->id) ? 'checked': ''}}>
                     </label>
-                      {{$child->permission_name}}
+                    {{ __($child->permission_name) }}
                     </h5>                
                 </div>
                                       

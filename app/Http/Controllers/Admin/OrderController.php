@@ -38,20 +38,21 @@ class OrderController extends Controller
             $order->update([
                 'status' => 1
             ]);
-            orderConfirmedEvent::dispatch($order);
-            return redirect()->route('admin.order-check')->withToastSuccess('Order Was Shipping ');
+            $order->load('products');
+            // orderConfirmedEvent::dispatch($order);
+            return redirect()->route('admin.order-check')->withToastSuccess('Đơn hàng đang vận chuyển');
         }
-        return redirect()->route('admin.order-check')->withToastError('Order Was Shipping!Could Not Change The Status Of Order');
+        return redirect()->route('admin.order-check')->withToastError('Đơn hàng đang chuyển!');
     }
-    public function orderDelete(Order $order)
-    {
-        if ($order->status == 2) {
-            DB::table('orders')
-                ->join('order_products', 'orders.id', '=', 'order_products.order_id')
-                ->where('order_products.product_id', '=', $order->id)
-                ->delete();
-            $order->delete();
-            return redirect()->route('admin.order-check')->withToastSuccess('Order Was Removed Successfully! ');
-        }
-    }
+    // public function orderDelete(Order $order)
+    // {
+    //     if ($order->status == 2) {
+    //         DB::table('orders')
+    //             ->join('order_products', 'orders.id', '=', 'order_products.order_id')
+    //             ->where('order_products.product_id', '=', $order->id)
+    //             ->delete();
+    //         $order->delete();
+    //         return redirect()->route('admin.order-check')->withToastSuccess('Order Was Removed Successfully! ');
+    //     }
+    // }
 }

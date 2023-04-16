@@ -51,6 +51,7 @@
           <label for="password">Mật khẩu:</label>
           <input type="password" class="form-control" id="password" aria-describedby="password" name="password"
             value="{{ old('password') }}">
+            @include('common.singleAlertError', ['field' => 'password'])
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
@@ -73,9 +74,10 @@
         <div class="form-group">
           <label for="status">Trạng thái:</label>
           <select name="status" id="status" class="form-control">
-            <option value="1">Chặn</option>
+            <option value="1" selected>Chặn</option>
             <option value="0">Hoạt động</option>
           </select>
+          @include('common.singleAlertError', ['field' => 'status'])
         </div>
         <div class="form-group">
           <label for="role">Vai trò:</label>
@@ -84,6 +86,7 @@
               <option value="{{ $role->id }}">{{ $role->role_name }}</option>
             @endforeach
           </select>
+          @include('common.singleAlertError', ['field' => 'role_id'])
         </div>
         <div class="d-grid gap-2">
           <button type="submit" class="btn btn-primary text-white mb-2">Lưu</button>

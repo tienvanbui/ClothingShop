@@ -41,33 +41,39 @@
           <label for="name">Tên:</label>
           <input type="text" class="form-control" id="name" aria-describedby="name" name="name"
             value="{{ $user->name }}">
+            @include('common.singleAlertError', ['field' => 'name'])
         </div>
         <div class="form-group">
           <label for="username">Tên đăng nhập:</label>
           <input type="text" class="form-control" id="username" aria-describedby="username" name="username"
             value="{{ $user->username }}">
+            @include('common.singleAlertError', ['field' => 'username'])
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
           <input type="text" class="form-control" id="email" aria-describedby="email" name="email"
             value="{{ $user->email }}">
+            @include('common.singleAlertError', ['field' => 'email'])
         </div>
         <div class="form-group">
           <label for="phone">Số điện thoại:</label>
           <input type="text" class="form-control" id="phone" aria-describedby="phone" name="phoneNumber"
             value="{{ old('phoneNumber') }}">
+            @include('common.singleAlertError', ['field' => 'phoneNumber'])
         </div>
         <div class="form-group">
           <label for="adrress">Địa chỉ:</label>
           <input type="text" class="form-control" id="adrress" aria-describedby="adrress" name="adrress"
             value="{{ old('adrress') }}">
+            @include('common.singleAlertError', ['field' => 'adrress'])
         </div>
         <div class="form-group">
           <label for="status">Trạng thái:</label>
           <select name="status" id="status" class="form-control">
-            <option value="1">Chặn</option>
-            <option value="0">Hoạt động</option>
+            <option value="1" @if(auth()->user()->status == 1) checked @endif>Chặn</option>
+            <option value="0" @if(auth()->user()->status == 0) checked @endif>Hoạt động</option>
           </select>
+          @include('common.singleAlertError', ['field' => 'status'])
         </div>
         <div class="form-group">
           <label for="role">Vai trò:</label>
@@ -77,6 +83,7 @@
                 {{ $role->role_name }}</option>
             @endforeach
           </select>
+          @include('common.singleAlertError', ['field' => 'role_id'])
         </div>
         <div class="d-grid gap-2">
           <button type="submit" class="btn btn-primary text-white mb-2">Cập nhật</button>

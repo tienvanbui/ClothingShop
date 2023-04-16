@@ -40,9 +40,7 @@
   <div class="form-group">
     <label for="tag_name">Tên từ khóa</label>
     <input type="text" class="form-control" id="tag_name" aria-describedby="tag_name" placeholder="Nhập từ khóa" name="tag_name" value="{{$tag->tag_name}}" old={{$tag->tag_name}}>
-    @error('tag_name')
-    <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
+    @include('common.singleAlertError', ['field' => 'tag_name'])
   </div>
   <div class="d-grid gap-2">
   <button type="submit" class="btn btn-primary ">Cập nhật</button>
