@@ -25,7 +25,10 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tag_name' => 'required|string|bail'
+            'tag_name' => 'required|max:255|bail'
+        ],[
+            'tag_name.required' => 'Trường này không được bỏ trống',
+            'tag_name.max' => 'Trường này tối đa 255 ký tự',
         ]);
         $tag = new Tag();
         $tag->fill($request->all());
@@ -53,7 +56,10 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $request->validate([
-            'tag_name' => 'required|string|bail'
+            'tag_name' => 'required|max:255|bail'
+        ],[
+            'tag_name.required' => 'Trường này không được bỏ trống',
+            'tag_name.max' => 'Trường này tối đa 255 ký tự',
         ]);
         Tag::where('id', $tag->id)->update([
             'tag_name' => $request->tag_name

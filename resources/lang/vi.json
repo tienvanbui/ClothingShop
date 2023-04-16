@@ -7,7 +7,6 @@
     "Order":"đơn hàng",
     "Payment Method":"phương thức thanh toán",
     "Discount":"sự kiện giảm giá",
-    "Menu":"menu",
     "Category":"danh mục sản phẩm",
     "Tag":"từ khóa",
     "Slider":"trình chiếu",
@@ -62,11 +61,11 @@
     "Update Order" : "Cập nhật đơn hàng",
     "Delete Order" : "Xóa đơn hàng",
 
-    "List Payment Method" : "Danh sách phương thức thanh toán",
-    "Create Payment Method" : "Tạo phương thức thanh toán",
-    "Show Payment Method" : "Chi tiết phương thức thanh toán",
-    "Update Payment Method" : "Cập nhật phương thức thanh toán",
-    "Delete Payment Method" : "Xóa phương thức thanh toán",
+    "List Payment Method" : "Danh sách phương thức",
+    "Create Payment Method" : "Tạo phương thức",
+    "Show Payment Method" : "Chi tiết phương thức",
+    "Update Payment Method" : "Cập nhật phương thức",
+    "Delete Payment Method" : "Xóa phương thức",
 
     "List Discount" : "Danh sách sự kiện giảm giá",
     "Create Discount" : "Tạo sự kiện giảm giá",
@@ -138,6 +137,14 @@
     "Create Contact" : "Tạo liên hệ",
     "Show Contact" : "Chi tiết liên hệ",
     "Update Contact" : "Cập nhập liên hệ",
-    "Delete Contact" : "Xóa liên hệ"
+    "Delete Contact" : "Xóa liên hệ",
     
+    "White" : "Trắng",
+    "Black" : "Đen",
+    "Gray" : "Xám",
+    "Blue" : "Xanh",
+    "Men" : "Nam",
+    "Women" :"Nữ",
+    "Child" :"Trẻ em",
+    "Bag":"Balo"
 }

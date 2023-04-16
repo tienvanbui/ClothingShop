@@ -17,13 +17,22 @@ class AboutController extends Controller
         $this->resourceName = 'abouts';
         $this->modelName = 'About';
         $this->validateRule = [
-            'title' => 'required|string|bail',
+            'title' => 'required|max:255|bail',
             'thumbnail' => 'required|image|bail',
-            'description' => 'required|string|bail',
+            'description' => 'required|bail',
+            'quote' => 'max:255'
         ];
         $this->views = [
             'index' => 'admin.about.index',
             'create' => 'admin.about.create',
+        ];
+        $this->messageValidate = [
+            'title.required' => 'Tiêu đề không được trống.',
+            'title.max' => 'Tiêu đề tối đa 255 ký tự',
+            'quote.max' => 'Tiêu đề tối đa 255 ký tự',
+            'description.required' => 'Nội dung không được trống.',
+            'thumbnail.required' => 'Ảnh không được trống.',
+            'thumbnail.image' => 'Phải là định dạng ảnh',
         ];
         $this->middleware('auth');
         $this->middleware(['permission:About_list'], ['only' => ['index']]);
@@ -41,7 +50,7 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->startValidationProcess($request)) {
+        if ($this->startValidationProcess($request,$this->messageValidate)) {
             $dataStore = [
                 'title' => $request->title,
                 'description' => $request->description,
@@ -75,7 +84,7 @@ class AboutController extends Controller
      */
     public function update(Request $request, About $about)
     {
-        if ($this->startValidationProcess($request)) {
+        if ($this->startValidationProcess($request,$this->messageValidate)) {
             $this->delteOldImageWhenUpdateWithCheckExists($request, 'thumbnail', $about);
             $dataUpdate = [
                 'title' => $request->title,

@@ -14,7 +14,12 @@ class PaymentController extends Controller
         $this->resourceName = 'payments';
         $this->modelName = 'Payment';
         $this->validateRule = [
-            'payment_method' => 'required|string|unique:payments|bail',
+            'payment_method' => 'required|max:255|unique:payments|bail',
+        ];
+        $this->messageValidate = [
+            'payment_method.required' => 'Trường này không được để trống',
+            'payment_method.max' => 'Tối đa 255 ký tự',
+            'payment_method.unique' => 'Giá trị đã tồn tại',
         ];
         $this->views = [
             'index' => 'admin.payment.index',
@@ -35,7 +40,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->startValidationProcess($request)) {
+        if ($this->startValidationProcess($request,$this->messageValidate)) {
             $newPayment = new Payment();
             $newPayment->payment_method = $request->payment_method;
             $newPayment->save();
@@ -62,7 +67,13 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        if ($this->startValidationProcess($request)) {
+        $validator = $request->validate([
+            'payment_method' => 'required|max:255|bail',
+        ],[
+            'payment_method.required' => 'Trường này không được để trống',
+            'payment_method.max' => 'Tối đa 255 ký tự',
+        ]);
+        if ($validator) {
             $payment->update([
                 'payment_method' => $request->payment_method,
             ]);

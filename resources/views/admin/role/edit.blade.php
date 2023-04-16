@@ -60,11 +60,7 @@
                   <label>
                     <input type="checkbox" class="checkbox_warpper">
                   </label>
-<<<<<<< HEAD
-                  Chức năng {{$item->permission_name}}
-=======
                   Chức năng {{ __($item->permission_name) }}
->>>>>>> 4318ef38fa794457b12c41f5f72b711fe1242a06
                 </div>
                 <div class="row">
                   @foreach ($item->permissions as $child)
@@ -83,13 +79,6 @@
               </div>
             @endforeach
           </div>
-
-<<<<<<< HEAD
-            </div>
-        <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary text-white mb-2">Cập nhật</button>
-=======
->>>>>>> 4318ef38fa794457b12c41f5f72b711fe1242a06
         </div>
         <div class="d-grid gap-2">
           <button type="submit" class="btn btn-primary text-white mb-2">Cập nhật</button>

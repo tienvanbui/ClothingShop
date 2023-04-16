@@ -27,10 +27,13 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\UserOrderController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\User\ProfileController as UserProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -121,20 +124,21 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::get('/order/order-show-detail/{order}', [AdminOrderController::class, 'orderShow'])->name('admin.order-show');
     Route::post('/order/confirm-order/{order}', [AdminOrderController::class, 'orderConfirm'])->name('admin.order-confirm');
     Route::post('/order/delete-order/{order}', [AdminOrderController::class, 'orderDelete'])->name('admin.order-delete');
-    //Discount Router
-    Route::resource('/discount', DiscountController::class)->names('discount');
-    Route::put('/discount/update-status/{id}', [DiscountController::class,'changeStatus'])->name('discount.changeStatus');
+    
+    // //Discount Router
+    // Route::resource('/discount', DiscountController::class)->names('discount');
+    // Route::put('/discount/update-status/{id}', [DiscountController::class,'changeStatus'])->name('discount.changeStatus');
+    
+    //Notification
+    Route::get('/notifications', [NotificationController::class, 'getListNotification'])->name('admin.getListNotification');
+    Route::post('/notifications/mark-as-read', [NotificationController::class, 'markNotification'])->name('admin.markNotification');
 });
-
+Route::get('/admin/login',[LoginController::class,'adminLoginForm'])->name('admin.login');
 Auth::routes();
-Route::get('/redirect-fabebook', [SocialLoginController::class, 'redirectToFacebook'])->name('redirect-facebook');
-Route::get('/facebook_callback', [SocialLoginController::class, 'processLoginWithFacebook']);
-Route::group(['prefix' => '/user', 'middleware' => ['auth']], function () {
-    //user--------------cart
-    Route::post('/save-to-cart', [UserCartController::class, 'store'])->name('save-cart');
-    Route::delete('/delete-form-cart/{id}', [UserCartController::class, 'deleteFromCart'])->name('cart.delete');
-    Route::put('/update-cart/{id}', [UserCartController::class, 'updateCart'])->name('cart.update');
-    Route::get('/list-product-in-cart', [UserCartController::class, 'listProductInCart'])->name('cart-user');
+Route::get('/social/fabebook', [SocialLoginController::class, 'redirectToFacebook'])->name('redirect-facebook');
+Route::get('/facebook/callback', [SocialLoginController::class, 'processLoginWithFacebook']);
+Route::group(['prefix' => '/user', 'middleware' => ['auth','lock-account']], function () {
+   
     // route------------payment
     Route::get('/cofirm-payment', [UserCartController::class, 'confirmPayment'])->name('payment.confirm');
     // route------------order
@@ -148,7 +152,16 @@ Route::group(['prefix' => '/user', 'middleware' => ['auth']], function () {
     Route::post('/payment/proceed-to-order', [UserCartController::class, 'proceedToOrder'])->name('payment.acceptedOrder');
     Route::post('/payment/cancel-order', [UserCartController::class, 'cancelOrder'])->name('payment.cancelOrder');
     Route::get('/thank-to-order', [UserCartController::class, 'thankForOrdering'])->name('thankToOrder');
+
+    Route::get('/my-profile',[UserProfileController::class,'getPrivateInfo'])->name('user.my-profile');
+    Route::put('/my-profile/{profile}', [UserProfileController::class, 'update'])->name('user.profile.update');
+
 });
+ //user--------------cart
+ Route::post('/user/save-to-cart', [UserCartController::class, 'store'])->name('save-cart');
+ Route::delete('/user/delete-form-cart/{id}', [UserCartController::class, 'deleteFromCart'])->name('cart.delete');
+ Route::put('/user/update-cart/{id}', [UserCartController::class, 'updateCart'])->name('cart.update');
+ Route::get('/user/list-product-in-cart', [UserCartController::class, 'listProductInCart'])->name('cart-user');
 //home router 
 Route::get('/home', [HomeController::class, 'index'])->name('home-user');
 
@@ -171,7 +184,7 @@ Route::post('/loadComment-blog-with-ajax', [CommonBlogController::class, 'loadCo
 //client--------------product
 Route::get('/product/view-product-list', [ClientProductController::class, 'listProduct'])->name('shop-user');
 Route::get('/product/product-detail/{product}', [ClientProductController::class, 'showDetail'])->name('shop.show');
-Route::get('/product/category-product/category={id}', [ClientProductController::class, 'showProductByCategory'])->name('user.shop.showByCategory');
+Route::get('/product/category-product/category={name}', [ClientProductController::class, 'showProductByCategory'])->name('user.shop.showByCategory');
 Route::post('/product/load-more-with-ajax', [ClientProductController::class, 'loadMoreProduct'])->name('loadMore.product');
 Route::post('/home/qick-view-ajax', [HomeController::class, 'qickViewSpecifiedProduct'])->name('qickView.home');
 Route::post('/filter-product-with-ajax', [ClientProductController::class, 'showProductByFilter'])->name('filter-product');
@@ -179,3 +192,4 @@ Route::post('/product/filter-load-more-with-ajax', [ClientProductController::cla
 Route::post('/search-product', [ClientProductController::class, 'searchingProduct'])->name('searchingProduct');
 Route::post('/product/rating-product/{product}', [ClientProductController::class, 'ratingProduct'])->middleware('ajax.isLogined');
 Route::post('/loadComment-rating-product-with-ajax', [ClientProductController::class, 'loadMoreRatingProduct']);
+

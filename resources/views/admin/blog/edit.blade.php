@@ -67,11 +67,13 @@
                   {{ $item->tag_name }}</option>
               @endforeach
             </select>
+            @include('common.singleAlertError', ['field' => 'tags'])
           </div>
 
           <div class="form-group">
             <label>Nội dung</label>
             <textarea name="blog_content" class="form-control" rows="20" id="ck_editor_blog_edit">{{ $blog->blog_content }}</textarea>
+            @include('common.singleAlertError', ['field' => 'blog_content'])
           </div>
 
           <div class="d-grid gap-2">

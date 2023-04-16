@@ -8,7 +8,7 @@
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('dashboard') }}"
             aria-expanded="false">
             <i class="fa fa-user" aria-hidden="true"></i>
-            <span class="hide-menu">Overview</span>
+            <span class="hide-menu">Tổng quan</span>
           </a>
         </li>
         @if (auth()->user()->hasPermission('Blog_list') ||
@@ -17,7 +17,7 @@
             <h2 class="accordion-header" id="flush-headingThree">
               <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#flush-colllaspeThree" aria-expanded="false" aria-controls="flush-colllaspeThree"><i
-                  class="fab fa-blogger-b"></i>Tin tức</span>
+                  class="fab fa-blogger-b"></i>Quản lý tin tức</span>
             </h2>
             <div id="flush-colllaspeThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
               data-bs-parent="#accordionFlushExample">
@@ -224,7 +224,7 @@
             </div>
           </li>
         @endif
-        <li class="sidebar-item accordion-item">
+        {{-- <li class="sidebar-item accordion-item">
           <h2 class="accordion-header" id="flush-head40">
             <span class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
               data-bs-target="#flush-coll40" aria-expanded="false" aria-controls="flush-head40"><i
@@ -247,7 +247,7 @@
               </ul>
             </div>
           </div>
-        </li>
+        </li> --}}
         {{-- @if (auth()->user()->hasPermission('Menu_list') ||
                 auth()->user()->hasPermission('Menu_create'))
           <li class="sidebar-item accordion-item">

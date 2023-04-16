@@ -24,7 +24,7 @@
         <td><img src="{{ asset($user->avatar) }}" style="width:3rem;height:3rem"></td>
         <td>
           @if ($user->status == 1)
-            <label class=" mt-1 btn btn-danger">Chặn</label>
+            <label class=" mt-1 btn btn-danger text-white">Chặn</label>
           @elseif ($user->status == 0)
             <label class="mt-1 btn btn-primary btn-sm">Hoạt động</label>
           @endif

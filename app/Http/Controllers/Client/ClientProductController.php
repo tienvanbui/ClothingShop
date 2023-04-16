@@ -69,13 +69,13 @@ class ClientProductController extends Controller
     /**
      * Display a listing of the product by category.
      **/
-    public function showProductByCategory($id)
+    public function showProductByCategory($name)
     {
         if (auth()->check()) {
             $this->cartDisplayInform(auth()->user()->id);
         }
         $colors = Color::all();
-        $category_id = (Category::where('id', $id)->first())->id;
+        $category_id = (Category::where('name', $name)->first())->id;
         $products = Product::where('category_id', $category_id)->latest()->paginate(config('appConst.appConst.ITEM_IN_PER_PAGE'));
         return view('user.product.index', [
             'colors' => $colors,
@@ -103,14 +103,15 @@ class ClientProductController extends Controller
                         ->orderBy('products.id', 'DESC')
                         ->limit(config('appConst.appConst.ITEM_IN_PER_PAGE'))
                         ->get();
-                } else {
+                }
+                else {
                     $data = DB::table('products')
                         ->where('id', '<', $request->id)
                         ->orderBy('id', 'DESC')
                         ->limit(config('appConst.appConst.ITEM_IN_PER_PAGE'))
                         ->get();
                 }
-            } else {
+            } else {                
                 if (!empty($request->category_name)) {
                     $data = DB::table('products')
                         ->join('categories', "categories.id", "=", "products.category_id")
@@ -119,7 +120,8 @@ class ClientProductController extends Controller
                         ->orderBy('products.id', 'DESC')
                         ->limit(config('appConst.appConst.ITEM_IN_PER_PAGE'))
                         ->get();
-                } else {
+                }
+                else {
                     $data = DB::table('products')
                         ->orderBy('id', 'DESC')
                         ->limit(config('appConst.appConst.ITEM_IN_PER_PAGE'))

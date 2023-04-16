@@ -114,7 +114,7 @@
                                     </span>
 
                                     <a class="filter-link stext-106 trans-04" data-color="{{ $color->color_name }}">
-                                        {{ $color->color_name }}
+                                        {{ __($color->color_name) }}
                                     </a>
                                 </li>
                             @endforeach

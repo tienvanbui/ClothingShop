@@ -16,10 +16,10 @@
 </head>
 
 <body class="img js-fullheight" style="background-image: url({{ asset('images/bg-login.png') }});">
-
-  <section class="ftco-section">
+  <section class="ftco-section" >
     <div class="container">
       @yield('content')
+    </div>
     </div>
   </section>
 </body>

@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'role' => RoleMiddleware::class,
         'ajax.isLogined' => \App\Http\Middleware\AjaxRequestOnly::class,
         'permission' => PermissionMiddleware::class,
+        'lock-account' => \App\Http\Middleware\LockAccountMiddleware::class,
     ];
 }

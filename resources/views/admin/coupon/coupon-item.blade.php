@@ -7,6 +7,7 @@
       <th scope="col" class="text-white">Giá giảm</th>
       <th scope="col" class="text-white">Số lượng phiếu tồn</th>
       <th scope="col" class="text-white">Số lượng phiếu đã dùng</th>
+      <th scope="col" class="text-white">Ngày hết hạn</th>
       <th style="width: 10%" class="text-white">Hoạt động</th>
     </tr>
   </thead>
@@ -31,6 +32,7 @@
         </td>
         <td>{{ $coupon->coupon_use_number }}</td>
         <td>{{ $coupon->coupon_used_count }}</td>
+        <td>{{ $coupon->created_at->addDays(7)->toDateString() }}</td>
         <td>
           @if (auth()->user()->hasPermission('Coupon_update'))
             <a href="{{ route('coupon.edit', ['coupon' => $coupon->id]) }}" class="btn btn-success btn-sm text-white"><i
