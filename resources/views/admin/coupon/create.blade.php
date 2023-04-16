@@ -1,4 +1,4 @@
-@section('title', 'Create New Coupon')
+@section('title', 'Tạo phiếu giảm giá')
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
 @section('main-content')
@@ -35,17 +35,17 @@
           <div class="form-group">
             <label for="coupon_code">Mã:</label>
             <input type="text" class="form-control" id="coupon_code" aria-describedby="coupon_code"
-              placeholder="Enter Coupon Code" name="coupon_code" value="{{ old('coupon_code') }}">
+              placeholder="Mã phiếu giảm giá" name="coupon_code" value="{{ old('coupon_code') }}">
             @include('common.singleAlertError', ['field' => 'coupon_code'])
 
           </div>
           <div class="form-group">
             <label for="coupon_condition">Loại giảm giá:</label>
             <select name="coupon_condition" id="coupon_condition" class="form-control">
-              <option selected>Loại giảm giá</option>
-              <option value="0">Giảm giá tiền mặt</option>
-              <option value="1">Giảm giá theo phần trăm</option>
+              <option >Loại giảm giá</option>
+              <option value="1" selected>Giảm giá theo phần trăm</option>
             </select>
+            @include('common.singleAlertError', ['field' => 'coupon_condition'])
           </div>
           <div class="form-group">
             <label for="coupon_price_discount">Giá giảm:</label>

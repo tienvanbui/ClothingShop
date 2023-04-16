@@ -115,7 +115,6 @@ $(document).ready(function () {
         var id = $(this).data('id');
         var _token = $('input[name="_token"]').val();
         var categoryName = window.location.href.split('category=')[1];
-        category_name.name = categoryName;
         $('.loadMoreButton-product_user').html("<b>...Loading...<b/>");
         loadMoreProduct(id, _token, category_name);
     });
@@ -385,11 +384,11 @@ $(document).ready(function () {
                     swal(response.product_name, "đã thêm vào giỏ !", "success").then((result) => { $('.js-modal1').removeClass('show-modal1') });
                     $('.header-cart-count').attr('data-notify', response.product_in_cart);
                     $('.add-ajax-product-insert').append(response.product_item_in_cart);
-                    $('.header-cart-total').text('Total:$' + response.product_sum_all_product_price);
+                    $('.header-cart-total').text('Tổng:' + response.product_sum_all_product_price + 'VNĐ');
                 };
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                window.location.href = "/login";
+                // window.location.href = "/login";
             }
         });
     }
@@ -430,12 +429,18 @@ $(document).ready(function () {
     $(document).on('click', '.btnDelete-cart_product_item', function (e) {
         e.preventDefault();
         var _token = $('input[name="_token"]').val();
+        var index = $(this).parent().parent().data('item_id');
         var user_id = $('input[name="user_id_delete"]').val();
-        var product_id = $('input[name="product_id_delete"]').val();
+        var product_id = $('.item-data' + index + ' input[name="product_id_delete"]').val();
+        var size_id = $('.item-data' + index + ' input[name="size_id_delete"]').val();
+        var color_id = $('.item-data' + index + ' input[name="color_id_delete"]').val();
+
         var data = {
             _token: _token,
             user_id: user_id,
             product_id: product_id,
+            size_id: size_id,
+            color_id: color_id
         };
         swal({
             title: "Bạn có chắc chắn xóa?",
@@ -465,15 +470,20 @@ $(document).ready(function () {
         e.preventDefault();
         var _token = $('input[name="_token"]').val();
         var user_id = $('input[name="user_id"]').val();
-        var product_id = $('input[name="product_id"]').val();
+        var index = $(this).data('item_id');
+        var product_id = $('.item-update-data' + index +' input[name="product_id"]').val();
         var cart_id = $('input[name="cart_id"]').val();
-        var buy_quanlity = $('.num-product').val();
+        var buy_quanlity = $('.item-update-data' + index + ' .num-product').val();
+        var size_id = $('.item-update-data' + index + ' input[name="size_id_update"]').val();
+        var color_id = $('.item-update-data' + index + ' input[name="color_id_update"]').val();
         var data = {
             _token: _token,
             user_id: user_id,
             product_id: product_id,
             cart_id: cart_id,
-            buy_quanlity: buy_quanlity
+            buy_quanlity: buy_quanlity,
+            size_id: size_id,
+            color_id: color_id
         };
         if (buy_quanlity > 0) {
             $.ajax({
@@ -481,11 +491,19 @@ $(document).ready(function () {
                 url: "/user/update-cart/" + product_id,
                 data: data,
                 success: function (response) {
-                    swal("Dữ liệu của bạn đã được cập nhật!", {
-                        icon: "success",
-                    }).then((result) => {
-                        location.reload();
-                    });
+                    if (response.status == 'warning') {
+                        swal("Sản phẩm hết hàng.Làm ơn chọn sản phẩm khác!", {
+                            icon: "error",
+                        })
+                    }
+                    if (response.status == 'success') {
+                        swal("Dữ liệu của bạn đã được cập nhật!", {
+                            icon: "success",
+                        }).then((result) => {
+                            location.reload();
+                        });
+                    }
+
                 }
             });
         }
@@ -503,7 +521,7 @@ $(document).ready(function () {
     $('.btn-confirm-cart_applyCoupon').on('click', function (param) {
         param.preventDefault();
         var _token = $('input[name="_token"]').val();
-        var coupon_code = $('.confirm-cart_couponCode_input').val();
+        var coupon_code = $('input[name="coupon_code"]').val();
         var total_price_all_products_in_cart = $('.discount-price-of-products').val();
         if (_token != undefined && coupon_code != undefined && total_price_all_products_in_cart != undefined) {
             $.ajax({
@@ -527,6 +545,7 @@ $(document).ready(function () {
                             $('.discount-price-of-products').val(response.totalAfterDiscount);
                         });
                         $('.confirm-cart_couponCode_input').attr('disabled', 'disabled');
+                        $('.confirm-cart_couponCode_input').attr('data-order_coupon_code',coupon_code);
                     }
                     else if (response.status == 'full') {
                         swal({
@@ -534,9 +553,27 @@ $(document).ready(function () {
                             text: "Phiếu giảm giá đã được dùng hoặc hết hạn!",
                             icon: "warning",
                         }).then(() => {
-                            $('.discount_payment_type').text( 0);
+                            $('.discount_payment_type').text(0);
                             $('.total-after-discounting').text(response.totalAfterDiscount);
                         });
+                    }
+                    else if(response.status == 'isset_coupon_code'){
+                        swal({
+                            title: "Mã giảm giá đã sử dụng!.",
+                            text: "Vui lòng đợi mã giảm giá khác!",
+                            icon: "error",
+                        })
+                        $('.confirm-cart_couponCode_input').val('');
+                        $('.confirm-cart_couponCode_input').removeAttr('data-order_coupon_code')
+                    }
+                    else if(response.status == 'time_out'){
+                        swal({
+                            title: "Phiếu giảm giá đã hết hạn!.",
+                            text: "Vui lòng đợi đợt giảm giá khác!",
+                            icon: "error",
+                        })
+                        $('.confirm-cart_couponCode_input').val('');
+                        $('.confirm-cart_couponCode_input').removeAttr('data-order_coupon_code')
                     }
                     else {
                         swal({
@@ -576,6 +613,7 @@ $(document).ready(function () {
         var total = $('input[name="total"]').val();
         var addressShipping = $('input[name="address"]').val();
         var phoneNumberShipping = $('input[name="phoneNumber"]').val();
+        var apply_coupon_code = $('input[name="coupon_code"]').attr('data-order_coupon_code');
         if (_token != undefined && user_id != undefined && payment_id != undefined && total != undefined && addressShipping != undefined && phoneNumberShipping != undefined) {
             var data = {
                 _token: _token,
@@ -583,6 +621,7 @@ $(document).ready(function () {
                 total: total,
                 addressShipping: addressShipping,
                 phoneNumberShipping: phoneNumberShipping,
+                apply_coupon_code:apply_coupon_code,
                 user_id: user_id
             };
             swal({
@@ -616,6 +655,7 @@ $(document).ready(function () {
                                     window.location.href = '/product/view-product-list';
                                 });
                             }
+                           
                         }
                     });
                 }
@@ -752,7 +792,7 @@ $(document).ready(function () {
                 dataType: "JSON",
                 success: function (response) {
                     if (response['status']) {
-                        $('.order-tracked_button_' + response['id']).append("<button class='btn btn-warning text-white fw-bold btn-sm'>Shipped</button>");
+                        $('.order-tracked_button_' + response['id']).append("<button class='btn btn-warning text-white fw-bold btn-sm'>Đã đến</button>");
                         $('#btnOrderTrackForm' + response['id']).remove();
                     }
 

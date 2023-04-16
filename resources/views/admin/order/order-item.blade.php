@@ -1,10 +1,10 @@
 <table class="table table-sm table-hover">
   <thead style="background-color: #021919;color:white">
-    <tr>
+    <tr class="bg-dark text-white">
       <th scope="col" class="text-white">#</th>
       <th scope="col" class="text-white">Người đặt</th>
       <th scope="col" class="text-white">Ngày đặt</th>
-      <th scope="col" class="text-white">Phương thức thanh toán</th>
+      <th scope="col" class="text-white">Phương thức</th>
       <th scope="col" class="text-white">Tổng tiền</th>
       <th scope="col" class="text-white">Trạng thái</th>
       <th scope="col" class="text-white">Hoạt động</th>
@@ -18,7 +18,7 @@
           <td>{{ $order->name }}</td>
           <td>{{ $order->created_at }}</td>
           <td>{{ $order->payment_method }}</td>
-          <td>{{ '$' . $order->total }}</td>
+          <td>{{ number_format($order->total) .'VNĐ' }}</td>
           <td>
             @if (auth()->user()->hasPermission('Order_update'))
             @if ($order->status == 0)
@@ -67,11 +67,8 @@
                 <button class="text-white btn btn-success btn-sm mt-1 rounded-pill">Đang chuyển</button>
               </form>
             @else
-            <form action="{{ route('admin.order-delete', ['order' => $order->id]) }}"method="POST">
-              @csrf
-              <button class="text-white tex-white btn-sm btn-danger btn mt-1 rounded-pill">Loại bỏ</button>
-            </form>
-              
+
+              <button class="text-white tex-white btn-sm btn-danger btn mt-1 rounded-pill">Đã nhận</button>
             @endif
           </td>
           <td>

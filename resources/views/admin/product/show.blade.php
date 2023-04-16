@@ -30,15 +30,70 @@
       </div>
     </div>
     <div class="row">
-      <div class="card text-center">
-        <div class="card-header bg-dark">
-          <h3 class="text-center text-white mt-4">CHI TIẾT SẢN PHẨM</h3>
+      <div class="card-header bg-dark">
+        <h3 class="text-center text-white mt-4">CHI TIẾT SẢN PHẨM</h3>
+      </div>
+      <div class="row d-flex" style="flex-direction: row">
+        <div class="col col-6 mt-2" style="margin-left:22px">
+          <p>
+            <span style="font-weight:800">Màu sắc:</span>
+            @php
+              $stringColor = '';
+            @endphp
+            @foreach ($product->colors as $item)
+              @php
+                $stringColor .= $item->color_name . ', ';
+              @endphp
+            @endforeach
+            <span> {{ trim($stringColor, ', ') }}</span>
+          </p>
+          <p>
+            <span style="font-weight:800">Kích thước:</span>
+            @php
+              $stringSize = '';
+            @endphp
+            @foreach ($product->sizes as $item)
+              @php
+                $stringSize .= $item->size_name . ', ';
+              @endphp
+            @endforeach
+            <span>{{ trim($stringSize, ', ') }}</span>
+          </p>
         </div>
+        <div class="col col-6 mt-2" style="margin-left:22px">
+          {!! $product->productDetail->description !!}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card text-center">
+        <div class="card-body">
+          <div class="row row-cols-1 row-cols-md-3 g-4 d-flex">
+            @foreach ($product->productImages as $item)
+              <div class="col">
+                <div class="card">
+                  <img src="{{ asset($item->img_path) }}" class="card-img-top" alt="{{ $item->img_path_name }}"
+                    height="10%" width="80px">
+                  <div class="card-body">
+                    @php
+                      $nameProductImgArray = explode('.', $item->img_path_name);
+                      $nameProductImg = $nameProductImgArray[0];
+                    @endphp
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card text-center">
+        
         <div class="card-body">
           <table class="table table-hover table-striped">
             <thead style="background-color: black;color:white">
-              <tr>
-                <th scope="col" style="color: white">Mô tả chi tiết</th>
+              <tr class="bg-dark text-white">
                 <th scope="col" style="color: white">Cân nặng</th>
                 <th scope="col" style="color: white">Kích thước</th>
                 <th scope="col" style="color: white">Chất liệu</th>
@@ -46,7 +101,6 @@
             </thead>
             <tbody>
               <tr>
-                <td>{!! $product->productDetail->description !!}</td>
                 <td>{{ $product->productDetail->weight }}</td>
                 <td>{{ $product->productDetail->dimension }}</td>
                 <td>{{ $product->productDetail->materials }}</td>
@@ -56,69 +110,6 @@
         </div>
       </div>
     </div>
-    <div class="row mt-5">
-      <div class="card text-center ">
-        <div class="card-body">
-          <table class="table  table-sm">
-            <thead class="text-white " style="background-color: black;color:white">
-              <tr>
-                <th scope="col" style="color: white">Màu sắc</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($product->colors as $item)
-                <tr>
-                  <td>{{ $item->color_name }}</td>
-                </tr>
-              @endforeach
-              </tr>
-            </tbody>
-          </table>
-          <table class="table table-bordered table-sm mt-5">
-            <thead class="text-white" style="background-color: black;">
-              <tr>
-                <th scope="col" style="color:white">Kích cỡ</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($product->sizes as $item)
-                <tr>
-                  <td>{{ $item->size_name }}</td>
-                </tr>
-              @endforeach
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="row mt-5">
-      <div class="card text-center">
-        <div class="card-header bg-dark">
-          <h3 class="text-center text-white py-2">HÌNH ẢNH CHI TIẾT</h3>
-        </div>
-        <div class="card-body">
-          <div class="row row-cols-1 row-cols-md-3 g-4">
-            @foreach ($product->productImages as $item)
-              <div class="col">
-                <div class="card h-100">
-                  <img src="{{ asset($item->img_path) }}" class="card-img-top" alt="{{ $item->img_path_name }}"
-                    height="40%" width="80px">
-                  <div class="card-body">
-                    @php
-                      $nameProductImgArray = explode('.', $item->img_path_name);
-                      $nameProductImg = $nameProductImgArray[0];
-                    @endphp
-                    <h5 class="card-title text-center">{{ $nameProductImg }}</h5>
-                  </div>
-                </div>
-              </div>
-            @endforeach
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-@endsection
-@include('layouts.admin.main')
-@include('layouts.admin.footer')
+  @endsection
+  @include('layouts.admin.main')
+  @include('layouts.admin.footer')

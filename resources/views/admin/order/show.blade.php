@@ -54,14 +54,14 @@
             <div class="row">
               <div class="col-sm-12 col-md-12 mt-5">
                 <table class="table">
-                  <thead style="background-color: #021919;color:white">
-                    <tr>
-                      <th scope="col" class="text-center">Sản phẩm</th>
-                      <th scope="col">Hình ảnh</th>
-                      <th scope="col" class="text-center">Số lượng</th>
-                      <th scope="col" class="text-center">Kích thước</th>
-                      <th scope="col" class="text-center">Sản phẩm</th>
-                      <th scope="col" class="text-center">Giá</th>
+                  <thead >
+                    <tr style="color:white" class="bg-dark">
+                      <th scope="col" class="text-center text-white">Sản phẩm</th>
+                      <th scope="col" class="text-white">Hình ảnh</th>
+                      <th scope="col" class="text-center text-white">Số lượng</th>
+                      <th scope="col" class="text-center text-white">Kích thước</th>
+                      <th scope="col" class="text-center text-white">Màu sắc</th>
+                      <th scope="col" class="text-center text-white">Giá</th>
                     </tr>
                   </thead>
                   <tbody>

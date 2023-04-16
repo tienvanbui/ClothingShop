@@ -22,11 +22,13 @@ class IsEnoughConditionToCartLisnter
             ->where('product_color_sizes.product_id', '=', $event->productId)
             ->where('product_color_sizes.color_id', '=', $event->colorId)
             ->where('product_color_sizes.size_id', '=', $event->sizeId)->first();
-        if ($productCheck->quanlities == 0) {
-            $isEmpty = 1;
-        } else {
-            $isEmpty = 0;
+        if (!empty($productCheck)) {
+            if ($productCheck->quanlities < $event->buyQuanlities) {
+                $isEmpty = 1;
+            } else {
+                $isEmpty = 0;
+            }
+            return $isEmpty;
         }
-        return $isEmpty;
     }
 }

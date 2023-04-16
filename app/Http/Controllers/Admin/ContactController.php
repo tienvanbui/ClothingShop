@@ -16,9 +16,18 @@ class ContactController extends Controller
             'index' => 'admin.contact.index',
         ];
         $this->validateRule = [
-            'address' => 'required|string|bail',
-            'talk'=>'required|string|numeric|bail',
-            'sale_email'=>'required|email|bail',
+            'address' => 'required|max:255',
+            'talk'=>'required|max:255',
+            'sale_email'=>'required|email|max:255',
+        ];
+        $this->messageValidate = [
+            'address.required' => 'Địa chỉ công ty không được để trống',
+            'address.max' => 'Tối đa 255 ký tự',
+            'talk.required' => 'Trường này không được để trống',
+            'talk.max' => 'Tối đa 255 ký tự',
+            'sale_email.required' => 'Địa chỉ email không được để trống',
+            'sale_email.max' => 'Tối đa 255 ký tự',
+            'sale_email.email' => 'Phải là đúng định dạng email',
         ];
         $this->middleware(['permission:Contact_list'], ['only' => ['index']]);
         $this->middleware(['permission:Contact_create'], ['only' => ['create', 'store']]);
@@ -64,7 +73,7 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        $validator = $request->validate($this->validateRule);
+        $validator = $request->validate($this->validateRule,$this->messageValidate);
         if($validator){
             $contact->update([
                 'address'=>$request->address,

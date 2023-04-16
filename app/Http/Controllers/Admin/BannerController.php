@@ -20,9 +20,17 @@ class BannerController extends Controller
             'create' => 'admin.banner.create',
         ];
         $this->validateRule = [
-            'title' =>'required|string|bail',
-            'content' =>'required|string|bail',
+            'title' =>'required|max:255|bail',
+            'content' =>'required|max:255|bail',
             'banner_image' =>'required|image|bail'
+        ];
+        $this->messageValidate = [
+            'title.required' => 'Tiêu đề không được trống.',
+            'title.max' => 'Tiêu đề tối đa 255 ký tự',
+            'content.required' => 'Nội dung không được trống.',
+            'content.max' => 'Nội dung tối đa 255 ký tự',
+            'banner_image.required' => 'Ảnh không được trống.',
+            'banner_image.image' => 'Phải là định dạng ảnh',
         ];
         $this->middleware('auth');
         $this->middleware(['permission:Banner_list'], ['only' => ['index']]);
@@ -51,7 +59,7 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        if($this->startValidationProcess($request)){
+        if($this->startValidationProcess($request,$this->messageValidate)){
             $dataStore = [
                 'title' =>$request->title,
                 'content' =>$request->content,
@@ -84,7 +92,7 @@ class BannerController extends Controller
      */
     public function update(Request $request, Banner $banner)
     {
-        if($this->startValidationProcess($request)){
+        if($this->startValidationProcess($request,$this->messageValidate)){
             $this->delteOldImageWhenUpdateWithCheckExists($request,'banner_image',$banner);
             $dataUpdate = [
                 'title'=>$request->title,

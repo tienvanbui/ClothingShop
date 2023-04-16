@@ -43,7 +43,7 @@
                 <button
                   class="flex-c-m stext-101 cl2 size-119 bg-dark bor13 hov-btn3 p-r-15 trans-04 pointer m-tb-10  text-white btn-confirm-cart_applyCoupon px-3"
                   type="submit">
-                  Áp dụng phiếu giảm giá
+                  Áp dụng giảm giá
                 </button>
               </div>
             </div>

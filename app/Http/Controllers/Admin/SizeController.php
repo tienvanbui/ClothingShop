@@ -19,7 +19,12 @@ class SizeController extends Controller
 
         ];
         $this->validateRule = [
-            'size_name'=>"required|string|bail",
+            'size_name'=>"required|max:255|unique:sizes",
+        ];
+        $this->messageValidate = [
+            'size_name.required' => 'Tên kích thước không được để trống.',
+            'size_name.max' => 'Tên kích thước tối đa 255 ký tự.',
+            'size_name.unique' => 'Tên kích thước đã tồn tại'
         ];
         $this->middleware(['permission:Size_list'], ['only' => ['index']]);
         $this->middleware(['permission:Size_create'], ['only' => ['create', 'store']]);
@@ -34,7 +39,12 @@ class SizeController extends Controller
     }
     public function update(Request $request,$id){
        
-        $validator = $request->validate($this->validateRule);
+        $validator = $request->validate([
+            'size_name'=>"required|max:255",
+        ],[
+            'size_name.required' => 'Tên kích thước không được để trống.',
+            'size_name.max' => 'Tên kích thước tối đa 255 ký tự.',
+        ]);
         if($validator){
             $size = Size::FindOrFail($id);
             $size->update(

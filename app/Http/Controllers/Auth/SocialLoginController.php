@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -29,6 +30,7 @@ class SocialLoginController extends Controller
                 'email' => $faceBookUser->email,
                 'facebook_id' => $faceBookUser->id,
                 'avatar' => $faceBookUser->avatar,
+                'email_verified_at' => Carbon::now(),
                 'role_id' => 2
             ]);
         }

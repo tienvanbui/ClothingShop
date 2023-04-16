@@ -38,14 +38,19 @@
           </div>
 
           <div class="right-top-bar flex-w h-full">
-            <a href="{{ route('about-user') }}" class="flex-c-m trans-04 p-lr-25">
-              FAQs
-            </a>
             @if (auth()->check())
-              <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25">
-                <img src="{{ asset(auth()->user()->avatar) }}" alt="user-img" width="30" class="img-circle"><span
-                  class="text-white font-medium">{{ auth()->user()->username }}</span>
-              </a>
+              <div class="dropdown show" style="z-index: 1001 !important">
+                <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25" id="dropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="{{ asset(auth()->user()->avatar) }}" alt="user-img" width="30" class="img-circle"
+                    style="border-radius: 50%;margin-right:10px"><span
+                    class="text-white font-medium">{{ auth()->user()->username }}</span>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="{{route('user.my-profile')}}">Thông tin tài khoản</a>
+                </div>
+              </div>
             @endif
             @if (auth()->check())
               <form action="{{ route('logout') }} " method="post" class="flex-c-m trans-04 p-lr-25">
@@ -72,36 +77,38 @@
 
           <!-- Menu desktop -->
           <div class="menu-desktop">
-						<ul class="main-menu">
-							<li class="menu">
-								<a href="{{route('home-user')}}">Trang chủ</a>
-							</li>
-							<li class="label1" data-label1="hot">
-								<a href="{{route('shop-user')}}">Cửa hàng</a>
+            <ul class="main-menu">
+              <li class="menu">
+                <a href="{{ route('home-user') }}">Trang chủ</a>
+              </li>
+              <li class="label1" data-label1="hot">
+                <a href="{{ route('shop-user') }}">Cửa hàng</a>
                 <ul class="sub-menu">
                   @foreach ($menus as $category)
-									<li><a href="{{ route('user.shop.showByCategory', ['id' => $category->id]) }}">{{$category->name}}</a></li>
+                    <li><a
+                        href="{{ route('user.shop.showByCategory', ['name' => $category->name]) }}">{{ __($category->name)}}</a>
+                    </li>
                   @endforeach
-								</ul>
-							</li>
+                </ul>
+              </li>
 
-							<li >
-								<a href="{{route("cart-user")}}">Giỏ hàng</a>
-							</li>
+              <li>
+                <a href="{{ route('cart-user') }}">Giỏ hàng</a>
+              </li>
 
-							<li>
-								<a href="{{route("blog-user")}}">Tin tức</a>
-							</li>
+              <li>
+                <a href="{{ route('blog-user') }}">Tin tức</a>
+              </li>
 
-							<li>
-								<a href="{{route("about-user")}}">Về chúng tôi</a>
-							</li>
+              <li>
+                <a href="{{ route('about-user') }}">Về chúng tôi</a>
+              </li>
 
-							<li>
-								<a href="{{route("contact-user")}}">Liên hệ</a>
-							</li>
-						</ul>
-					</div>	
+              <li>
+                <a href="{{ route('contact-user') }}">Liên hệ</a>
+              </li>
+            </ul>
+          </div>
 
           <!-- Icon header -->
           <div class="wrap-icon-header flex-w flex-r-m">
@@ -120,7 +127,8 @@
     <div class="wrap-header-mobile">
       <!-- Logo moblie -->
       <div class="logo-mobile">
-        <a href="{{ route('home-user') }}"><img src="{{ asset('images/user/icons/logo-01.png') }}" alt="IMG-LOGO"></a>
+        <a href="{{ route('home-user') }}"><img src="{{ asset('images/user/icons/logo-01.png') }}"
+            alt="IMG-LOGO"></a>
       </div>
 
       <!-- Icon header -->
@@ -177,36 +185,38 @@
       <ul class="main-menu-m">
         <ul class="main-menu-m">
           <li>
-            <a href="{{route('home-user')}}">Trang chủ</a>
-            
+            <a href="{{ route('home-user') }}">Trang chủ</a>
+
             <span class="arrow-main-menu-m">
               <i class="fa fa-angle-right" aria-hidden="true"></i>
             </span>
           </li>
-  
+
           <li>
-            <a href="{{route('shop-user')}}" class="label1 rs1" data-label1="hot">Cửa hàng</a>
+            <a href="{{ route('shop-user') }}" class="label1 rs1" data-label1="hot">Cửa hàng</a>
             <ul class="sub-menu-m">
               @foreach ($menus as $category)
-              <li><a href="{{ route('user.shop.showByCategory', ['id' => $category->id]) }}">{{$category->name}}</a></li>
+                <li><a
+                    href="{{ route('user.shop.showByCategory', ['name' => $category->name]) }}">{{ $category->name }}</a>
+                </li>
               @endforeach
             </ul>
           </li>
-  
+
           <li>
-            <a href="{{route('cart-user')}}" >Giỏ hàng</a>
+            <a href="{{ route('cart-user') }}">Giỏ hàng</a>
           </li>
-  
+
           <li>
-            <a href="{{route('blog-user')}}">Tin tức</a>
+            <a href="{{ route('blog-user') }}">Tin tức</a>
           </li>
-  
+
           <li>
-            <a href="{{route('about-user')}}">Về chúng tôi</a>
+            <a href="{{ route('about-user') }}">Về chúng tôi</a>
           </li>
-  
+
           <li>
-            <a href="{{route('contact-user')}}">Liên hệ</a>
+            <a href="{{ route('contact-user') }}">Liên hệ</a>
           </li>
         </ul>
       </ul>
@@ -246,7 +256,7 @@
 
                     <span class="header-cart-item-info">
                       {{ $product->pivot->buy_quanlity }} x
-                      {{ $product->price .'VNĐ' }}
+                      {{ number_format($product->price) . 'VNĐ' }}
                     </span>
                   </div>
                 </li>
@@ -257,10 +267,53 @@
 
           <div class="w-full">
             <div class="header-cart-total w-full p-tb-40">
-              Tổng: {{ number_format($totalPrice).'VNĐ' }}
+              Tổng: {{ number_format($totalPrice) . 'VNĐ' }}
             </div>
             <div class="header-cart-buttons flex-w w-full">
               <a href="{{ route('view-cart') }}"
+                class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                Xem giỏ hàng
+              </a>
+              <a href="{{ route('payment.confirm') }}"
+                class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                Duyệt đơn
+              </a>
+            </div>
+          </div>
+        </div>
+      @else
+        <div class="header-cart-content flex-w js-pscroll">
+          <ul class="header-cart-wrapitem w-full">
+            @if (!empty(Session::get('cart')))
+              @foreach (Session::get('cart') as $product)
+                <li class="header-cart-item flex-w flex-t m-b-12">
+                  <div class="header-cart-item-img">
+                    <img src="{{ $product['product_image'] }}" alt="{{ $product['product_image_name'] }}">
+                  </div>
+
+                  <div class="header-cart-item-txt p-t-8">
+                    <a href="{{ route('shop.show', ['product' => $product['product_id']]) }}"
+                      class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                      {{ $product['product_name'] }}
+                    </a>
+
+                    <span class="header-cart-item-info">
+                      {{ $product['buy_quanlity'] }} x
+                      {{ number_format($product['price']) . 'VNĐ' }}
+                    </span>
+                  </div>
+                </li>
+              @endforeach
+            @endif
+            <div class="add-ajax-product-insert"></div>
+          </ul>
+
+          <div class="w-full">
+            <div class="header-cart-total w-full p-tb-40">
+              Tổng: {{ number_format($totalPrice) . 'VNĐ' }}
+            </div>
+            <div class="header-cart-buttons flex-w w-full">
+              <a href="{{ route('cart-user') }}"
                 class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
                 Xem giỏ hàng
               </a>

@@ -19,16 +19,23 @@
         <td>{{ $discount->start_date_event }}</td>
         <td>{{ $discount->end_date_event }}</td>
         <td>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="active" name="actived"
-              value="{{ $discount->active }}">
-            <label class="form-check-label" for="active">Hoạt động</label>
-          </div>
+          @if ($discount->active == 0)
+          <form action="{{route('discount.changeStatus',['id' => $discount->id])}}" method="POST">
+            @csrf
+            @method('PUT')
+            <input type="hidden" name="active_event" value="{{$discount->active}}">
+            <button class="btn btn-primary text-white rounded-pill">Hoạt động</button>
+          </form>
+          @else
+          <form action="{{route('discount.changeStatus',['id' => $discount->id])}}" method="POST">
+            @csrf
+            @method('PUT')
+            <input type="hidden" name="active_event" value="{{$discount->active}}">
+            <button class="btn btn-danger text-white rounded-pill">Hủy bỏ</button>
+          </form>
+          @endif
         </td>
         <td>
-          <a href="
-                  {{ route('discount.show', ['discount' => $discount->id]) }}"
-            class="btn btn-primary btn-sm  text-white "><i class="fas fa-eye"></i></a>
           <a href="
                   {{ route('discount.edit', ['discount' => $discount->id]) }}"
             class="btn btn-success btn-sm text-white "><i class="fas fa-edit"></i></a>

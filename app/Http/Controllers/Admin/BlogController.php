@@ -8,6 +8,8 @@ use App\Traits\uploadFileImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Tag;
+use Illuminate\Validation\Rule;
+
 class BlogController extends Controller
 {
     use uploadFileImage;
@@ -19,9 +21,17 @@ class BlogController extends Controller
             'index' => 'admin.blog.index',
         ];
         $this->validateRule = [
-            'blog_name' => 'required|string|unique:blogs,blog_name|bail',
+            'blog_name' => 'required|max:255|bail',
             'blog_content' => 'required|bail',
             'thumbnail' => 'required|bail',
+            'tags' => ['required', Rule::exists('tags', 'id')],
+        ];
+        $this->messageValidate = [
+            'blog_name.required' => 'Tiêu đề tin tức không được trống.',
+            'blog_name.max' => 'Tiêu đề tin tức tối đa 255 ký tự',
+            'blog_content.required' => 'Nội dung tin tức không được trống.',
+            'thumbnail.required' => 'Ảnh tin tức không được trống.',
+            'tags.required' => 'Danh mục tin tức không được để trống.',
         ];
         $this->middleware('auth');
         $this->middleware(['permission:Blog_list'], ['only' => ['index']]);
@@ -46,7 +56,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $this->validate($request, $this->validateRule);
+        $validator = $this->validate($request, $this->validateRule, $this->messageValidate);
         if ($validator) {
             $dataStore = [
                 'blog_name' => $request->blog_name,
@@ -103,7 +113,7 @@ class BlogController extends Controller
     public function update(Request $request, Blog $blog)
     {
 
-        $validator = $this->validate($request, $this->validateRule);
+        $validator = $this->validate($request, $this->validateRule, $this->messageValidate);
         if ($validator) {
             $this->delteOldImageWhenUpdateWithCheckExists($request, 'thumbnail', $blog);
             $dataUpdate = [

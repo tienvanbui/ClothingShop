@@ -39,6 +39,7 @@
                       <div class="col-md-12 border-bottom p-0">
                         <input type="text" placeholder="Johnathan Doe" class="form-control p-0 border-0"
                           value="{{ auth()->user()->name }}" name="name">
+                          @include('common.singleAlertError', ['field' => 'name'])
                       </div>
                     </div>
                     <div class="form-group mb-4">
@@ -46,6 +47,7 @@
                       <div class="col-md-12 border-bottom p-0">
                         <input type="email" placeholder="johnathan@admin.com" class="form-control p-0 border-0"
                           name="email" id="example-email" value="{{ auth()->user()->email }}">
+                          @include('common.singleAlertError', ['field' => 'email'])
                       </div>
                     </div>
                     <div class="form-group mb-4">
@@ -53,6 +55,7 @@
                       <div class="col-md-12 border-bottom p-0">
                         <input type="username"class="form-control p-0 border-0" value="{{ auth()->user()->username }}"
                           name="username">
+                          @include('common.singleAlertError', ['field' => 'username'])
                       </div>
                     </div>
                     <div class="form-group mb-4">
@@ -60,6 +63,7 @@
                       <div class="col-md-12 border-bottom p-0">
                         <input type="text"class="form-control p-0 border-0" value="{{ auth()->user()->phoneNumber }}"
                           name="phoneNumber">
+                          @include('common.singleAlertError', ['field' => 'phoneNumber'])
                       </div>
                     </div>
                     <div class="form-group mb-4">
@@ -67,6 +71,7 @@
                       <div class="col-md-12 border-bottom p-0">
                         <input type="text"class="form-control p-0 border-0" value="{{ auth()->user()->address }}"
                           name="address">
+                          @include('common.singleAlertError', ['field' => 'address'])
                       </div>
                     </div>
                     <div class="form-group mb-4">

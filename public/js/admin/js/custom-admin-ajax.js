@@ -178,10 +178,90 @@ $(document).ready(function () {
             duration: "slow"
         });
     });
-    $('#hidden-side_bar').hover(function (param) {
-        param.preventDefault();
+    $('#hidden-side_bar').hover(function (e) {
+        e.preventDefault();
         $(this).css('cursor', 'pointer');
     })
-
-
-});
+    var hidLeftSideBar = 0;
+    $('#hidden-side_bar').click(function (e) {
+        e.preventDefault();
+        hidLeftSideBar++;
+        if(hidLeftSideBar % 2 == 0){
+            $('.left-sidebar').css('left','-240px');
+            $('#main-wrapper[data-layout="vertical"][data-sidebartype="full"] .page-wrapper').css('margin-left',0);
+        }
+        else{
+            $('#main-wrapper[data-layout="vertical"][data-sidebartype="full"] .page-wrapper').css('margin-left','240px');
+            $('.left-sidebar').css('left',0);
+        }
+    })
+    //Toggle display notification content
+    function callAjaxProcessListNotification(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: "/admin/notifications",
+            dataType: "JSON",
+            success: function (response) {
+                const notifications = response.data.notifications
+                var stringNotficiation = '';
+                for (let index = 0; index < notifications.length; index++) {
+                    if(notifications[index]['read_at'] != null || notifications[index]['read_at'] != undefined){
+                        stringNotficiation +="<li class='list-group-item'><a href='"+notifications[index]['data']['url']+"' style='color: black;font-weight:400'><p style='margin:0 !important;'>"+notifications[index]['created_at']+"</p><p>"+notifications[index]['data']['content']+"</p></a></li>"
+                    }
+                    else{
+                        stringNotficiation +="<li class='list-group-item' data-uid="+notifications[index]['id']+" id='item-notification'><a href='"+notifications[index]['data']['url']+"' style='color: black;font-weight:900'><p style='margin:0 !important;'>"+notifications[index]['created_at']+"</p><p>"+notifications[index]['data']['content']+"</p></a></li>" 
+                    }
+                   
+                }
+                $('#list-group-notification').html(stringNotficiation)
+                $('#notifications_unread_count').html(response.data.notifications_unread)
+            }
+        });
+    }
+    $(document).on('click','#notification-icon',function(e){
+        e.preventDefault();
+        $('.box-content_notification').css('display','block')
+        $('body').css('overflow','hidden')
+        callAjaxProcessListNotification()
+    });
+    $(document).on('click','.close-notification_content',function(e){
+        e.preventDefault();
+        callAjaxProcessListNotification()
+        $('.box-content_notification').css('display','none')
+        $('body').css('overflow','auto')
+    });
+    $(document).on('click','#item-notification',function (e) { 
+        e.preventDefault();
+        const uid = $(this).attr('data-uid');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/admin/notifications/mark-as-read",
+            data: {
+                id:uid,
+            },
+            dataType: "JSON",
+            success: function (response) {
+                $('#item-notification').each(()=>{
+                    var el = $('#item-notification');
+                    if(el.attr('data-uid') == uid){
+                        el.find('a').removeAttr('style').addClass('unread_notify')
+                    }
+                })
+            },
+            complete : function (response) {
+                window.location.href = '/admin/order/order-check'
+            }
+        });
+    })
+    
+})

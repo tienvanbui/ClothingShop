@@ -1,4 +1,4 @@
-@section('title', 'Update The Coupon')
+@section('title', 'Cập nhật phiếu giảm giá')
 @include('layouts.admin.header')
 @include('layouts.admin.slidebar')
 @section('main-content')
@@ -43,10 +43,10 @@
             <label for="coupon_condition">Loại giảm giá:</label>
             <select name="coupon_condition" id="coupon_condition" class="form-control">
               <option>Chọn loại phiếu giảm giá</option>
-              <option {{ $coupon->coupon_codition == 0 ? 'selected' : '' }} value="0">Giảm giá tiền mặt</option>
               <option {{ $coupon->coupon_condition == 1 ? 'selected' : '' }} value="1">Giảm giá theo phần trăm
               </option>
             </select>
+            @include('common.singleAlertError', ['field' => 'coupon_condition'])
           </div>
           <div class="form-group">
             <label for="coupon_price_discount">Giá giảm:</label>

@@ -47,6 +47,6 @@ class ClientContactController extends Controller
             ->first())->email;
         // //fire event send message contact to admin 
         contactMessageSubmit::dispatch($message, $fromEmail, $toMail);
-        return redirect()->route('contact-user')->with('message-success', 'Your message was sent sucessfully!');
+        return redirect()->route('contact-user')->with('message-success', 'Gửi câu hỏi thành công!');
     }
 }

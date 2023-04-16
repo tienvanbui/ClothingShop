@@ -193,7 +193,7 @@ class BlogController extends Controller
                 $output .= '
             <div class="text-center" style="width: 100%">
                 <button class=" stext-101 size-125  bor2 hov-btn3 mt-5 ">
-                    No Data Found
+                    Không có dữ liệu
                 </button>
             </div>';
             }

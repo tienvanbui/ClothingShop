@@ -41,7 +41,8 @@
           </div>
           <div class="form-group">
             <label for="description_discount_event">Mô tả sự kiện giảm giá<span style="color:red">*</span></label>
-            <textarea name="description_discount_event" class="form-control" rows="20" id="ck_editor_discount_create"></textarea>
+            <textarea name="description_discount_event" class="form-control" rows="10" id="ck_editor_discount_create"></textarea>
+            @include('common.singleAlertError', ['field' => 'description_discount_event'])
           </div>
           <div class="form-group">
             <label for="discount_percent">Phần trăm giảm giá<span style="color:red">*</span></label>
@@ -63,7 +64,7 @@
             @include('common.singleAlertError', ['field' => 'end_date_event'])
           </div>
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="active" checked>
+            <input class="form-check-input" type="checkbox" id="active" name="active">
             <label class="form-check-label" for="active">Hoạt động</label>
           </div>
           <div class="d-grid gap-2">

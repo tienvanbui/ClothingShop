@@ -7,21 +7,18 @@
             'Product',
             'Color',
             'Size',
+            'User',
             'Order',
             'Payment Method',
-            'Discount',
-            'Menu',
             'Category', //Category::class
             'Tag',
             'Slider', //Slider::class
-            'User', //User::class
             'Setting', //Setting::class
             'About',
             'Role', //Role::class
             'Coupon',
-            'Users',
+            // 'Users',
             'Contact',
-            'Discount'
         ],
         'modul_features' =>[
             'list',// list objects of model

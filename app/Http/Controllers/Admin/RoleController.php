@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
+
 class RoleController extends Controller
 {
 
@@ -15,40 +16,47 @@ class RoleController extends Controller
         $this->resourceName = 'roles';
         $this->modelName = 'Role';
         $this->views = [
-            'index'=>'admin.role.index',
+            'index' => 'admin.role.index',
         ];
         $this->validateRule = [
-            'role_name'=>'required|string|bail',
-            'role_description'=>'required|string|bail',
-            
+            'role_name' => 'required|string|bail',
+            'role_description' => 'required|string|bail',
+
         ];
         $this->modelName = "Role";
+        $this->middleware(['permission:Role_list'], ['only' => ['index']]);
+        $this->middleware(['permission:Role_create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Role_show'], ['only' => ['show']]);
+        $this->middleware(['permission:Role_update'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Role_delete'], ['only' => ['destroy']]);
     }
-    public function show(Role $role){
-        $permission = Permission::where('parent_id',0)->get();
+    public function show(Role $role)
+    {
+        $permission = Permission::where('parent_id', 0)->get();
         $pemissionOfRole = $role->permissions()->get();
-        return view('admin.role.show',[
-            'role'=>$role,
-            'pemissionOfRole'=>$pemissionOfRole,
-            'permission'=>$permission,
+        return view('admin.role.show', [
+            'role' => $role,
+            'pemissionOfRole' => $pemissionOfRole,
+            'permission' => $permission,
         ]);
     }
-    public function create(){
-        $permissionLst = Permission::where('parent_id',0)->get();
-        return view('admin.role.create')->with('permissionLst',$permissionLst);
+    public function create()
+    {
+        $permissionLst = Permission::where('parent_id', 0)->get();
+        return view('admin.role.create')->with('permissionLst', $permissionLst);
     }
-          /**
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
-        if($this->startValidationProcess($request)){
+    {
+        if ($this->startValidationProcess($request)) {
             $roleStore = Role::create([
                 'role_name' => $request->role_name,
                 'role_description' => $request->role_description,
             ]);
             $roleStore->permissions()->attach($request->permission_id);
-            return redirect()->route('role.index')->withToastSuccess("$this->modelName Updated Successfully!");
+            return redirect()->route('role.index')->withToastSuccess("Lưu vai trò thành công!");
         }
     }
     /**
@@ -59,20 +67,16 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $permission = Permission::where('parent_id',0)->get();
+        $permission = Permission::where('parent_id', 0)->get();
         $pemissionOfRole = $role->permissions;
         return view('admin.role.edit')->with([
-            'role'=>$role,
-            'permission'=>$permission,
-            'pemissionOfRole'=>$pemissionOfRole
+            'role' => $role,
+            'permission' => $permission,
+            'pemissionOfRole' => $pemissionOfRole
         ]);
-        $this->middleware(['permission:Role_list'], ['only' => ['index']]);
-        $this->middleware(['permission:Role_create'], ['only' => ['create', 'store']]);
-        $this->middleware(['permission:Role_show'], ['only' => ['show']]);
-        $this->middleware(['permission:Role_update'], ['only' => ['edit', 'update']]);
-        $this->middleware(['permission:Role_delete'], ['only' => ['destroy']]);
+       
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -82,13 +86,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        if($this->startValidationProcess($request)){
+        if ($this->startValidationProcess($request)) {
             $role->update([
-                'role_name'=>$request->role_name,
-                'role_description' =>$request->role_description
+                'role_name' => $request->role_name,
+                'role_description' => $request->role_description
             ]);
             $role->permissions()->sync($request->permission_id);
-            return redirect()->route('role.index')->withToastSuccess("$this->modelName Updated Successfully!");
+            return redirect()->route('role.index')->withToastSuccess("Cập nhật vai trò thành công!");
         }
     }
 
@@ -102,6 +106,6 @@ class RoleController extends Controller
     {
         $role->permissions()->detach();
         $role->delete();
-        return redirect()->route('role.index')->withToastSuccess("$this->modelName Deleted successfully!");
+        return redirect()->route('role.index')->withToastSuccess("Xóa vai trò thành công!");
     }
 }

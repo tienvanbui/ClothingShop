@@ -4,7 +4,7 @@
       <th scope="col" class="fw-bold text-dark">#</th>
       <th scope="col" class="fw-bold text-dark">Người dùng</th>
       <th scope="col" class="fw-bold text-dark">Ngày đặt</th>
-      <th scope="col" class="fw-bold text-dark">Phương thức thanh toán</th>
+      <th scope="col" class="fw-bold text-dark">Thanh toán</th>
       <th scope="col" class="fw-bold text-dark">Tổng tiền</th>
       <th scope="col" class="fw-bold text-dark">Trạng thái</th>
       <th class="fw-bold">

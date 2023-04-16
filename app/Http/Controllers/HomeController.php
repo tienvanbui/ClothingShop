@@ -9,6 +9,7 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -46,7 +47,7 @@ class HomeController extends Controller
             $product = Product::find($request->id);
             $output['product_id'] = $product->id;
             $output['product_name'] = $product->product_name;
-            $output['product_price'] = $product->price.'VNĐ';
+            $output['product_price'] = number_format($product->price).'VNĐ';
             $output['product_image'] = $product->product_image;
             $output['product_image_name'] = $product->product_image_name;
             $output['seo_product'] = $product->seo_product;

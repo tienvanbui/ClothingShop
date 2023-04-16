@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Category;
+use Illuminate\Support\Facades\Session;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -29,6 +31,7 @@ class Controller extends BaseController
     protected $countCartItem = 0;
     protected $itemInPerPgae = 5;
     protected $getEventValueName = null;
+    protected $messageValidate = null;
     protected function setModel($model)
     {
         $this->model = $model;
@@ -39,11 +42,16 @@ class Controller extends BaseController
         $this->getSumTotalPriceCartProduct();
         $this->getCountCartProduct();
     }
+
     protected function getCartOfUser($id)
     {
         $cart = null;
         if (auth()->check()) {
             $cart = Cart::where('user_id', $id)->first();
+        } else {
+            if (Session::has('cart')) {
+                $cart = Session::get('cart');
+            }
         }
         return $this->cartOfUser =  $cart;
     }
@@ -57,7 +65,16 @@ class Controller extends BaseController
             $totalPrice = $this->cartOfUser->products()->sum('total_price');
         }
         if (!auth()->check()) {
-            $totalPrice = 0;
+            if (Session::has('cart')) {
+                $price = 0;
+                foreach (Session::get('cart') as $cartItem) {
+                    $price += $cartItem['total_price'];
+                }
+                $totalPrice = $price;
+            } else {
+                $totalPrice = 0;
+            }
+            
         }
         return $this->totalPriceOfAllProductInCart = $totalPrice;
     }
@@ -71,8 +88,13 @@ class Controller extends BaseController
             $count = $this->cartOfUser->products()->count();
         }
         if (!auth()->check()) {
-            $count = 0;
+            if (Session::has('cart')) {
+                $count = count(Session::get('cart'));
+            } else {
+                $count = 0;
+            }
         }
+
         return $this->countCartItem = $count;
     }
     protected $validateRule = [];
@@ -117,7 +139,7 @@ class Controller extends BaseController
      */
     public function store(Request $request)
     {
-        if ($this->startValidationProcess($request)) {
+        if ($this->startValidationProcess($request,$this->messageValidate)) {
             $object = new $this->model();
             $object->fill($request->all());
             $object->save();
@@ -138,7 +160,7 @@ class Controller extends BaseController
      */
     protected function startValidationProcess($request)
     {
-        return  $request->validate($this->validateRule);
+        return  $request->validate($this->validateRule,$this->messageValidate);
     }
     /**
      * showing menu app in the user page
@@ -153,6 +175,37 @@ class Controller extends BaseController
      */
     protected function list()
     {
-         return view($this->views['list']);   
+        return view($this->views['list']);
+    }
+     /**
+     * Summary of sendSuccessResponse
+     * @param mixed $data
+     * @param mixed $message
+     * @param mixed $code
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sendSuccessResponse($data, $message = '', $code = 200)
+    {
+        return response()->json([
+            'status_code' => $code,
+            'message' => $message,
+            'data' => $data,
+        ], $code);
+    }
+
+    /**
+     * Summary of sendErrorResponse
+     * @param mixed $message
+     * @param mixed $errors
+     * @param mixed $code
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sendErrorResponse($message, $errors = null, $code = 500)
+    {
+        return response()->json([
+            'status_code' => $code,
+            'message' => $message,
+            'errors' => $errors,
+        ], $code);
     }
 }

@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('Statistic:earnigs')->withoutOverlapping()->daily()->at('00:00');
+        // $schedule->command('Statistic:earnigs')->everyMinute();
     }
 
     /**
